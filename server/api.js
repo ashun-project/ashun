@@ -21,13 +21,12 @@ var pool = mysql.createPool({
     password : 'wangboshun',
     database : 'down_list'
 });
-// connection.connect();
 
+// 获取列表
 router.get('/getList', function (req, res) {
     // var arg = url.parse(req.url, true).query;  获取参数
     // console.log(arg)
-    var sql = 'SELECT * FROM sanjilist';
-    //查
+    var sql = 'SELECT * FROM sanjilist limit 30';
     pool.getConnection(function (err, conn) {
         if (err) console.log("POOL ==> " + err);
         conn.query(sql,function(err,result){
@@ -41,10 +40,21 @@ router.get('/getList', function (req, res) {
         });
     }) 
 })
+
+// 详情内容
 router.post('/getDetail', function (req, res) {
-    console.log(req.body)
     var sql = 'SELECT * FROM sanjidetail where createTime = ' + parseInt(req.body.id);
-    //查
+    var files = fs.readdirSync('E:\\ashun\\file\\');
+    var downFile = files.filter(function (item) {
+        var spl = item.split('.')[0];
+        return spl === req.body.id;
+    });
+    if (!downFile.length) {
+        // 这里应该做进一步的处理 如：移除表里的这条数据
+        console.log('没有查询到下载文件');
+        res.send('error');
+        return;
+    }
     pool.getConnection(function (err, conn) {
         if (err) console.log("POOL ==> " + err);
         conn.query(sql,function(err,result){
@@ -58,8 +68,10 @@ router.post('/getDetail', function (req, res) {
         });
     }) 
 })
+
+// 文件下载
 router.get('/download',function(req, res, next){
-    var currPath = "E:\\vue_node_mysql\\file\\",
+    var currPath = "E:\\ashun\\file\\",
         allfiles = fs.readdirSync(currPath),
         fileName = req.query.name,
         currFile = currPath + allfiles.filter(function (item) {return item.indexOf(fileName) > -1;})[0],
