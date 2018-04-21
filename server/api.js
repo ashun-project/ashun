@@ -14,7 +14,7 @@ var mysql = require('mysql');
 //     res.header("Content-Type", "application/json;charset=utf-8");   
 //     next();
 // })
-
+    
 var pool = mysql.createPool({
     host     : 'localhost',
     user     : 'root',
@@ -43,30 +43,31 @@ router.get('/getList', function (req, res) {
 
 // 详情内容
 router.post('/getDetail', function (req, res) {
-    var sql = 'SELECT * FROM sanjidetail where createTime = ' + parseInt(req.body.id);
+    var id = req.body.id.toString();
+    var sql = 'SELECT * FROM sanjidetail where createTime = ' + id;
     var files = fs.readdirSync('E:\\ashun\\file\\');
     var downFile = files.filter(function (item) {
         var spl = item.split('.')[0];
-        return spl === req.body.id;
+        return spl === id;
     });
     if (!downFile.length) {
         // 这里应该做进一步的处理 如：移除表里的这条数据
         console.log('没有查询到下载文件');
         res.send('error');
-        return;
+    } else {
+        pool.getConnection(function (err, conn) {
+            if (err) console.log("POOL ==> " + err);
+            conn.query(sql,function(err,result){
+                if(err){
+                    console.log('[SELECT ERROR] - ',err.message);
+                    res.send('error');
+                } else {
+                    res.json(result);
+                }
+                conn.release();
+            });
+        }) 
     }
-    pool.getConnection(function (err, conn) {
-        if (err) console.log("POOL ==> " + err);
-        conn.query(sql,function(err,result){
-            if(err){
-                console.log('[SELECT ERROR] - ',err.message);
-                res.send('error');
-            } else {
-                res.json(result);
-            }
-            conn.release();
-        });
-    }) 
 })
 
 // 文件下载
