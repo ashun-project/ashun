@@ -95,4 +95,15 @@ export default {
         appearance: none;
     }
     input::-webkit-input-safebox-button{display:none;}
+    .lf{
+        float: left;
+    }
+    .rf{
+        float: right;
+    }
+    .clr{
+        width: 0;
+        height: 0;
+        clear: both;
+    }
 </style>
