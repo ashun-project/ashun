@@ -23,20 +23,30 @@ var pool = mysql.createPool({
 });
 
 // 获取列表
-router.get('/getList', function (req, res) {
+router.post('/getList', function (req, res) {
     // var arg = url.parse(req.url, true).query;  获取参数
     // console.log(arg)
-    var sql = 'SELECT * FROM sanjilist limit 30';
+    var limit = ((req.body.current -1) * 20) + ',' + 20;
+    var sql = 'SELECT * FROM sanjilist limit ' + limit;
+    var count = 'SELECT COUNT(*) FROM sanjilist';
     pool.getConnection(function (err, conn) {
         if (err) console.log("POOL ==> " + err);
         conn.query(sql,function(err,result){
             if(err){
                 console.log('[SELECT ERROR] - ',err.message);
                 res.send('error');
+                conn.release();
             } else {
-                res.json(result);
+                // res.json({total:21, data:result});
+                conn.query(count,function(err,num){
+                    if(err){
+                        res.send('error');
+                    } else {
+                        res.json({total:num[0]['COUNT(*)'], list:result});
+                    }
+                    conn.release();
+                })
             }
-            conn.release();
         });
     }) 
 })

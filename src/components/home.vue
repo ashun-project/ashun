@@ -51,22 +51,32 @@
                 {{item.title}}
             </li>
         </ul>
+        <v-pagination :total="total" :current-page='current' @pagechange="pagechange"></v-pagination>
     </div>
 </template>
 <script>
+    import vPagination from "@/components/common/page"
     export default {
         data () {
             return {
-                list: []
+                list: [],
+                total: 100,
+                current: 1
             }
+        },
+        components:{
+            vPagination
         },
         methods: {
             goDetail (item) {
                 this.$router.push({name: 'detail', params: {id: item.createTime}})
+            },
+            pagechange () {
+                console.log(123)
             }
         },
         created () {
-            this.$http.get('/api/getList').then(response => {
+            this.$http.post('/api/getList', {current: 2}).then(response => {
                 console.log(response, 787454121)
                 this.list = response.data;
             })
