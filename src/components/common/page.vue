@@ -2,12 +2,13 @@
     <nav>
         <ul class="pagination">
             <li :class="{'disabled': current == 1}"><a href="javascript:;" @click="setCurrent(current - 1)"> « </a></li>
-            <li :class="{'disabled': current == 1}"><a href="javascript:;" @click="setCurrent(1)"> 首页 </a></li>
+            <li class="first-page" :class="{'disabled': current == 1}"><a href="javascript:;" @click="setCurrent(1)"> 首页 </a></li>
             <li v-for="(p,idx) in grouplist" :class="{'active': current == p.val}" :key="idx">
                 <a href="javascript:;" @click="setCurrent(p.val)"> {{ p.text }} </a>
             </li>
-            <li :class="{'disabled': current == page}"><a href="javascript:;" @click="setCurrent(page)"> 尾页 </a></li>
+            <li class="last-page" :class="{'disabled': current == page}"><a href="javascript:;" @click="setCurrent(page)"> 尾页 </a></li>
             <li :class="{'disabled': current == page}"><a href="javascript:;" @click="setCurrent(current + 1)"> »</a></li>
+            <li class="total-page">共 {{total}}页</li>
         </ul>
     </nav>
 </template>
@@ -93,8 +94,11 @@
         overflow: hidden;
         display: table;
         margin: 0 auto;
-        /*width: 100%;*/
+        width: 1200px;
         height: 50px;
+        padding-top: 5px;
+        background: #f2f2f2;
+        margin-bottom: 30px;
     }
     .pagination li {
         float: left;
@@ -115,11 +119,17 @@
         height: 30px;
         text-align: center;
         line-height: 30px;
-        font-size: 12px;
+        font-size: 18px;
         border-radius: 5px;
         text-decoration: none
     }
-    .pagination li .active {
+    .pagination li.active {
         background: #000;
+    }
+    .pagination li.active a{
+        color: #fff;
+    }
+    .pagination .first-page a, .pagination .last-page a{
+        width: 60px;
     }
 </style>

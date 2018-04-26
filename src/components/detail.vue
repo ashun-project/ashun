@@ -1,7 +1,10 @@
 <template>
     <div class="detail" id="my-detail">
-        <div class="content" v-html="content"></div>
-        <a @click="goDown">下载本片</a>
+        <div class="content">
+            <div v-html="content"></div>
+            <a @click="goDown">立即下载本篇</a>
+        </div>
+        
     </div>
 </template>
 
@@ -33,15 +36,14 @@
                         }
                     }
 
-                    // 设置下载链接
+                    // 过滤元素下载链接
                     var divEles = document.getElementById('my-detail').children;
                     var txt = '';
                     eachList(divEles);
                     function eachList(data) {
                         for (var i = 0; i < data.length; i++) {
-                            var found = false;
-                            if (data[i].getAttribute('href')) data[i].setAttribute('href', '###');
-                            if (data[i].getAttribute('onmouseover')) data[i].removeAttribute('onmouseover');
+                            
+                            
                             if (data[i].firstChild) {
                                 txt = data[i].firstChild.nodeValue || '';
                             } else {
@@ -56,20 +58,32 @@
                                     hf = child[j].getAttribute('href');
                                     cla = child[j].getAttribute('class') || '';
                                     if (hf.indexOf('forum.php?mod') > -1 && cla.indexOf('xw1') < 0) {
-                                        // child[j].removeAttribute('onmouseover');
-                                        child[j].setAttribute('id', 'my-down');
+                                        ev.parentNode.removeChild(ev);
                                         console.log(235345)
-                                        found = true;
-                                        break;
                                     };
                                 };
                             };
-                            if (!found) {
+                            if (data[i].getAttribute('onmouseover')) data[i].removeAttribute('onmouseover');
+                            if (data[i].getAttribute('onclick')) data[i].removeAttribute('onclick');
+                            if (data[i].getAttribute('title') === '帖子模式') {
+                                data[i].parentNode.removeChild(data[i]);
+                            }
+                            if (data[i] && data[i].getAttribute('src') === 'https://static.wifi588.net/static/image/filetype/torrent.gif') {
+                                data[i].parentNode.removeChild(data[i]);
+                            }
+                            if (data[i]) {
                                 var childList = data[i].children;
                                 eachList(childList);
-                            };
+                            }
+                            
                         };
-                    };              
+                    };
+
+                    // 去除a链接
+                    let a = document.getElementsByTagName('a');
+                    for (let i = 0,len = a.length; i < len; i++) {
+                        a[i].setAttribute('href', '###');
+                    }        
                 })
             }
         },
@@ -91,13 +105,19 @@
 
 <style scoped>
     .detail .content{
-        width: 1000px;
+        width: 1200px;
         margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #eee;
+        margin-top: 20px;
     }
     .detail .content >>> table{
         text-align: left;
     }
     .detail >>> #toubiao, .detail >>> .xg1, .detail >>> .xw1{
         display: none;
+    }
+    .detail .content >>> img{
+        max-width: 800px;
     }
 </style>

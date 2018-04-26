@@ -1,14 +1,6 @@
 <template>
     <div class="home">
-        <div class="header">
-            <div class="cont">
-                <span class="lf"><img src="logo.png"></span>
-                <span class="rf">登入/注册</span>
-            </div>
-        </div>
-        <div class="banner">
-            <img src="@/resource/img/banner.png" alt="">
-        </div>
+        
         <div class="data-list">
             <ul>
                 <li v-for="(item, idx) in list" :key="idx" @click="goDetail(item)">
@@ -27,7 +19,7 @@
         data () {
             return {
                 list: [],
-                total: 100,
+                total: 0,
                 current: 1
             }
         },
@@ -36,43 +28,32 @@
         },
         methods: {
             goDetail (item) {
-                this.$router.push({name: 'detail', params: {id: item.createTime}})
+                // this.$router.push({name: 'detail', params: {id: item.createTime}})
+                window.open('#/detail/'+item.createTime, '_blank')
             },
-            pagechange () {
-                console.log(123)
+            pagechange (num) {
+                this.getList (num)
+            },
+            getList (current) {
+                this.$http.post('/api/getList', {current: current}).then(response => {
+                    console.log(response, 787454121)
+                    response.data.list.forEach(item => {
+                        if (item.img.indexOf('https:') > -1) {
+                            item.img = item.img.replace('https:', '');
+                        }
+                    })
+                    this.list = response.data.list;
+                    this.total = response.data.total;
+                })
             }
         },
         created () {
-            this.$http.post('/api/getList', {current: 2}).then(response => {
-                console.log(response, 787454121)
-                response.data.forEach(item => {
-                    if (item.img.indexOf('https:') > -1) {
-                        item.img = item.img.replace('https:', '');
-                    }
-                })
-                this.list = response.data;
-                console.log(response.data.length)
-            })
+            this.getList(1)
         }
     }
 </script>
 
 <style scoped>
-    .header{
-        height: 50px;
-        line-height: 5 0px;
-        border: 1px solid #eee;
-    }
-    .header .cont{
-        width: 1200px;
-        margin: 0 auto;
-    }
-    .banner{
-        height: 300px;
-        background: #999;
-        width: 1200px;
-        margin: 0 auto;
-    }
     .data-list{
         width: 1200px;
         margin: 20px auto 0;

@@ -1,5 +1,14 @@
 <template>
     <div id="app">
+        <div class="header">
+            <div class="cont">
+                <span class="lf"><img src="logo.png"></span>
+                <span class="rf">登入/注册</span>
+            </div>
+        </div>
+        <div class="banner">
+            <img src="@/resource/img/banner.png" alt="">
+        </div>
         <router-view/>
     </div>
 </template>
@@ -105,5 +114,21 @@ export default {
         width: 0;
         height: 0;
         clear: both;
+    }
+
+    .header{
+        height: 50px;
+        line-height: 50px;
+        border-bottom: 1px solid #eee;
+    }
+    .header .cont{
+        width: 1200px;
+        margin: 0 auto;
+    }
+    .banner{
+        height: 300px;
+        background: #999;
+        width: 1200px;
+        margin: 0 auto;
     }
 </style>
