@@ -7,50 +7,17 @@
             </div>
         </div>
         <div class="banner">
-            <img src="banner.png" alt="">
+            <img src="@/resource/img/banner.png" alt="">
         </div>
         <div class="data-list">
             <ul>
-                <li>
-                    <img src="" alt="">
-                    <p>this is title</p>
-                </li>
-                <li>
-                    <img src="" alt="">
-                    <p>this is title</p>
-                </li>
-                <li>
-                    <img src="" alt="">
-                    <p>this is title</p>
-                </li>
-                <li>
-                    <img src="" alt="">
-                    <p>this is title</p>
-                </li>
-                <li>
-                    <img src="" alt="">
-                    <p>this is title</p>
-                </li>
-                <li>
-                    <img src="" alt="">
-                    <p>this is title</p>
-                </li>
-                <li>
-                    <img src="" alt="">
-                    <p>this is title</p>
-                </li>
-                <li>
-                    <img src="" alt="">
-                    <p>this is title</p>
+                <li v-for="(item, idx) in list" :key="idx" @click="goDetail(item)">
+                    <img :src="item.img.split(',')[0]" alt="">
+                    <p class="title">{{item.title}}</p>
                 </li>
             </ul>
             <div class="clr"></div>
         </div>
-        <ul>
-            <li v-for="(item, idx) in list" :key="idx" @click="goDetail(item)">
-                {{item.title}}
-            </li>
-        </ul>
     </div>
 </template>
 <script>
@@ -68,7 +35,13 @@
         created () {
             this.$http.get('/api/getList').then(response => {
                 console.log(response, 787454121)
+                response.data.forEach(item => {
+                    if (item.img.indexOf('https:') > -1) {
+                        item.img = item.img.replace('https:', '');
+                    }
+                })
                 this.list = response.data;
+                console.log(response.data.length)
             })
         }
     }
@@ -87,6 +60,8 @@
     .banner{
         height: 300px;
         background: #999;
+        width: 1200px;
+        margin: 0 auto;
     }
     .data-list{
         width: 1200px;
@@ -107,5 +82,11 @@
         width: 100%;
         height: 300px;
         background: #eee;
+    }
+    .title{
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
     </style>

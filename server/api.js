@@ -26,7 +26,7 @@ var pool = mysql.createPool({
 router.get('/getList', function (req, res) {
     // var arg = url.parse(req.url, true).query;  获取参数
     // console.log(arg)
-    var sql = 'SELECT * FROM sanjilist limit 30';
+    var sql = 'SELECT * FROM sanjilist limit 20';
     pool.getConnection(function (err, conn) {
         if (err) console.log("POOL ==> " + err);
         conn.query(sql,function(err,result){
@@ -45,7 +45,7 @@ router.get('/getList', function (req, res) {
 router.post('/getDetail', function (req, res) {
     var id = req.body.id.toString();
     var sql = 'SELECT * FROM sanjidetail where createTime = ' + id;
-    var files = fs.readdirSync('E:\\ashun\\file\\');
+    var files = fs.readdirSync('E:\\project\\ashun\\file\\');
     var downFile = files.filter(function (item) {
         var spl = item.split('.')[0];
         return spl === id;
@@ -72,7 +72,7 @@ router.post('/getDetail', function (req, res) {
 
 // 文件下载
 router.get('/download',function(req, res, next){
-    var currPath = "E:\\ashun\\file\\",
+    var currPath = "E:\\project\\ashun\\file\\",
         allfiles = fs.readdirSync(currPath),
         fileName = req.query.name,
         currFile = currPath + allfiles.filter(function (item) {return item.indexOf(fileName) > -1;})[0],
