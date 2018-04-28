@@ -22,10 +22,24 @@ var pool = mysql.createPool({
     database : 'down_list'
 });
 
+// 获取所有列表
+router.post('/getAllList', function (req, res) {
+    var sql = 'SELECT * FROM sanjilist';
+    pool.getConnection(function (err, conn) {
+        if (err) console.log("POOL ==> " + err);
+        conn.query(sql,function(err,result){
+            if(err){
+                console.log('[SELECT ERROR] - ',err.message);
+                res.send('error');
+            } else {
+                res.json(result);
+            }
+            conn.release();
+        });
+    }) 
+})
 // 获取列表
 router.post('/getList', function (req, res) {
-    // var arg = url.parse(req.url, true).query;  获取参数
-    // console.log(arg)
     var limit = ((req.body.current -1) * 20) + ',' + 20;
     var sql = 'SELECT * FROM sanjilist limit ' + limit;
     var count = 'SELECT COUNT(*) FROM sanjilist';
@@ -55,7 +69,7 @@ router.post('/getList', function (req, res) {
 router.post('/getDetail', function (req, res) {
     var id = req.body.id.toString();
     var sql = 'SELECT * FROM sanjidetail where createTime = ' + id;
-    var files = fs.readdirSync('E:\\project\\ashun\\file\\');
+    var files = fs.readdirSync('E:\\ashun\\file\\');
     var downFile = files.filter(function (item) {
         var spl = item.split('.')[0];
         return spl === id;
@@ -80,9 +94,40 @@ router.post('/getDetail', function (req, res) {
     }
 })
 
+// 删除数据
+router.post('/deteleRepeat', function (req, res) {
+    var sql = 'DELETE FROM sanjilist WHERE createTime = '+ req.body.id;
+    var currPath = "E:\\ashun\\file\\",
+        allfiles = fs.readdirSync(currPath),
+        currFile = currPath + allfiles.filter(function (item) {return item.indexOf(req.body.id) > -1;})[0];
+    fs.exists(currFile, function (exist) {
+        if (exist) {
+            fs.unlink(currFile, function (err) {
+                if (err) return console.log(err);
+                console.log('文件删除成功');
+            })
+        } else {
+            console.log('文件不存在')
+        }
+    })
+    pool.getConnection(function (err, conn) {
+        if (err) console.log("POOL ==> " + err);
+        conn.query(sql,function(err,result){
+            if(err){
+                console.log('[SELECT ERROR] - ',err.message);
+                res.send('error');
+            } else {
+                res.json(result);
+            }
+            conn.release();
+        });
+    }) 
+})
+
 // 文件下载
 router.get('/download',function(req, res, next){
-    var currPath = "E:\\project\\ashun\\file\\",
+    // "E:\\project\\ashun\\file\\"
+    var currPath = "E:\\ashun\\file\\",
         allfiles = fs.readdirSync(currPath),
         fileName = req.query.name,
         currFile = currPath + allfiles.filter(function (item) {return item.indexOf(fileName) > -1;})[0],

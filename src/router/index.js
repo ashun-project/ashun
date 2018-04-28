@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import home from '@/components/home'
 import detail from '@/components/detail'
+import deleteRepeat from '@/components/delete_repeat'
 
 Vue.use(Router)
 
@@ -16,6 +17,11 @@ export default new Router({
       path: '/detail/:id',
       name: 'detail',
       component: detail
+    },
+    {
+      path: '/deleteRepeat',
+      name: 'deleteRepeat',
+      component: deleteRepeat
     }
   ]
 })
