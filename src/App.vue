@@ -2,7 +2,7 @@
     <div id="app">
         <div class="header">
             <div class="cont">
-                <span class="lf"><img src="logo.png"></span>
+                <span class="lf"><img src="@/resource/img/logo.png"></span>
                 <span class="rf">登入/注册</span>
             </div>
         </div>
@@ -124,6 +124,11 @@ export default {
     .header .cont{
         width: 1200px;
         margin: 0 auto;
+    }
+    .header .cont .lf img{
+        height: 40px;
+        float: left;
+        margin-top: 5px;
     }
     .banner{
         height: 300px;
