@@ -97,6 +97,7 @@ router.post('/getDetail', function (req, res) {
 // 删除数据
 router.post('/deteleRepeat', function (req, res) {
     var sql = 'DELETE FROM sanjilist WHERE createTime = '+ req.body.id;
+    var sql2 = 'DELETE FROM sanjidetail WHERE createTime = '+ req.body.id;
     var currPath = "E:\\ashun\\file\\",
         allfiles = fs.readdirSync(currPath),
         currFile = currPath + allfiles.filter(function (item) {return item.indexOf(req.body.id) > -1;})[0];
@@ -117,9 +118,16 @@ router.post('/deteleRepeat', function (req, res) {
                 console.log('[SELECT ERROR] - ',err.message);
                 res.send('error');
             } else {
-                res.json(result);
+                conn.query(sql2,function(err,result2){
+                    if(err){
+                        console.log('[SELECT ERROR]==sql2 - ',err.message);
+                        res.send('error');
+                    } else {
+                        res.json(result2);
+                    }
+                    conn.release();
+                });
             }
-            conn.release();
         });
     }) 
 })
