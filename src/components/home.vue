@@ -28,7 +28,6 @@
         },
         methods: {
             goDetail (item) {
-                // this.$router.push({name: 'detail', params: {id: item.createTime}})
                 window.open('#/detail/'+item.createTime, '_blank')
             },
             pagechange (num) {

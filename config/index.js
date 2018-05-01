@@ -15,9 +15,9 @@ module.exports = {
       '/api': {
         target: proxy[0],
         changeOrigin: true,   //  是否跨域
-        pathRewrite: {  
-          '^/api': ''   //  只能开发环境使用build之后将失效  将会去掉接口前面的-- api --字段  
-        }
+        // pathRewrite: {  
+        //   '^/api': ''   //  只能开发环境使用build之后将失效  将会去掉接口前面的-- api --字段  
+        // }
       }  
     },
 

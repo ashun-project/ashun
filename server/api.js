@@ -23,7 +23,7 @@ var pool = mysql.createPool({
 });
 
 // 获取所有列表
-router.post('/getAllList', function (req, res) {
+router.post('/api/getAllList', function (req, res) {
     var sql = 'SELECT * FROM sanjilist';
     pool.getConnection(function (err, conn) {
         if (err) console.log("POOL ==> " + err);
@@ -39,9 +39,9 @@ router.post('/getAllList', function (req, res) {
     }) 
 })
 // 获取列表
-router.post('/getList', function (req, res) {
+router.post('/api/getList', function (req, res) {
     var limit = ((req.body.current -1) * 20) + ',' + 20;
-    var sql = 'SELECT * FROM sanjilist limit ' + limit;
+    var sql = 'SELECT * FROM sanjilist order by createTime desc limit ' + limit;
     var count = 'SELECT COUNT(*) FROM sanjilist';
     pool.getConnection(function (err, conn) {
         if (err) console.log("POOL ==> " + err);
@@ -66,10 +66,10 @@ router.post('/getList', function (req, res) {
 })
 
 // 详情内容
-router.post('/getDetail', function (req, res) {
+router.post('/api/getDetail', function (req, res) {
     var id = req.body.id.toString();
     var sql = 'SELECT * FROM sanjidetail where createTime = ' + id;
-    var files = fs.readdirSync('E:\\ashun\\file\\');
+    var files = fs.readdirSync(__dirname + "\\file\\");
     var downFile = files.filter(function (item) {
         var spl = item.split('.')[0];
         return spl === id;
@@ -95,10 +95,10 @@ router.post('/getDetail', function (req, res) {
 })
 
 // 删除数据
-router.post('/deteleRepeat', function (req, res) {
+router.post('/api/deteleRepeat', function (req, res) {
     var sql = 'DELETE FROM sanjilist WHERE createTime = '+ req.body.id;
     var sql2 = 'DELETE FROM sanjidetail WHERE createTime = '+ req.body.id;
-    var currPath = "E:\\ashun\\file\\",
+    var currPath = __dirname + "\\file\\",
         allfiles = fs.readdirSync(currPath),
         currFile = currPath + allfiles.filter(function (item) {return item.indexOf(req.body.id) > -1;})[0];
     fs.exists(currFile, function (exist) {
@@ -133,9 +133,9 @@ router.post('/deteleRepeat', function (req, res) {
 })
 
 // 文件下载
-router.get('/download',function(req, res, next){
+router.get('/api/download',function(req, res, next){
     // "E:\\project\\ashun\\file\\"
-    var currPath = "E:\\ashun\\file\\",
+    var currPath = __dirname + "\\file\\",
         allfiles = fs.readdirSync(currPath),
         fileName = req.query.name,
         currFile = currPath + allfiles.filter(function (item) {return item.indexOf(fileName) > -1;})[0],

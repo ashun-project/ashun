@@ -19,10 +19,8 @@
         },
         methods: {
             goDown () {
-                window.open('http://localhost:8081/download?dir=file&name='+this.id +'.torrent')
-                // this.$http.get('/api/download?dir=/file&name='+this.id +'.torrent').then(response => {
-                //     console.log(response, 789456)
-                // })
+                let host = window.location.host;
+                window.open('http://'+ host +'/api/download?dir=file&name='+this.id);
             },
             refreshContent () {
                 this.$nextTick(() => {
