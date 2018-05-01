@@ -138,13 +138,14 @@ router.get('/api/download',function(req, res, next){
     var currPath = __dirname + "\\file\\",
         allfiles = fs.readdirSync(currPath),
         fileName = req.query.name,
-        currFile = currPath + allfiles.filter(function (item) {return item.indexOf(fileName) > -1;})[0],
+        filterName = allfiles.filter(function (item) {return item.indexOf(fileName) > -1;})[0],
+        currFile = currPath + filterName,
         fReadStream;
     fs.exists(currFile,function(exist) {
         if(exist){
             res.set({
                 "Content-type":"application/octet-stream",
-                "Content-Disposition":"attachment;filename="+encodeURI(fileName)
+                "Content-Disposition":"attachment;filename="+encodeURI(filterName)
             });
             fReadStream = fs.createReadStream(currFile);
             fReadStream.on("data",(chunk) => res.write(chunk,"binary"));
