@@ -2,9 +2,8 @@
     <div class="detail" id="my-detail">
         <div class="content">
             <div v-html="content"></div>
-            <a @click="goDown">立即下载本篇</a>
+            <span class="down-load" @click="goDown">下载观看</span>
         </div>
-        
     </div>
 </template>
 
@@ -117,5 +116,10 @@
     }
     .detail .content >>> img{
         max-width: 800px;
+    }
+    .detail .content .down-load{
+        cursor: pointer;
+        color: #34b458;
+        text-decoration: underline;
     }
 </style>
