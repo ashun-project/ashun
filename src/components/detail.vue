@@ -3,16 +3,13 @@
         <div class="content">
             <div v-html="content"></div>
             <span class="down-load" @click="goDown" v-if="content">点击下载观看</span>
-            <div class="loading" v-else>
-                <span></span>
-                <i>加载中...</i>
-            </div>
+            <my-loading v-else></my-loading>
         </div>
-       
     </div>
 </template>
 
 <script>
+    import myLoading from "@/components/common/loading"
     export default {
         data () {
             return {
@@ -20,6 +17,9 @@
                 hr: '',
                 id: ''
             }
+        },
+        components: {
+            myLoading
         },
         methods: {
             goDown () {
