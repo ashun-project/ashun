@@ -136,4 +136,55 @@ export default {
         width: 1200px;
         margin: 0 auto;
     }
+
+
+    /* loadding */
+    .loading{
+        width: 150px;
+        height: 4px;
+        border-radius: 2px;
+        margin: 0 auto;
+        margin-top:100px;
+        position: relative;
+        background: #f5bdbd;
+        -webkit-animation: changeBgColor 1.04s ease-in infinite alternate;
+        animation: changeBgColor 1.04s ease-in infinite alternate;
+    }
+    .loading span{
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #f5bdbd;
+        position: absolute;
+        margin-top: -7px;
+        margin-left:-8px;
+        -webkit-animation: changePosition 1.04s ease-in infinite alternate;
+        animation: changePosition 1.04s ease-in infinite alternate;
+    }
+    .loading i{
+        color: #f1909c;
+        font-size: 14px;
+        display: block;
+        width: 100%;
+        text-align: center;
+        line-height: 30px;
+    }
+    @-webkit-keyframes changeBgColor{
+        0%{
+            background: #f5bdbd;
+        }
+        100%{
+            background: #f1909c;
+        }
+    }
+    @-webkit-keyframes changePosition{
+        0%{
+            background: #f5bdbd;
+        }
+        100%{
+            margin-left: 142px;
+            background: #f1909c;
+        }
+    }
 </style>

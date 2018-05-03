@@ -2,9 +2,13 @@
     <div class="detail" id="my-detail">
         <div class="content">
             <div v-html="content"></div>
-            <a @click="goDown">立即下载本篇</a>
+            <a @click="goDown" v-if="content">立即下载本篇</a>
+            <div class="loading" v-else>
+                <span></span>
+                <i>加载中...</i>
+            </div>
         </div>
-        
+       
     </div>
 </template>
 
@@ -108,6 +112,7 @@
         padding: 20px;
         border: 1px solid #eee;
         margin-top: 20px;
+        min-height: 260px;
     }
     .detail .content >>> table{
         text-align: left;
