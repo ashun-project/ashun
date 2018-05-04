@@ -6,6 +6,7 @@ const cookie = require('cookie-parser');
 var session = require('express-session');
 const express = require('express');
 const app = express();
+const num = 0;
 
 app.use(cookie());
 app.use(session({
@@ -23,7 +24,8 @@ app.use(express.static(path.resolve(__dirname, '../dist')));
 app.get('*', function(req, res) {
     // path.resolve(__dirname, '../dist/index.html'
     const html = fs.readFileSync(path.resolve(__dirname, '../index.html'), 'utf-8');
-    console.log(123)
+    num = num +1;
+    console.log('当前访问次数：',num)
     // console.log(html)
     res.send(html);
 })

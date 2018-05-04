@@ -19,9 +19,13 @@ export default new Router({
       component: detail
     },
     {
-      path: '/deleteRepeat',
+      path: '/deleteRepeat/:id/:age/:name/:all',
       name: 'deleteRepeat',
-      component: deleteRepeat
+      component: deleteRepeat,
+      meta: {
+        notFooter: true,
+        notHeader: true
+      }
     }
   ]
 })

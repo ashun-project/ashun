@@ -56,7 +56,10 @@ router.post('/api/getList', function (req, res) {
                     if(err){
                         res.send('error');
                     } else {
-                        res.json({total:num[0]['COUNT(*)'], list:result});
+                        var arr = result.map(item => {
+                            return {id: item.createTime, title: item.title, img: item.img}
+                        })
+                        res.json({total:num[0]['COUNT(*)'], list:arr});
                     }
                     conn.release();
                 })
@@ -86,7 +89,7 @@ router.post('/api/getDetail', function (req, res) {
                     console.log('[SELECT ERROR] - ',err.message);
                     res.send('error');
                 } else {
-                    res.json(result);
+                    res.json({id: result[0].createTime, content: result[0].content});
                 }
                 conn.release();
             });
@@ -98,6 +101,12 @@ router.post('/api/getDetail', function (req, res) {
 router.post('/api/deteleRepeat', function (req, res) {
     var sql = 'DELETE FROM sanjilist WHERE createTime = '+ req.body.id;
     var sql2 = 'DELETE FROM sanjidetail WHERE createTime = '+ req.body.id;
+    if (!req.body.id || Number(req.body.id) < 1500000000) {
+        res.send('error');
+        console.log('删除的id不正确')
+        return;  
+    }
+    
     var currPath = __dirname + "\\file\\",
         allfiles = fs.readdirSync(currPath),
         currFile = currPath + allfiles.filter(function (item) {return item.indexOf(req.body.id) > -1;})[0];

@@ -28,7 +28,7 @@
         },
         methods: {
             goDetail (item) {
-                window.open('#/detail/'+item.createTime, '_blank')
+                window.open('#/detail/'+item.id, '_blank')
             },
             pagechange (num) {
                 this.getList (num)

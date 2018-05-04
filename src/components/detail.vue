@@ -98,7 +98,7 @@
             this.hr = '/file/'+this.id +'.torrent' 
             this.$http.post('/api/getDetail', {id: this.id}).then(response => {
                 console.log(response)
-                this.content = response.data[0].content;
+                this.content = response.data.content;
                 this.refreshContent();
             })
         }

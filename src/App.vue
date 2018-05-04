@@ -1,16 +1,16 @@
 <template>
     <div id="app">
-        <div class="header">
+        <div class="header" v-if="!$route.meta.notHeader">
             <div class="cont">
                 <span class="lf"><img src="@/resource/img/logo.png"></span>
                 <span class="rf">登入/注册</span>
             </div>
         </div>
-        <div class="banner">
+        <div class="banner" v-if="!$route.meta.notHeader">
             <img src="@/resource/img/banner.png" alt="">
         </div>
         <router-view/>
-        <div class="footer">
+        <div class="footer" v-if="!$route.meta.notFooter">
             <div>
                 警告︰本網站只這合十八歲或以上人士觀看。內容可能令人反感；不可將本網站的內容派發、傳閱、出售、出租、交給或借予年齡未滿18歲的人士或將本網站內容向該人士出示、播放或放映。<br/>
                 LEGAL DISCLAIMER WARNING: THIS FORUM CONTAINS MATERIAL WHICH MAY OFFEND AND MAY NOT BE DISTRIBUTED, CIRCULATED, SOLD, HIRED, GIVEN, LENT,SHOWN, PLAYED OR PROJECTED TO A PERSON UNDER THE AGE OF 18 YEARS.<br/>
