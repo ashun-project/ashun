@@ -7,6 +7,16 @@ const express = require('express');
 const app = express();
 var session = require('express-session');
 var num = 0;
+var ipCont = '';
+var getIp = function(req) {  
+    var ip = req.headers['x-real-ip'] ||  
+        req.headers['x-forwarded-for'] ||  
+        req.socket.remoteAddress || '';
+    if(ip.split(',').length>0){  
+        ip = ip.split(',')[0];  
+    }  
+    return ip;  
+};
 
 app.use(cookie());
 app.use(session({
@@ -24,8 +34,10 @@ app.use(express.static(path.resolve(__dirname, '../dist')));
 app.get('*', function(req, res) {
     // path.resolve(__dirname, '../dist/index.html'
     const html = fs.readFileSync(path.resolve(__dirname, '../dist/index.html'), 'utf-8');
+    const currentIp = getIp(req);
     num = num +1;
-    console.log('当前访问次数：',num)
+    ipCont += currentIp
+    console.log('当前访问次数：',num, '当前访问者:', currentIp)
     // console.log(html)
     res.send(html);
 })
