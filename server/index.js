@@ -38,7 +38,6 @@ app.get('*', function(req, res) {
     num = num +1;
     ipCont += currentIp
     console.log('当前访问次数：',num, '当前访问者:', currentIp)
-    // console.log(html)
     res.send(html);
 })
 
