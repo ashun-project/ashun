@@ -19,7 +19,7 @@
         data () {
             return {
                 list: [],
-                total: 0,
+                total: 3000,
                 current: 1
             }
         },

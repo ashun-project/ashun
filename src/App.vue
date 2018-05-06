@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+        <suspend></suspend>
         <div class="header" v-if="!$route.meta.notHeader">
             <div class="cont">
                 <span class="lf"><img src="@/resource/img/logo.png"></span>
@@ -21,8 +22,12 @@
 </template>
 
 <script>
+import suspend from "@/components/common/suspend"
 export default {
-    name: 'App'
+    name: 'App',
+    components: {
+        suspend
+    }
 }
 </script>
 
