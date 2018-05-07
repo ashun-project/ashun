@@ -113,10 +113,9 @@
 <style scoped>
     .detail .content{
         width: 1200px;
-        margin: 0 auto;
+        margin: 20px auto;
         padding: 20px;
         border: 1px solid #eee;
-        margin-top: 20px;
         min-height: 260px;
     }
     .detail .content >>> table{

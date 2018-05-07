@@ -71,6 +71,7 @@ router.post('/api/getList', function (req, res) {
 // 详情内容
 router.post('/api/getDetail', function (req, res) {
     var id = req.body.id.toString();
+    console.log(1230978967)
     var sql = 'SELECT * FROM sanjidetail where createTime = ' + id;
     var files = fs.readdirSync(__dirname + "\\file\\");
     var downFile = files.filter(function (item) {

@@ -31,14 +31,14 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(api);
 app.use(express.static(path.resolve(__dirname, '../dist')));
 
-app.get('*', function(req, res) {
-    // path.resolve(__dirname, '../dist/index.html'
-    const html = fs.readFileSync(path.resolve(__dirname, '../dist/index.html'), 'utf-8');
-    const currentIp = getIp(req);
-    num = num +1;
-    ipCont += currentIp
-    console.log('当前访问次数：',num, '当前访问者:', currentIp)
-    res.send(html);
-})
+// app.get('*', function(req, res) {
+//     // path.resolve(__dirname, '../dist/index.html'
+//     const html = fs.readFileSync(path.resolve(__dirname, '../dist/index.html'), 'utf-8');
+//     const currentIp = getIp(req);
+//     num = num +1;
+//     ipCont += currentIp
+//     console.log('当前访问次数：',num, '当前访问者:', currentIp)
+//     res.send(html);
+// })
 
 app.listen(81);
