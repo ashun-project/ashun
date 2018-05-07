@@ -3,7 +3,7 @@
         <suspend></suspend>
         <div class="header" v-if="!$route.meta.notHeader">
             <div class="cont">
-                <span class="lf"><img src="@/resource/img/logo.png"></span>
+                <span class="lf"><img src="@/resource/img/logo.png">my name is ashun welcome to chat <font color="red">QQ123456</font></span>
                 <span class="rf">登入/注册</span>
             </div>
         </div>
@@ -136,6 +136,10 @@ export default {
     .header .cont{
         width: 1200px;
         margin: 0 auto;
+    }
+    .header .cont .lf{
+        color: #666;
+        font-size: 16px;
     }
     .header .cont .lf img{
         height: 40px;

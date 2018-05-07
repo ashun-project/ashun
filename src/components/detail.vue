@@ -2,7 +2,12 @@
     <div class="detail" id="my-detail">
         <div class="content">
             <div v-html="content"></div>
-            <span class="down-load" @click="goDown" v-if="content">点击下载观看</span>
+            <div v-if="content">
+                <span class="down-load" @click="goDown">点击下载观看</span>
+                <span class="tip">&nbsp;&nbsp;温馨提示：下载后使用迅雷或其他软件打开即可观看（手机端一样）</span>
+            </div>
+            
+            
             <my-loading v-else></my-loading>
         </div>
     </div>
@@ -127,5 +132,9 @@
         cursor: pointer;
         color: #f1909c;
         text-decoration: underline;
+    }
+    .tip{
+        font-size: 16px;
+        color: #666;
     }
 </style>

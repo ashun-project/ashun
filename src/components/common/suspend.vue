@@ -1,7 +1,7 @@
 <template>
     <div class="suspend">
-        <div class="lf-suspend">左</div>
-        <div class="rf-supend">右</div>
+    <div class="lf-suspend"><img src="@/resource/img/suspend.gif"></div>
+        <div class="rf-supend"><img src="@/resource/img/suspend.gif"></div>
     </div>
 </template>
 
