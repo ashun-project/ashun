@@ -71,7 +71,6 @@ router.post('/api/getList', function (req, res) {
 // 详情内容
 router.post('/api/getDetail', function (req, res) {
     var id = req.body.id.toString();
-    console.log(1230978967)
     var sql = 'SELECT * FROM sanjidetail where createTime = ' + id;
     var files = fs.readdirSync(__dirname + "\\file\\");
     var downFile = files.filter(function (item) {
@@ -81,7 +80,15 @@ router.post('/api/getDetail', function (req, res) {
     if (!downFile.length) {
         // 这里应该做进一步的处理 如：移除表里的这条数据
         console.log('没有查询到下载文件');
-        res.send('error');
+        var sql2 = "INSERT INTO notdata(id) VALUES (?)";
+        pool.getConnection(function (err, conn) {
+            if (err) console.log("POOL ==> " + err);
+            conn.query(sql2, [id], function(err,result){
+                res.send('error');
+                conn.release();
+            });
+        })
+       
     } else {
         pool.getConnection(function (err, conn) {
             if (err) console.log("POOL ==> " + err);

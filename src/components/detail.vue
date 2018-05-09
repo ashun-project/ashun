@@ -1,13 +1,14 @@
 <template>
     <div class="detail" id="my-detail">
         <div class="content">
-            <div v-html="content"></div>
             <div v-if="content">
-                <span class="down-load" @click="goDown">点击下载观看</span>
-                <span class="tip">&nbsp;&nbsp;温馨提示：下载后使用迅雷或其他软件打开即可观看（手机端一样）</span>
+                <div v-if="content === 'error'">内容丢失，请重新选择</div>
+                <div v-else>
+                    <div v-html="content"></div>
+                    <span class="down-load" @click="goDown">点击下载观看</span>
+                    <span class="tip">&nbsp;&nbsp;温馨提示：下载后使用迅雷或其他软件打开即可观看（手机端一样）</span>
+                </div>
             </div>
-            
-            
             <my-loading v-else></my-loading>
         </div>
     </div>
@@ -103,8 +104,12 @@
             this.hr = '/file/'+this.id +'.torrent' 
             this.$http.post('/api/getDetail', {id: this.id}).then(response => {
                 console.log(response)
-                this.content = response.data.content;
-                this.refreshContent();
+                if (response.data === 'error') {
+                    this.content = response.data;
+                } else {
+                    this.content = response.data.content;
+                    this.refreshContent();
+                }
             })
         }
     }

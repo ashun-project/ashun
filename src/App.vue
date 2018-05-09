@@ -3,8 +3,12 @@
         <suspend></suspend>
         <div class="header" v-if="!$route.meta.notHeader">
             <div class="cont">
-                <span class="lf"><img src="@/resource/img/logo.png">my name is ashun welcome to chat <font color="red">QQ762008732</font></span>
-                <span class="rf">登入/注册</span>
+                <div class="lf"><router-link to="/"><img src="@/resource/img/logo.png"></router-link></div>
+                <div class="rf">
+                    <span>登入</span>
+                    <span>注册</span>
+                    <span>QQ<font color="red">762008732</font></span>
+                </div>
             </div>
         </div>
         <div class="banner" v-if="!$route.meta.notHeader">
@@ -145,6 +149,10 @@ export default {
         height: 40px;
         float: left;
         margin-top: 5px;
+    }
+    .header .cont .rf{
+        font-size: 16px;
+        color: #666;
     }
     .banner{
         height: 300px;
