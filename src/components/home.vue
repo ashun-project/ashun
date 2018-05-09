@@ -88,7 +88,7 @@
         height: 280px;
         background: #eee;
     }
-    .title{
+    .data-list .title{
         width: 100%;
         overflow: hidden;
         text-overflow: ellipsis;
