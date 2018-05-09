@@ -4,7 +4,15 @@ var fs = require('fs');
 const path = require('path');
 var router = express.Router();
 var mysql = require('mysql');
-
+var getIp = function(req) {  
+    var ip = req.headers['x-real-ip'] ||  
+        req.headers['x-forwarded-for'] ||  
+        req.socket.remoteAddress || '';
+    if(ip.split(',').length>0){  
+        ip = ip.split(',')[0];  
+    }  
+    return ip;  
+};
 // // 所有请求配置
 // app.all('*', function(req, res, next) {
 //     res.header("Access-Control-Allow-Origin", "*");
@@ -40,6 +48,14 @@ router.post('/api/getAllList', function (req, res) {
 })
 // 获取列表
 router.post('/api/getList', function (req, res) {
+    // console.log(html)
+    var currentIp = getIp(req)
+    console.log('getList----',currentIp)
+    if (currentIp.indexOf('195.201.218.75') > -1) {
+        // console.log('getList----',currentIp)
+        // res.send('who are you');
+        // return;
+    }
     var limit = ((req.body.current -1) * 20) + ',' + 20;
     var sql = 'SELECT * FROM sanjilist order by createTime desc limit ' + limit;
     var count = 'SELECT COUNT(*) FROM sanjilist';
@@ -71,6 +87,8 @@ router.post('/api/getList', function (req, res) {
 // 详情内容
 router.post('/api/getDetail', function (req, res) {
     var id = req.body.id.toString();
+    var currentIp = getIp(req)
+    console.log('getDetail----',currentIp)
     var sql = 'SELECT * FROM sanjidetail where createTime = ' + id;
     var files = fs.readdirSync(__dirname + "\\file\\");
     var downFile = files.filter(function (item) {
@@ -152,6 +170,8 @@ router.post('/api/deteleRepeat', function (req, res) {
 // 文件下载
 router.get('/api/download',function(req, res, next){
     // "E:\\project\\ashun\\file\\"
+    var currentIp = getIp(req)
+    console.log('download-----', currentIp)
     var currPath = __dirname + "\\file\\",
         allfiles = fs.readdirSync(currPath),
         fileName = req.query.name,
