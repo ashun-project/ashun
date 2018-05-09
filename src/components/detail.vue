@@ -6,7 +6,7 @@
                 <div v-else>
                     <div v-html="content"></div>
                     <span class="down-load" @click="goDown">点击下载观看</span>
-                    <span class="tip">&nbsp;&nbsp;温馨提示：下载后使用迅雷或其他软件打开即可观看（手机端一样）</span>
+                    <span class="tip">&nbsp;&nbsp;温馨提示：下载后使用迅雷或其他软件打开即可观看</span>
                 </div>
             </div>
             <my-loading v-else></my-loading>

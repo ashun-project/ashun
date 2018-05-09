@@ -123,7 +123,7 @@
         height: 30px;
         text-align: center;
         line-height: 30px;
-        font-size: 18px;
+        font-size: 0.8rem;
         border-radius: 5px;
         text-decoration: none
     }
