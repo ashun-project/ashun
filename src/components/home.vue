@@ -4,8 +4,11 @@
         <div class="data-list">
             <ul>
                 <li v-for="(item, idx) in list" :key="idx" @click="goDetail(item)">
-                    <img :src="item.img.split(',')[0]" alt="">
-                    <p class="title">{{item.title}}</p>
+                    <div>
+                        <img :src="item.img.split(',')[0]" alt="">
+                        <div class="clr"></div>
+                        <p class="title">{{item.title}}</p>
+                    </div>
                 </li>
             </ul>
             <div class="clr"></div>
@@ -54,23 +57,28 @@
 
 <style scoped>
     .data-list{
-        width: 1200px;
+        max-width: 1200px;
+        width: 100%;
         margin: 20px auto 0;
         overflow: hidden;
     }
     .data-list ul{
-        width: 1300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 0 -10px;
     }
     .data-list li{
-        float: left;
-        width: 292px;
-        margin-right: 10px;
-        margin-bottom: 10px;
+        width: 25%;
+        padding: 10px;
+        margin: 0 0 15px;
+        cursor: pointer;
     }
     .data-list li img{
         float: left;
         width: 100%;
-        height: 300px;
+        height: 280px;
         background: #eee;
     }
     .title{
@@ -78,5 +86,23 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+    }
+    .data-list li > div{
+        border: 1px solid #eee;
+        padding: 3px;
+    }
+    .data-list li > div p{
+        padding: 10px 2px;
+    }
+    .data-list li:hover > div p{
+        color: #fb7b86;
+    }
+    @media screen and (max-width: 600px) {
+        .data-list li{
+            width: 50%;
+        }
+        .data-list li img{
+            height: 230px;
+        }
     }
     </style>

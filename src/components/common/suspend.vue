@@ -1,13 +1,13 @@
 <template>
     <div class="suspend">
-    <div class="lf-suspend"><img src="@/resource/img/suspend.gif"></div>
+        <div class="lf-suspend"><img src="@/resource/img/suspend.gif"></div>
         <div class="rf-supend"><img src="@/resource/img/suspend.gif"></div>
     </div>
 </template>
 
 <style scoped>
     .suspend > div{
-        position: fixed;
+        position: absolute;
         top: 50%;
         width: 160px;
         height: 300px;
@@ -16,5 +16,8 @@
     }
     .suspend .rf-supend{
         right: 0;
+    }
+    .suspend > div img{
+        width: 100%;
     }
 </style>

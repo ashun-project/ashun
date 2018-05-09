@@ -117,7 +117,8 @@
 
 <style scoped>
     .detail .content{
-        width: 1200px;
+        max-width: 1200px;
+        width: 100%;
         margin: 20px auto;
         padding: 20px;
         border: 1px solid #eee;
@@ -140,5 +141,10 @@
     .tip{
         font-size: 16px;
         color: #666;
+    }
+    @media screen and (max-width: 800px) {
+        .detail .content >>> img{
+            max-width: 100% !important;
+        }
     }
 </style>

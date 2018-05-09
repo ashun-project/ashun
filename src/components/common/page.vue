@@ -94,7 +94,8 @@
         overflow: hidden;
         display: table;
         margin: 0 auto;
-        width: 1200px;
+        max-width: 1200px;
+        width: 100%;
         height: 50px;
         padding-top: 5px;
         margin-bottom: 30px;
