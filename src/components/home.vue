@@ -22,7 +22,7 @@
         data () {
             return {
                 list: [],
-                total: 3000,
+                total: 0,
                 current: 1
             }
         },

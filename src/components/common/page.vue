@@ -8,7 +8,7 @@
             </li>
             <li class="last-page" :class="{'disabled': current == page}"><a href="javascript:;" @click="setCurrent(page)"> 尾页 </a></li>
             <li class="next" :class="{'disabled': current == page}"><a href="javascript:;" @click="setCurrent(current + 1)"> 下一页</a></li>
-            <li class="total-page">共 {{total}}页</li>
+            <li class="total-page">共 {{total}}条</li>
         </ul>
     </nav>
 </template>
@@ -22,7 +22,7 @@
             },
             display: {// 每页显示条数
                 type: Number,
-                default: 10
+                default: 20
             },
             currentPage: {// 当前页码
                 type: Number,
