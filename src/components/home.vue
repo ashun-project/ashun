@@ -10,6 +10,9 @@
                         <p class="title">{{item.title}}</p>
                     </div>
                 </li>
+                <li class="not-data"></li>
+                <li class="not-data"></li>
+                <li class="not-data"></li>
             </ul>
             <div class="clr"></div>
         </div>
@@ -74,6 +77,10 @@
         padding: 10px;
         margin: 0 0 15px;
         cursor: pointer;
+    }
+    .data-list li.not-data{
+        padding: 0;
+        margin: 0;
     }
     .data-list li img{
         float: left;
