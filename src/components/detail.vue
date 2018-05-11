@@ -181,6 +181,7 @@
         }
         .detail .content >>> img{
             max-width: 100% !important;
+            height: auto !important;
         }
         .detail .tip{
             font-size: 0.6rem;
