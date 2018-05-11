@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import home from '@/components/home'
 import detail from '@/components/detail'
 import deleteRepeat from '@/components/delete_repeat'
+import test from '@/components/test'
 
 Vue.use(Router)
 
@@ -26,6 +27,11 @@ export default new Router({
         notFooter: true,
         notHeader: true
       }
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: test
     }
   ]
 })

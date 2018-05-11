@@ -1,15 +1,16 @@
 <template>
-    <div class="detail" id="my-detail">
+    <div class="detail">
         <div class="content">
             <div v-if="content">
                 <div v-if="content === 'error'">内容丢失，请重新选择</div>
                 <div v-else>
-                    <div v-html="content"></div>
-                    <span class="down-load" @click="goDown">点击下载观看</span>
-                    <span class="tip">&nbsp;&nbsp;温馨提示：下载后使用迅雷或其他软件打开即可观看</span>
+                    <div class="detail-cont" id="my-detail" v-html="content"></div>
+                    <div class="clr"></div><br/>
+                    <div class="down-load" :class="{flx: flx}" @click="goDown()">点击下载观看</div>
+                    <div class="tip">温馨提示：下载后使用迅雷或其他软件打开即可观看</div>
                 </div>
-            </div>
-            <my-loading v-else></my-loading>
+            </div>         
+            <my-loading v-else></my-loading>      
         </div>
     </div>
 </template>
@@ -20,6 +21,7 @@
         data () {
             return {
                 content: '',
+                flx: false,
                 hr: '',
                 id: ''
             }
@@ -93,10 +95,30 @@
                         a[i].setAttribute('href', '###');
                     }        
                 })
+            },
+            // 处理手机端点击元素兼容问题
+            getPosition () {
+                let vm = this;
+                this.$nextTick(() => {
+                    vm.currentPoistion()
+                    document.addEventListener('scroll', function () {
+                        vm.currentPoistion()
+                    })
+                })
+            },
+            currentPoistion () {
+                let top = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;;
+                let hig = document.documentElement.clientHeight;
+                let wid = document.documentElement.offsetWidth;
+                let scroH = document.documentElement.scrollHeight;
+                if (wid < 1000 && (scroH - top - hig) < 100 ) {
+                    this.flx = true;
+                } else {
+                    this.flx = false;
+                }
             }
         },
         mounted () {
-            // document.getElementById('toubiao').remove();
             
         },
         created () {
@@ -107,8 +129,10 @@
                 if (response.data === 'error') {
                     this.content = response.data;
                 } else {
-                    this.content = response.data.content;
+                    let re = /<ignore_js_op>|<\/ignore_js_op>/gi;
+                    this.content = response.data.content.replace(re, '');
                     this.refreshContent();
+                    this.getPosition();
                 }
             })
         }
@@ -123,6 +147,7 @@
         padding: 20px;
         border: 1px solid #eee;
         min-height: 260px;
+        position: relative;
     }
     .detail .content >>> table{
         text-align: left;
@@ -138,13 +163,27 @@
         color: #f1909c;
         text-decoration: underline;
     }
-    .tip{
+    .detail .tip{
         font-size: 16px;
         color: #666;
     }
+    .flx{
+        position: fixed;
+        bottom: 120px;
+        left: 10px;
+        right: 10px;
+        z-index: 1000;
+        background: #fff;
+    }
     @media screen and (max-width: 800px) {
+        .detail .content{
+            padding: 10px;
+        }
         .detail .content >>> img{
             max-width: 100% !important;
+        }
+        .detail .tip{
+            font-size: 0.6rem;
         }
     }
 </style>
