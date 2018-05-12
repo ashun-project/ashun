@@ -32,7 +32,12 @@
         methods: {
             goDown () {
                 let host = window.location.host;
-                window.open('http://'+ host +'/api/download?dir=file&name='+this.id);
+                // window.open('http://'+ host +'/api/download?dir=file&name='+this.id);
+                window.location.href = 'http://'+ host +'/api/download?dir=file&name='+this.id;
+                // this.$http.get('/api/download?dir=file&name='+this.id).then(response => {
+                //     console.log(response,'============')
+                //      window.location.href = 'http://'+ host +'/api/download?dir=file&name='+this.id
+                // })
             },
             refreshContent () {
                 this.$nextTick(() => {
