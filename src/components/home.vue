@@ -5,9 +5,11 @@
             <ul>
                 <li v-for="(item, idx) in list" :key="idx" @click="goDetail(item)">
                     <div>
-                        <img :src="item.img.split(',')[0]" alt="">
+                        <div class="cont-img">
+                            <img :src="item.img.split(',')[0]" alt="">
+                        </div>
                         <div class="clr"></div>
-                        <p class="title">{{item.title}}</p>
+                        <p class="title">{{item.title.replace('【RV原创】', '')}}</p>
                     </div>
                 </li>
                 <li class="not-data"></li>
@@ -32,15 +34,22 @@
         components:{
             vPagination
         },
+        watch: {
+            $route (n, o) {
+                console.log(n, '===============')
+                this.getList(1)
+            }
+        },
         methods: {
             goDetail (item) {
-                window.open('#/detail/'+item.id, '_blank')
+                window.open('#/detail/' + this.$route.name + '/' + item.id, '_blank');
             },
             pagechange (num) {
                 this.getList (num)
             },
             getList (current) {
-                this.$http.post('/api/getList', {current: current}).then(response => {
+                console.log(this.$route.name, '==========')
+                this.$http.post('/api/getList', {current: current, title: this.$route.name}).then(response => {
                     console.log(response, 787454121)
                     response.data.list.forEach(item => {
                         if (item.img.indexOf('https:') > -1) {
@@ -73,7 +82,7 @@
         margin: 0 -10px;
     }
     .data-list li{
-        width: 25%;
+        width: 33.3333%;
         padding: 10px;
         margin: 0 0 15px;
         cursor: pointer;
@@ -82,11 +91,16 @@
         padding: 0;
         margin: 0;
     }
-    .data-list li img{
+    .data-list li .cont-img{
         float: left;
         width: 100%;
         height: 280px;
         background: #eee;
+        overflow: hidden;
+    }
+    .data-list li .cont-img img{
+        width: 100%;
+        min-height: 100%;
     }
     .data-list .title{
         width: 100%;
@@ -108,8 +122,8 @@
         .data-list li{
             width: 50%;
         }
-        .data-list li img{
-            height: 230px;
+        .data-list li .cont-img{
+            height: 200px;
         }
     }
     </style>

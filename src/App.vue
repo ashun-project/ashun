@@ -12,6 +12,13 @@
                     <span>交流QQ<font color="red">762008732</font></span>
                 </div>
             </div>
+            <div class="menu">
+                <ul>
+                    <li v-for="item in menu" :key="item.url" :class="{active: item.url === $route.name || item.url === $route.params.title}">
+                        <router-link :to="{name: item.url}">{{item.label}}</router-link>
+                    </li>
+                </ul>
+            </div>
         </div>
         <div class="banner" v-if="!$route.meta.notHeader">
             <img src="@/resource/img/banner.png" alt="">
@@ -34,6 +41,14 @@ export default {
     name: 'App',
     components: {
         suspend
+    },
+    data () {
+        return {
+            menu: [
+                {url: 'sanji', label: '经典三级'},
+                {url: 'wuma', label: '无码性爱'}
+            ]
+        }
     }
 }
 </script>
@@ -41,13 +56,14 @@ export default {
 <style>
     @import "./resource/css/style.css";
     .header{
-        height: 50px;
-        line-height: 50px;
-        border-bottom: 1px solid #eee;
+        
+        
     }
     .header .cont{
-        max-width: 1200px;
+        max-width: 1200px;   
         width: 100%;
+        height: 40px;
+        line-height: 40px;
         margin: 0 auto;
     }
     .header .cont .lf{
@@ -55,7 +71,7 @@ export default {
         font-size: 16px;
     }
     .header .cont .lf img{
-        height: 40px;
+        height: 30px;
         float: left;
         margin-top: 5px;
     }
@@ -69,6 +85,38 @@ export default {
     .header .cont .rf span.interval{
         padding: 0 5px;
         color: #ccc;
+    }
+    .header .menu{
+        background:#f1909c;
+        height: 50px;
+        
+    }
+    .header .menu ul{
+        max-width: 1200px;
+        width: 100%;
+        margin: 0 auto;
+    }
+    .header .menu li{
+        float: left;
+        height: 50px;
+        line-height: 50px;
+        font-size: 16px;
+        transition: all 1s;
+    }
+    .header .menu li a{
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding: 0 15px;
+        color: #fff;
+    }
+    .header .menu li.active{
+        /* border-bottom: 3px solid #efdee1; */
+        background: #fff;
+    }
+    .header .menu li.active a, .header .menu li a:hover{
+        color: #6f1818;
+        font-weight: 600;
     }
     .banner{
         max-height: 300px;

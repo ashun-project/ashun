@@ -7,7 +7,7 @@
 
 <style scoped>
     .suspend > div{
-        position: absolute;
+        position: fixed;
         top: 50%;
         width: 160px;
         height: 300px;

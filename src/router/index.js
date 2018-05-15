@@ -12,10 +12,20 @@ export default new Router({
     {
       path: '/',
       name: 'home',
+      redirect: '/sanji'
+    },
+    {
+      path: '/sanji',
+      name: 'sanji',
       component: home
     },
     {
-      path: '/detail/:id',
+      path: '/wuma',
+      name: 'wuma',
+      component: home
+    },
+    {
+      path: '/detail/:title/:id',
       name: 'detail',
       component: detail
     },

@@ -33,7 +33,7 @@
             goDown () {
                 let host = window.location.host;
                 // window.open('http://'+ host +'/api/download?dir=file&name='+this.id);
-                window.location.href = 'http://'+ host +'/api/download?dir=file&name='+this.id;
+                window.location.href = 'http://'+ host +'/api/download?dir='+ this.$route.params.title +'&name='+this.id;
                 // this.$http.get('/api/download?dir=file&name='+this.id).then(response => {
                 //     console.log(response,'============')
                 //      window.location.href = 'http://'+ host +'/api/download?dir=file&name='+this.id
@@ -129,7 +129,7 @@
         created () {
             this.id = this.$route.params.id;
             this.hr = '/file/'+this.id +'.torrent' 
-            this.$http.post('/api/getDetail', {id: this.id}).then(response => {
+            this.$http.post('/api/getDetail', {id: this.id, title: this.$route.params.title}).then(response => {
                 console.log(response)
                 if (response.data === 'error') {
                     this.content = response.data;

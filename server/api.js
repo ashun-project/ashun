@@ -57,8 +57,8 @@ router.post('/api/getList', function (req, res) {
         // return;
     }
     var limit = ((req.body.current -1) * 20) + ',' + 20;
-    var sql = 'SELECT * FROM sanjilist order by createTime desc limit ' + limit;
-    var count = 'SELECT COUNT(*) FROM sanjilist';
+    var sql = 'SELECT * FROM '+req.body.title+'list order by createTime desc limit ' + limit;
+    var count = 'SELECT COUNT(*) FROM '+req.body.title+'list';
     pool.getConnection(function (err, conn) {
         if (err) console.log("POOL ==> " + err);
         conn.query(sql,function(err,result){
@@ -89,8 +89,8 @@ router.post('/api/getDetail', function (req, res) {
     var id = req.body.id.toString();
     var currentIp = getIp(req)
     console.log('getDetail----',currentIp)
-    var sql = 'SELECT * FROM sanjidetail where createTime = ' + id;
-    var files = fs.readdirSync(__dirname + "\\file\\");
+    var sql = 'SELECT * FROM '+ req.body.title +'detail where createTime = ' + id;
+    var files = fs.readdirSync(__dirname + "\\"+ req.body.title +"\\");
     var downFile = files.filter(function (item) {
         var spl = item.split('.')[0];
         return spl === id;
@@ -98,10 +98,10 @@ router.post('/api/getDetail', function (req, res) {
     if (!downFile.length) {
         // 这里应该做进一步的处理 如：移除表里的这条数据
         console.log('没有查询到下载文件');
-        var sql2 = "INSERT INTO notdata(id) VALUES (?)";
+        var sql2 = "INSERT INTO notdata(id, title) VALUES (?, ?)";
         pool.getConnection(function (err, conn) {
             if (err) console.log("POOL ==> " + err);
-            conn.query(sql2, [id], function(err,result){
+            conn.query(sql2, [id, req.body.title], function(err,result){
                 res.send('error');
                 conn.release();
             });
@@ -172,7 +172,7 @@ router.get('/api/download',function(req, res, next){
     // "E:\\project\\ashun\\file\\"
     var currentIp = getIp(req)
     console.log('download-----', currentIp)
-    var currPath = __dirname + "\\file\\",
+    var currPath = __dirname + "\\" + req.query.dir + "\\",
         allfiles = fs.readdirSync(currPath),
         fileName = req.query.name,
         filterName = allfiles.filter(function (item) {return item.indexOf(fileName) > -1;})[0],
