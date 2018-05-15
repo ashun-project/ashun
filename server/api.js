@@ -50,7 +50,7 @@ router.post('/api/getAllList', function (req, res) {
 router.post('/api/getList', function (req, res) {
     // console.log(html)
     var currentIp = getIp(req)
-    console.log('getList----',currentIp)
+    console.log('getList----'+req.body.title+'=====',currentIp)
     if (currentIp.indexOf('195.201.218.75') > -1) {
         // console.log('getList----',currentIp)
         // res.send('who are you');
@@ -88,7 +88,7 @@ router.post('/api/getList', function (req, res) {
 router.post('/api/getDetail', function (req, res) {
     var id = req.body.id.toString();
     var currentIp = getIp(req)
-    console.log('getDetail----',currentIp)
+    console.log('getDetail----'+req.body.title+'=====',currentIp)
     var sql = 'SELECT * FROM '+ req.body.title +'detail where createTime = ' + id;
     var files = fs.readdirSync(__dirname + "\\"+ req.body.title +"\\");
     var downFile = files.filter(function (item) {
@@ -171,7 +171,7 @@ router.post('/api/deteleRepeat', function (req, res) {
 router.get('/api/download',function(req, res, next){
     // "E:\\project\\ashun\\file\\"
     var currentIp = getIp(req)
-    console.log('download-----', currentIp)
+    console.log('download-----'+ req.query.dir+'=====', currentIp)
     var currPath = __dirname + "\\" + req.query.dir + "\\",
         allfiles = fs.readdirSync(currPath),
         fileName = req.query.name,
