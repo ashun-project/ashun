@@ -108,7 +108,7 @@ export default {
         width: 100%;
         height: 100%;
         padding: 0 15px;
-        color: #fff;
+        color: #f1f1f1;
     }
     .header .menu li.active{
         /* border-bottom: 3px solid #efdee1; */
