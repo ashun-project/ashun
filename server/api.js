@@ -32,7 +32,7 @@ var pool = mysql.createPool({
 
 // 获取所有列表
 router.post('/api/getAllList', function (req, res) {
-    var sql = 'SELECT * FROM sanjilist';
+    var sql = 'SELECT * FROM '+ req.body.title +'list';
     pool.getConnection(function (err, conn) {
         if (err) console.log("POOL ==> " + err);
         conn.query(sql,function(err,result){
@@ -56,7 +56,7 @@ router.post('/api/getList', function (req, res) {
         // res.send('who are you');
         // return;
     }
-    var limit = ((req.body.current -1) * 20) + ',' + 20;
+    var limit = ((req.body.current -1) * 18) + ',' + 18;
     var sql = 'SELECT * FROM '+req.body.title+'list order by createTime desc limit ' + limit;
     var count = 'SELECT COUNT(*) FROM '+req.body.title+'list';
     pool.getConnection(function (err, conn) {
@@ -125,15 +125,15 @@ router.post('/api/getDetail', function (req, res) {
 
 // 删除数据
 router.post('/api/deteleRepeat', function (req, res) {
-    var sql = 'DELETE FROM sanjilist WHERE createTime = '+ req.body.id;
-    var sql2 = 'DELETE FROM sanjidetail WHERE createTime = '+ req.body.id;
+    var sql = 'DELETE FROM '+ req.body.title +'list WHERE createTime = '+ req.body.id;
+    var sql2 = 'DELETE FROM '+ req.body.title +'detail WHERE createTime = '+ req.body.id;
     if (!req.body.id || Number(req.body.id) < 1500000000) {
         res.send('error');
         console.log('删除的id不正确')
         return;  
     }
     
-    var currPath = __dirname + "\\file\\",
+    var currPath = __dirname + "\\" + req.body.title + "\\",
         allfiles = fs.readdirSync(currPath),
         currFile = currPath + allfiles.filter(function (item) {return item.indexOf(req.body.id) > -1;})[0];
     fs.exists(currFile, function (exist) {

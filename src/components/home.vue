@@ -9,7 +9,7 @@
                             <img :src="item.img.split(',')[0]" alt="">
                         </div>
                         <div class="clr"></div>
-                        <p class="title">{{item.title.replace('【RV原创】', '')}}</p>
+                        <p class="title">{{replaceWord(item.title)}}</p>
                     </div>
                 </li>
                 <li class="not-data"></li>
@@ -41,6 +41,10 @@
             }
         },
         methods: {
+            replaceWord (item) {
+                let rul = /【RV原创】|【精品RV原创】/ig;
+                return item.replace(rul, '')
+            },
             goDetail (item) {
                 window.open('#/detail/' + this.$route.name + '/' + item.id, '_blank');
             },

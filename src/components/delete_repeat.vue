@@ -27,7 +27,7 @@
                 this.deleteId = id;
             },
             sure () {
-                this.$http.post('/api/deteleRepeat', {id: this.deleteId}).then(response => {
+                this.$http.post('/api/deteleRepeat', {id: this.deleteId, title: this.$route.params.name}).then(response => {
                     this.deleteId = '';
                     if (response.data === 'error') {
                         alert('删除失败');
@@ -47,7 +47,7 @@
                 return;
             }
 
-            this.$http.post('/api/getAllList').then(response => {
+            this.$http.post('/api/getAllList', {title: this.$route.params.name}).then(response => {
                 this.list = response.data;
                 let arr = [];
                 let repeat = [];

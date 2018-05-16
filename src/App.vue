@@ -18,6 +18,7 @@
                         <router-link :to="{name: item.url}">{{item.label}}</router-link>
                     </li>
                 </ul>
+                <div class="clr"></div>
             </div>
         </div>
         <div class="banner" v-if="!$route.meta.notHeader">
@@ -46,7 +47,12 @@ export default {
         return {
             menu: [
                 {url: 'sanji', label: '经典三级'},
-                {url: 'wuma', label: '无码性爱'}
+                {url: 'wuma', label: '无码性爱'},
+                // {url: 'oumei', label: '欧美风情'},
+                // {url: 'youma', label: '有码性爱'},
+                // {url: 'dongman', label: '卡通动漫'},
+                // {url: 'tupian', label: '图片专区'},
+                // {url: 'xiaoshou', label: '小说专区'}
             ]
         }
     }
@@ -55,10 +61,6 @@ export default {
 
 <style>
     @import "./resource/css/style.css";
-    .header{
-        
-        
-    }
     .header .cont{
         max-width: 1200px;   
         width: 100%;
@@ -88,8 +90,6 @@ export default {
     }
     .header .menu{
         background:#f1909c;
-        height: 50px;
-        
     }
     .header .menu ul{
         max-width: 1200px;
@@ -108,11 +108,11 @@ export default {
         width: 100%;
         height: 100%;
         padding: 0 15px;
-        color: #f1f1f1;
+        color: #fff;
     }
     .header .menu li.active{
         /* border-bottom: 3px solid #efdee1; */
-        background: #fff;
+        background: #f0f0f0;
     }
     .header .menu li.active a, .header .menu li a:hover{
         color: #6f1818;
@@ -142,6 +142,11 @@ export default {
     @media screen and (max-width: 600px) {
         .header .cont .rf{
             padding-right: 5px;
+        }
+        .header .menu li{
+            height: 40px;
+            line-height: 40px;
+            width: 25%;
         }
         .footer{
             padding: 10px 0;
