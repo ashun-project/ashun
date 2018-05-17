@@ -48,9 +48,9 @@ export default {
             menu: [
                 {url: 'sanji', label: '经典三级'},
                 {url: 'wuma', label: '无码性爱'},
-                // {url: 'oumei', label: '欧美风情'},
+                {url: 'oumei', label: '欧美风情'},
                 // {url: 'youma', label: '有码性爱'},
-                // {url: 'dongman', label: '卡通动漫'},
+                {url: 'dongman', label: '卡通动漫'},
                 // {url: 'tupian', label: '图片专区'},
                 // {url: 'xiaoshou', label: '小说专区'}
             ]
@@ -109,6 +109,8 @@ export default {
         height: 100%;
         padding: 0 15px;
         color: #fff;
+        font-size: 0.7rem;
+        text-align: center;
     }
     .header .menu li.active{
         /* border-bottom: 3px solid #efdee1; */
@@ -147,6 +149,9 @@ export default {
             height: 40px;
             line-height: 40px;
             width: 25%;
+        }
+        .header .menu li a{
+            padding: 0;
         }
         .footer{
             padding: 10px 0;

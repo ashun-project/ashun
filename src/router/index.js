@@ -25,6 +25,16 @@ export default new Router({
       component: home
     },
     {
+      path: '/oumei',
+      name: 'oumei',
+      component: home
+    },
+    {
+      path: '/dongman',
+      name: 'dongman',
+      component: home
+    },
+    {
       path: '/detail/:title/:id',
       name: 'detail',
       component: detail
