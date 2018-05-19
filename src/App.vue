@@ -9,7 +9,7 @@
                     <span class="interval">|</span>
                     <span>注册</span>
                     <span class="interval">|</span>
-                    <span>交流QQ<font color="red">762008732</font></span>
+                    <span>交流QQ<font color="red">3257905932</font></span>
                 </div>
             </div>
             <div class="menu">
@@ -46,8 +46,8 @@ export default {
     data () {
         return {
             menu: [
-                {url: 'sanji', label: '经典三级'},
                 {url: 'wuma', label: '无码性爱'},
+                {url: 'sanji', label: '经典三级'},
                 {url: 'oumei', label: '欧美风情'},
                 // {url: 'youma', label: '有码性爱'},
                 {url: 'dongman', label: '卡通动漫'},
