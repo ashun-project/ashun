@@ -30,7 +30,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(api);
 app.use(express.static(path.resolve(__dirname, '../dist')));
-
+// 全局拦截配置https://blog.csdn.net/ixuhangyi/article/details/50579445
 // app.get('*', function(req, res) {
 //     // path.resolve(__dirname, '../dist/index.html'
 //     const html = fs.readFileSync(path.resolve(__dirname, '../dist/index.html'), 'utf-8');
