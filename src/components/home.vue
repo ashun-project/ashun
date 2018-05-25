@@ -42,7 +42,7 @@
         },
         methods: {
             replaceWord (item) {
-                let rul = /【MP4\/.+】|\[MP4\/.+\]|【RV原创】|【精品RV原创】|【无码\/MP4\/.+】/gi;
+                let rul = /【MP4\/.+】|\[MP4\/.+\]|【RV原创】|【精品RV原创】|【无码\/MP4\/.+】|【杏吧】/gi;
                 return item.replace(rul, '')
             },
             goDetail (item) {
