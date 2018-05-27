@@ -6,7 +6,7 @@
                 <div v-else>
                     <div class="detail-cont" id="my-detail" v-html="content"></div>
                     <div class="clr"></div><br/>
-                    <div id="video" style="width: 600px; height: 400px;"></div>
+                    <div id="video"></div>
                     <div class="tip">温馨提示：缓冲需要时间，请耐心等待</div>
                 </div>
             </div>         
@@ -171,6 +171,11 @@
         border: 1px solid #eee;
         min-height: 260px;
         position: relative;
+    }
+    .detail #video{
+        width: 100%;
+        max-width: 600px;
+        height: 400px;
     }
     .detail .content >>> table{
         text-align: left;
