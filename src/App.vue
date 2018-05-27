@@ -46,6 +46,7 @@ export default {
     data () {
         return {
             menu: [
+                {url: 'wumavideo', label: '在线观看'},
                 {url: 'wuma', label: '无码性爱'},
                 {url: 'sanji', label: '经典三级'},
                 {url: 'oumei', label: '欧美风情'},

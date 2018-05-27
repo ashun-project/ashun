@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import home from '@/components/home'
 import detail from '@/components/detail'
+import videoList from '@/components/video_list'
+import videoDetail from '@/components/video_detail'
 import deleteRepeat from '@/components/delete_repeat'
 import test from '@/components/test'
 
@@ -12,7 +14,17 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      redirect: '/wuma'
+      redirect: '/wumavideo'
+    },
+    {
+      path: '/wumavideo',
+      name: 'wumavideo',
+      component: videoList
+    },
+    {
+      path: '/videoDetail/:title/:id',
+      name: 'videoDetail',
+      component: videoDetail
     },
     {
       path: '/sanji',

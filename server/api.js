@@ -123,6 +123,26 @@ router.post('/api/getDetail', function (req, res) {
     }
 })
 
+// 视频详情
+router.post('/api/getVideoDetail', function (req, res) {
+    var id = req.body.id.toString();
+    var currentIp = getIp(req)
+    console.log('getDetail----'+req.body.title+'=====',currentIp)
+    var sql = 'SELECT * FROM '+ req.body.title +'detail where createTime = ' + id;
+    pool.getConnection(function (err, conn) {
+        if (err) console.log("POOL ==> " + err);
+        conn.query(sql,function(err,result){
+            if(err){
+                console.log('[SELECT ERROR] - ',err.message);
+                res.send('error');
+            } else {
+                res.json({id: result[0].createTime, content: result[0].content, video: result[0].video});
+            }
+            conn.release();
+        });
+    }) 
+})
+
 // 删除数据
 router.post('/api/deteleRepeat', function (req, res) {
     var sql = 'DELETE FROM '+ req.body.title +'list WHERE createTime = '+ req.body.id;
