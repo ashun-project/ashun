@@ -42,7 +42,7 @@
         },
         methods: {
             replaceWord (item) {
-                let rul = /【MP4\/.+】|\[MP4\/.+\]|【RV原创】|【精品RV原创】|【无码\/MP4\/.+】|【杏吧】/gi;
+                let rul = /【mp4\/.+】|\[mp4\/.+\]|【MP4\/.+】|\[MP4\/.+\]|【RV原创】|【精品RV原创】|【无码\/MP4\/.+】|【杏吧】/gi;
                 return item.replace(rul, '')
             },
             goDetail (item) {
@@ -88,7 +88,6 @@
     .data-list li{
         width: 33.3333%;
         padding: 10px;
-        margin: 0 0 15px;
         cursor: pointer;
     }
     .data-list li.not-data{
@@ -125,6 +124,7 @@
     @media screen and (max-width: 600px) {
         .data-list li{
             width: 50%;
+            padding: 5px 0;
         }
         .data-list li .cont-img{
             height: 200px;
