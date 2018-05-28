@@ -24,7 +24,10 @@
         <div class="banner" v-if="!$route.meta.notHeader">
             <img src="@/resource/img/banner.png" alt="">
         </div>
-        <router-view/>
+        <div class="body-content">
+            <!-- <img class="ashun" src="@/resource/img/ashun.png" alt="ashun"> -->
+            <router-view/>
+        </div>
         <div class="footer" v-if="!$route.meta.notFooter">
             <div class="pc">
                 警告︰本網站只這合十八歲或以上人士觀看。內容可能令人反感；不可將本網站的內容派發、傳閱、出售、出租、交給或借予年齡未滿18歲的人士或將本網站內容向該人士出示、播放或放映。<br/>
@@ -62,6 +65,10 @@ export default {
 
 <style>
     @import "./resource/css/style.css";
+    .header{
+        width: 100%;
+        background: #fff;
+    }
     .header .cont{
         max-width: 1200px;   
         width: 100%;
@@ -129,6 +136,13 @@ export default {
     }
     .banner img{
         width: 100%;
+    }
+    .body-content .ashun{
+        position: fixed;
+        top: 50%;
+        left: 0%;
+        transform: translateY(-50%);
+        z-index: -1;
     }
     .footer {
         width: 100%;
