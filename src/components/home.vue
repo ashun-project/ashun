@@ -43,7 +43,7 @@
         },
         methods: {
             replaceWord (item) {
-                let rul = /【mp4\/.+】|\[mp4\/.+\]|【MP4\/.+】|\[MP4\/.+\]|【RV原创】|【精品RV原创】|【无码\/MP4\/.+】|【杏吧】/gi;
+                let rul = /【mp4下载】|\[mp4下载\]|【MP4\/.+】|\[MP4\/.+\]|【RV原创】|【精品RV原创】|【无码\/MP4\/.+】|【杏吧】/gi;
                 return item.replace(rul, '')
             },
             goDetail (item) {
