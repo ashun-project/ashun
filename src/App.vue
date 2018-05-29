@@ -13,11 +13,12 @@
                 </div>
             </div>
             <div class="menu">
-                <ul>
-                    <li v-for="item in menu" :key="item.url" :class="{active: item.url === $route.name || item.url === $route.params.title}">
+                <dl v-for="(list, idx) in menu" :key="idx">
+                    <dt>{{list.label}}</dt>
+                    <dd v-for="item in list.data" :key="item.url" :class="{active: item.url === $route.name || item.url === $route.params.title}">
                         <router-link :to="{name: item.url}">{{item.label}}</router-link>
-                    </li>
-                </ul>
+                    </dd>
+                </dl>
                 <div class="clr"></div>
             </div>
         </div>
@@ -49,16 +50,26 @@ export default {
     data () {
         return {
             menu: [
-                {url: 'wumavideo', label: '在线观看'},
-                {url: 'wuma', label: '无码性爱'},
-                {url: 'sanji', label: '经典三级'},
-                {url: 'oumei', label: '欧美风情'},
-                // {url: 'youma', label: '有码性爱'},
-                {url: 'dongman', label: '卡通动漫'},
-                // {url: 'tupian', label: '图片专区'},
-                // {url: 'xiaoshou', label: '小说专区'}
+                {
+                    label: '在线区：', 
+                    data: [
+                        {url: 'wumavideo', label: '无码性爱'}
+                    ]
+                },
+                {
+                    label: '下载区：', 
+                    data: [
+                        {url: 'wuma', label: '经典无码'},
+                        {url: 'sanji', label: '三级影视'},
+                        {url: 'oumei', label: '欧美风情'},
+                        // {url: 'youma', label: '有码性爱'},
+                        {url: 'dongman', label: '卡通动漫'},
+                    // {url: 'tupian', label: '图片专区'},
+                    // {url: 'xiaoshou', label: '小说专区'}]}
+                    ]
+                }
             ]
-        }
+        }    
     }
 }
 </script>
@@ -97,36 +108,52 @@ export default {
         color: #ccc;
     }
     .header .menu{
-        background:#f1909c;
+        background:#f9d8dc;
+        padding: 5px 0;
     }
-    .header .menu ul{
+    .header .menu dl{
         max-width: 1200px;
         width: 100%;
         margin: 0 auto;
-    }
-    .header .menu li{
-        float: left;
-        height: 50px;
-        line-height: 50px;
+        height: 34px;
+        line-height: 30px;
         font-size: 16px;
+        padding: 2px 0 2px 70px;
+        position: relative;
+    }
+    .header .menu dl dt{
+        color: rgb(121, 33, 33);
+        margin-right: 5px;
+        font-weight: 600;
+        float: left;
+        position: absolute;
+        left: 2px;
+        top: 2px;
+    }
+    .header .menu dd{
+        float: left;
+        height: 30px;
+        line-height: 30px;
         transition: all 1s;
     }
-    .header .menu li a{
+    .header .menu dd a{
         display: block;
         width: 100%;
         height: 100%;
-        padding: 0 15px;
-        color: #fff;
-        font-size: 0.7rem;
+        padding: 0 10px;
+        color: #576700;
         text-align: center;
     }
-    .header .menu li.active{
-        /* border-bottom: 3px solid #efdee1; */
-        background: #f0f0f0;
+    .header .menu dd.active a{
+        border-radius: 3px;
+        background: #cae243;
+        color: #fff;
     }
-    .header .menu li.active a, .header .menu li a:hover{
-        color: #6f1818;
-        font-weight: 600;
+    .header .menu dd.active a:hover{
+        color: #fff;
+    }
+    .header .menu dd a:hover{
+        color: #cae243;
     }
     .banner{
         max-height: 300px;
@@ -160,13 +187,9 @@ export default {
         .header .cont .rf{
             padding-right: 5px;
         }
-        .header .menu li{
-            height: 40px;
-            line-height: 40px;
-            width: 25%;
-        }
-        .header .menu li a{
-            padding: 0;
+        .header .menu dl{
+            padding-left: 60px;
+            font-size: 14px;
         }
         .footer{
             padding: 10px 0;

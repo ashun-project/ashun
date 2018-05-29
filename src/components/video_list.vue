@@ -18,7 +18,8 @@
             </ul>
             <div class="clr"></div>
         </div>
-        <v-pagination :total="total" :current-page='current' @pagechange="pagechange"></v-pagination>
+        <!-- <v-pagination :total="total" :current-page='current' @pagechange="pagechange"></v-pagination> -->
+        <v-pagination :total="total" :currentPage="current" @pagechange="pagechange"></v-pagination>
     </div>
 </template>
 <script>
