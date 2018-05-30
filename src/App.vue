@@ -53,7 +53,8 @@ export default {
                 {
                     label: '在线区：', 
                     data: [
-                        {url: 'wumavideo', label: '无码性爱'}
+                        {url: 'wumavideo', label: '无码性爱'},
+                        {url: 'sanjivideo', label: '三级在线'}
                     ]
                 },
                 {

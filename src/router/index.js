@@ -22,6 +22,11 @@ export default new Router({
       component: videoList
     },
     {
+      path: '/sanjivideo',
+      name: 'sanjivideo',
+      component: videoList
+    },
+    {
       path: '/videoDetail/:title/:id',
       name: 'videoDetail',
       component: videoDetail
