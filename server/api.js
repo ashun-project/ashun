@@ -126,8 +126,8 @@ router.post('/api/getDetail', function (req, res) {
                     res.send('error');
                 } else {
                     res.json({
-                        id: result[0].createTime,
-                        content: result[0].content
+                        id: result[0] ? result[0].createTime : '',
+                        content: result[0] ? result[0].content : ''
                     });
                 }
                 conn.release();
@@ -150,9 +150,9 @@ router.post('/api/getVideoDetail', function (req, res) {
                 res.send('error');
             } else {
                 res.json({
-                    id: result[0].createTime,
-                    content: result[0].content,
-                    video: result[0].video
+                    id: result[0] ? result[0].createTime : '',
+                    content: result[0] ? result[0].content : '',
+                    video: result[0] ? result[0].video : ''
                 });
             }
             conn.release();
