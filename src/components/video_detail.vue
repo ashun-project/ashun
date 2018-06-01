@@ -128,7 +128,7 @@ export default {
                     container: '#video', //容器的ID或className
                     variable: 'player',//播放函数名称
                     flashplayer: true,
-                    poster: 'material/poster.jpg',//封面图片
+                    poster: '/static/img/ashun.png',//封面图片
                     video: video
                     // video: [//视频地址列表形式
                     //     [video, 'video/mp4', '中文标清', 0],
@@ -170,7 +170,7 @@ export default {
     padding: 20px;
     border: 1px solid #eee;
     min-height: 260px;
-    position: relative;
+    position: relative; 
 }
 .detail #video {
     width: 100%;

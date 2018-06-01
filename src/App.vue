@@ -83,6 +83,7 @@ export default {
 
 <style>
 @import './resource/css/style.css';
+@import './resource/css/list.css';
 .header {
     width: 100%;
     background: #fff;

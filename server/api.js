@@ -59,7 +59,7 @@ router.post('/api/getList', function (req, res) {
         // res.send('who are you');
         // return;
     }
-    var limit = ((req.body.current - 1) * 18) + ',' + 18;
+    var limit = ((req.body.current - 1) * 20) + ',' + 20;
     var sql = 'SELECT * FROM ' + req.body.title + 'list order by createTime desc limit ' + limit;
     var count = 'SELECT COUNT(*) FROM ' + req.body.title + 'list';
     pool.getConnection(function (err, conn) {
