@@ -4,20 +4,20 @@
             <li :class="{'disabled': current == 1}">
                 <a href="javascript:;" @click="setCurrent(1)"> 首页 </a>
             </li>
-            <li :class="{'disabled': current == 1}">
+            <li :class="{'disabled': current == 1}" class="h5-status">
                 <a href="javascript:;" @click="setCurrent(current - 1)"> 上一页 </a>
             </li>
             <li v-for="(p, idx) in grouplist" :key="idx" :class="{'active': current == p.val}">
                 <a href="javascript:;" @click="setCurrent(p.val)"> {{ p.text }} </a>
             </li>
-            <li :class="{'disabled': current == page}">
+            <li :class="{'disabled': current == page}" class="h5-status">
                 <a href="javascript:;" @click="setCurrent(current + 1)"> 下一页</a>
             </li>
             <li :class="{'disabled': current == page}">
                 <a href="javascript:;" @click="setCurrent(page)"> 尾页 </a>
             </li>
         </ul>
-        <ul class="pagination pull-right">
+        <ul class="pagination pull-right h5-status">
             <li>
                 <span> 共 {{ total }} 条数据 </span>
             </li>
@@ -105,7 +105,7 @@ export default {
 
 
 <style>
-.my-page{
+.my-page {
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -113,15 +113,15 @@ export default {
     display: inline-block;
     padding-left: 0;
     margin: 20px 0;
-    border-radius: 4px
+    border-radius: 4px;
 }
 
-.pagination>li {
-    display: inline
+.pagination > li {
+    display: inline;
 }
 
-.pagination>li>a,
-.pagination>li>span {
+.pagination > li > a,
+.pagination > li > span {
     position: relative;
     float: left;
     padding: 6px 12px;
@@ -130,92 +130,97 @@ export default {
     color: #fb7b86;
     text-decoration: none;
     background-color: #fff;
-    border: 1px solid #f5b9be
+    border: 1px solid #f5b9be;
 }
 
-.pagination>li:first-child>a,
-.pagination>li:first-child>span {
+.pagination > li:first-child > a,
+.pagination > li:first-child > span {
     margin-left: 0;
     border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px
+    border-bottom-left-radius: 4px;
 }
 
-.pagination>li:last-child>a,
-.pagination>li:last-child>span {
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
     border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px
+    border-bottom-right-radius: 4px;
 }
 
-.pagination>li>a:focus,
-.pagination>li>a:hover,
-.pagination>li>span:focus,
-.pagination>li>span:hover {
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover {
     z-index: 2;
     color: #666;
     background-color: #f5b9be;
-    border-color: #f5b9be
+    border-color: #f5b9be;
 }
 
-.pagination>.active>a,
-.pagination>.active>a:focus,
-.pagination>.active>a:hover,
-.pagination>.active>span,
-.pagination>.active>span:focus,
-.pagination>.active>span:hover {
+.pagination > .active > a,
+.pagination > .active > a:focus,
+.pagination > .active > a:hover,
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover {
     z-index: 3;
     color: #fff;
     cursor: default;
     background-color: #fb7b86;
-    border-color: #f5b9be
+    border-color: #f5b9be;
 }
 
-.pagination>.disabled>a,
-.pagination>.disabled>a:focus,
-.pagination>.disabled>a:hover,
-.pagination>.disabled>span,
-.pagination>.disabled>span:focus,
-.pagination>.disabled>span:hover {
+.pagination > .disabled > a,
+.pagination > .disabled > a:focus,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > span,
+.pagination > .disabled > span:focus,
+.pagination > .disabled > span:hover {
     color: #ccc;
     cursor: not-allowed;
     background-color: #f2f2f2;
-    border-color: #f5b9be
+    border-color: #f5b9be;
 }
 
-.pagination-lg>li>a,
-.pagination-lg>li>span {
+.pagination-lg > li > a,
+.pagination-lg > li > span {
     padding: 10px 16px;
     font-size: 18px;
-    line-height: 1.3333333
+    line-height: 1.3333333;
 }
 
-.pagination-lg>li:first-child>a,
-.pagination-lg>li:first-child>span {
+.pagination-lg > li:first-child > a,
+.pagination-lg > li:first-child > span {
     border-top-left-radius: 6px;
-    border-bottom-left-radius: 6px
+    border-bottom-left-radius: 6px;
 }
 
-.pagination-lg>li:last-child>a,
-.pagination-lg>li:last-child>span {
+.pagination-lg > li:last-child > a,
+.pagination-lg > li:last-child > span {
     border-top-right-radius: 6px;
-    border-bottom-right-radius: 6px
+    border-bottom-right-radius: 6px;
 }
 
-.pagination-sm>li>a,
-.pagination-sm>li>span {
+.pagination-sm > li > a,
+.pagination-sm > li > span {
     padding: 5px 10px;
     font-size: 12px;
-    line-height: 1.5
+    line-height: 1.5;
 }
 
-.pagination-sm>li:first-child>a,
-.pagination-sm>li:first-child>span {
+.pagination-sm > li:first-child > a,
+.pagination-sm > li:first-child > span {
     border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px
+    border-bottom-left-radius: 3px;
 }
 
-.pagination-sm>li:last-child>a,
-.pagination-sm>li:last-child>span {
+.pagination-sm > li:last-child > a,
+.pagination-sm > li:last-child > span {
     border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px
+    border-bottom-right-radius: 3px;
+}
+@media screen and (max-width: 600px) {
+    .my-page .h5-status {
+        display: none;
+    }
 }
 </style>
