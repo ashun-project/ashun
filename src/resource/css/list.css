@@ -1,26 +1,30 @@
-.data-list{
+.data-list {
     max-width: 1200px;
     width: 100%;
     margin: 20px auto 0;
     overflow: hidden;
 }
-.data-list ul{
+
+.data-list ul {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     margin: 0 -10px;
 }
-.data-list li{
+
+.data-list li {
     width: 25%;
     padding: 10px;
     cursor: pointer;
 }
-.data-list li.not-data{
+
+.data-list li.not-data {
     padding: 0;
     margin: 0;
 }
-.data-list li .cont-img{
+
+.data-list li .cont-img {
     float: left;
     width: 100%;
     height: 230px;
@@ -30,32 +34,38 @@
     align-items: center;
     justify-content: center;
 }
-.data-list li .cont-img img{
+
+.data-list li .cont-img img {
     max-width: 100%;
     /* min-height: 100%; */
 }
-.data-list .title{
+
+.data-list .title {
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-.data-list li > div{
+
+.data-list li>div {
     border: 1px solid #eee;
     padding: 3px;
 }
-.data-list li > div p{
+
+.data-list li>div p {
     padding: 10px 2px;
 }
-.data-list li:hover > div p{
+
+.data-list li:hover>div p {
     color: #fb7b86;
 }
+
 @media screen and (max-width: 600px) {
-    .data-list li{
+    .data-list li {
         width: 50%;
         padding: 5px 0;
     }
-    .data-list li .cont-img{
-        height: 200px;
+    .data-list li .cont-img {
+        height: 140px;
     }
 }
