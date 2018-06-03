@@ -8,11 +8,11 @@
                 </div>
                 <div class="lf notice notice-h5">
                     <marquee scrolldelay="100">
-                        为防止域名更换, 请记住我们的永久域名ashun520.com
+                        为防止域名更换, 请记住我们的永久域名&nbsp;ashun520.com
                     </marquee>
                 </div>
                 <div class="lf notice notice-pc">
-                    为防止域名更换, 请记住我们的永久域名ashun520.com
+                    为防止域名更换, 请记住我们的永久域名&nbsp;ashun520.com
                 </div>
                 <div class="rf">
                     <!-- <span>登入</span>
