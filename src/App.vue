@@ -6,11 +6,19 @@
                 <div class="lf">
                     <router-link to="/"><img src="@/resource/img/logo.png"></router-link>
                 </div>
+                <div class="lf notice notice-h5">
+                    <marquee scrolldelay="100">
+                        为防止域名更换, 请记住我们的永久域名ashun520.com
+                    </marquee>
+                </div>
+                <div class="lf notice notice-pc">
+                    为防止域名更换, 请记住我们的永久域名ashun520.com
+                </div>
                 <div class="rf">
-                    <span>登入</span>
+                    <!-- <span>登入</span>
                     <span class="interval">|</span>
                     <span>注册</span>
-                    <span class="interval">|</span>
+                    <span class="interval">|</span> -->
                     <span>交流QQ
                         <font color="red">3257905932</font>
                     </span>
@@ -94,6 +102,7 @@ export default {
     height: 40px;
     line-height: 40px;
     margin: 0 auto;
+    position: relative;
 }
 .header .cont .lf {
     color: #666;
@@ -107,6 +116,9 @@ export default {
 .header .cont .rf {
     font-size: 16px;
     color: #666;
+    background: #fff;
+    position: relative;
+    z-index: 10;
 }
 .header .cont .rf span {
     display: inline-block;
@@ -114,6 +126,16 @@ export default {
 .header .cont .rf span.interval {
     padding: 0 5px;
     color: #ccc;
+}
+.header .cont .notice {
+    position: absolute;
+    left: 60px;
+    top: 0;
+    color: rgb(235, 37, 37);
+    max-width: 400px;
+}
+.header .cont .notice-h5 {
+    display: none;
 }
 .header .menu {
     background: #f9d8dc;
@@ -197,6 +219,12 @@ export default {
 @media screen and (max-width: 600px) {
     .header .cont .rf {
         padding-right: 5px;
+    }
+    .header .cont .notice-h5 {
+        display: block;
+    }
+    .header .cont .notice-pc {
+        display: none;
     }
     .header .menu dl {
         padding-left: 60px;
