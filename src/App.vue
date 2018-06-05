@@ -7,7 +7,7 @@
                     <router-link to="/"><img src="@/resource/img/logo.png"></router-link>
                 </div>
                 <div class="lf notice notice-h5">
-                    <marquee scrolldelay="100">
+                    <marquee scrolldelay="30">
                         为防止域名更换, 请记住我们的永久域名&nbsp;ashun520.com
                     </marquee>
                 </div>
@@ -84,6 +84,14 @@ export default {
                     ]
                 }
             ]
+        }
+    },
+    mounted () {
+        let host = window.location.host;
+        let value = localStorage.getItem('web');
+        if (!value && (host.indexOf('ashun') < 0 && host.indexOf('s8sex') < 0)) {
+            alert('本域名即将关闭，请记住我们的永久域名。ashun520.com')
+            localStorage.setItem('web', '1')            
         }
     }
 }
