@@ -8,11 +8,11 @@
                 </div>
                 <div class="lf notice notice-h5">
                     <marquee scrolldelay="30">
-                        为防止域名更换, 请记住我们的永久域名&nbsp;ashun520.com
+                        为防止域名更换, 请记住我们的永久域名&nbsp;ashun520.com，&nbsp;s8sex.com
                     </marquee>
                 </div>
                 <div class="lf notice notice-pc">
-                    为防止域名更换, 请记住我们的永久域名&nbsp;ashun520.com
+                    为防止域名更换, 请记住我们的永久域名&nbsp;ashun520.com，&nbsp;s8sex.com
                 </div>
                 <div class="rf">
                     <!-- <span>登入</span>
@@ -35,7 +35,15 @@
             </div>
         </div>
         <div class="banner" v-if="!$route.meta.notHeader">
-            <img src="@/resource/img/banner.png" alt="">
+            <!-- <img src="@/resource/img/banner.png" alt=""> -->
+            <img src="@/resource/img/advert/1.jpg" alt="">
+            <img src="@/resource/img/advert/2.jpg" alt="">
+        </div>
+        <div class="notice-message">
+            <span>通知：</span>
+            <font color="red">请记住我们永久域名 ashun520.com, s8sex.com
+                <span class="h5-display">以便快速找到我们</span>
+            </font>
         </div>
         <div class="body-content">
             <!-- <img class="ashun" src="@/resource/img/ashun.png" alt="ashun"> -->
@@ -91,7 +99,7 @@ export default {
         let value = localStorage.getItem('web');
         if (!value && (host.indexOf('ashun') < 0 && host.indexOf('s8sex') < 0)) {
             alert('本域名即将关闭，请记住我们的永久域名。ashun520.com')
-            localStorage.setItem('web', '1')            
+            localStorage.setItem('web', '1')
         }
     }
 }
@@ -140,7 +148,7 @@ export default {
     left: 60px;
     top: 0;
     color: rgb(235, 37, 37);
-    max-width: 400px;
+    max-width: 500px;
 }
 .header .cont .notice-h5 {
     display: none;
@@ -196,11 +204,26 @@ export default {
 .header .menu dd a:hover {
     color: #cae243;
 }
+.notice-message {
+    min-height: 35px;
+    margin: 0 auto;
+    max-width: 1200px;
+    width: 100%;
+    background: #333;
+    color: #fff;
+    box-shadow: 0 0 3px #000;
+    font-size: 0.6rem;
+    padding: 0 5px;
+    display: flex;
+    /* justify-content: center */
+    align-items: center;
+}
 .banner {
-    max-height: 300px;
+    /* max-height: 300px; */
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 5px 0;
 }
 .banner img {
     width: 100%;
@@ -225,6 +248,9 @@ export default {
     display: none;
 }
 @media screen and (max-width: 600px) {
+    .h5-display {
+        display: none;
+    }
     .header .cont .rf {
         padding-right: 5px;
     }
