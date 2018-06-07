@@ -1,19 +1,23 @@
 <template>
     <div class="site2">
-        <!-- <div id="site2-content" class="video"></div> -->
+        <div id="site2-content" class="video"></div>
+        <div class="clr"></div>
     </div>
 </template>
 
 <script>
+    // import './css/bootstrap.min.css';
+    // import './css/font-awesome.min.css';
+    // import './css/style.css';
+    // import './css/bootstrap-theme-light-green.css';
+    // import './css/responsivepx.css';
     export default {
         data () {
             return {
-
+                message: ''
             }
         },
-        mounted () {
-        },
-        methonds: {
+        methods: {
             reset() {
                 let vm = this;
                 timer = setInterval(function () {
@@ -56,20 +60,42 @@
                 setTimeout(function () {
                     clearInterval(timer)
                 }, 6000)
+            },
+            getContent () {
+                this.$nextTick(() => {
+                    let dom = document.getElementById('site2-content');
+                    let content = document.getElementById('content');
+                    dom.innerHTML = content.innerHTML;
+                    // this.reset()
+                })
+                
             }    
         },
         created () {
-            // this.$http.get('/site2/rapping/').then(response => {
-            //      console.log(response.data)
+            let vm = this;
+            // this.$http.get('/site2').then(response => {
+            //     //  console.log(response.data)  
+            //     var REG_BODY = /<body[^>]*>([\s\S]*)<\/body>/;
+            //     var result = REG_BODY.exec(response.data);
             //     var html = document.getElementById('site2-content');
-            //     html.innerHTML = response.data;
-            //     this.reset()
+            //     html.innerHTML = result;
+            //     vm.getContent();
             // })
         }
     }
 </script>
 
-<style>
+<style scoped>
+    /* @import url('./css/bootstrap.min.css');
+    @import url('./css/font-awesome.min.css');
+    @import url('./css/style.css');
+    @import url('./css/bootstrap-theme-light-green.css');
+    @import url('./css/responsivepx.css'); */
+    @import './css/bootstrap.min.css';
+    /* @import './css/font-awesome.min.css'; */
+    @import './css/style.css';
+    /* @import './css/bootstrap-theme-light-green.css'; */
+    @import './css/responsivepx.css';
     .site2{
         width: 100%;
         max-width: 1200px;
