@@ -1,11 +1,13 @@
 import Vue from 'vue'
+import test from '@/components/test'
 import Router from 'vue-router'
 import home from '@/components/home'
 import detail from '@/components/detail'
 import videoList from '@/components/video_list'
 import videoDetail from '@/components/video_detail'
 import deleteRepeat from '@/components/delete_repeat'
-import test from '@/components/test'
+
+import site2Home from '@/components/site2/home'
 
 Vue.use(Router)
 
@@ -88,6 +90,15 @@ export default new Router({
             path: '/test',
             name: 'test',
             component: test
-        }
+        },
+        {
+            path: '/site2Home',
+            name: 'site2Home',
+            component: site2Home,
+            children: [
+                
+            ]
+        }    
+        
     ]
 })

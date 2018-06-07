@@ -18,7 +18,14 @@ module.exports = {
         // pathRewrite: {  
         //   '^/api': ''   //  只能开发环境使用build之后将失效  将会去掉接口前面的-- api --字段  
         // }
-      }  
+      },
+      '/site2': {
+        target: 'http://www.qyule.tv',
+        changeOrigin: true,   //  是否跨域
+        pathRewrite: {  
+          '^/site2': ''
+        }
+      }
     },
 
     // Various Dev Server settings
