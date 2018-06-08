@@ -17,6 +17,14 @@ export default {
             message: ''
         }
     },
+    watch: {
+        '$router' () {
+            this.getHtml()
+        }
+    },
+    mounted () {
+        
+    },
     methods: {
         reset () {
             let vm = this;
@@ -67,20 +75,51 @@ export default {
                 let content = document.getElementById('content');
                 dom.innerHTML = content.innerHTML;
                 // this.reset()
+                this.getClike()
             })
-
+        },
+        getClike () {
+            let vm = this;
+            this.$nextTick( () => {
+                let videos = document.querySelectorAll('ul.videos');
+                let $Video = $('ul.videos a');
+                let $nav = $('ul.nav a');
+                $Video.click(function () {
+                    let hrf = $(this).attr('href');
+                    let arr = hrf.split('/').filter(item => item);
+                    vm.$router.push({name: 'site2Detail', params: {id: arr[0], name: arr[1]}})
+                    return false;
+                })
+                $nav.click(function (event) {
+                    event.preventDefault();
+                    debugger
+                    let hrf = $(this).attr('href');
+                    let arr = hrf.split('/').filter(item => item);
+                    vm.$router.push({params: {label: arr[0]}});
+                    debugger
+                    return false;
+                })
+            })
+        },
+        getHtml () {
+            let vm = this;
+            let label = this.$route.params.label;
+            let url = '/site2';
+            if (label !== 'all') {
+                url = '/site2/'+label+'/'
+            }
+            this.$http.get(url).then(response => {
+                //  console.log(response.data)  
+                var REG_BODY = /<body[^>]*>([\s\S]*)<\/body>/;
+                var result = REG_BODY.exec(response.data);
+                var html = document.getElementById('site2-content');
+                html.innerHTML = result;
+                vm.getContent();
+            })
         }
     },
     created () {
-        let vm = this;
-        this.$http.get('/site2').then(response => {
-            //  console.log(response.data)  
-            var REG_BODY = /<body[^>]*>([\s\S]*)<\/body>/;
-            var result = REG_BODY.exec(response.data);
-            var html = document.getElementById('site2-content');
-            html.innerHTML = result;
-            vm.getContent();
-        })
+        this.getHtml()
     }
 }
 </script>
@@ -91,18 +130,32 @@ export default {
     @import url('./css/style.css');
     @import url('./css/bootstrap-theme-light-green.css');
     @import url('./css/responsivepx.css'); */
-@import './css/bootstrap.min.css';
+/* @import './css/bootstrap.min.css'; */
 /* @import './css/font-awesome.min.css'; */
-@import './css/style.css';
+/* @import './css/style.css'; */
 /* @import './css/bootstrap-theme-light-green.css'; */
-@import './css/responsivepx.css';
+/* @import './css/responsivepx.css'; */
 .site2 {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
 }
-.site2 >>> .panel-heading {
+.site2 >>> .panel-heading *, .site2 >>> .col-md-2 .panel-heading .panel-title,
+.site2 >>> .ads, .site2 .video >>> .panel ul.nav li a span, 
+.site2 .video >>> .panel ul.videos li .video-rating,
+.site2 .video >>> .panel ul.videos li .video-overlay,
+.site2 .video >>> .panel ul.videos li .video-details {
     display: none;
+}
+.site2 >>> .panel-heading .panel-title{
+    display: block;
+    font-size: 18px;
+    height: 26px;
+    line-height: 26px;
+    border-left: 5px solid #9c833b;
+    margin-top: 15px;
+    margin-bottom: 8px;
+    padding-left: 10px;
 }
 .site2 .video >>> .panel ul {
     background: #f2f2f2;
@@ -116,8 +169,8 @@ export default {
 }
 .site2 .video >>> .panel ul li a {
     padding: 0 12px;
-    font-size: 14px;
-    line-height: 28px;
+    font-size: 16px;
+    line-height: 30px;
     border: 1px solid rgb(233, 232, 232);
     box-shadow: 0 0 3px rgba(224, 223, 223, 0.6);
     margin: 4px;
@@ -130,7 +183,29 @@ export default {
     background: rgb(243, 179, 4);
     color: #fff;
 }
-.site2 .video >>> .panel ul li a span {
-    display: none;
+
+/* 数据列表 */
+.site2 .video >>> .panel ul.videos li a{
+    width: 254px;
+    height: 220px;
+    padding: 0;
+}
+.site2 .video >>> .panel ul.videos li a .video-title{
+    height: 40px;
+    line-height: 20px;
+    margin-top: 3px;
+    overflow: hidden;
+    display: inline-block;
+    padding: 0 5px;
+    font-size: 14px;
+    color: #9c833b;
+}
+.site2 .video >>> .panel ul.videos li a img{
+    width: 100%;
+    height: 169px;
+    display: table;
+}
+.site2 .video >>> .panel ul.videos li a:hover .video-title{
+    color: #fff;
 }
 </style>

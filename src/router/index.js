@@ -15,6 +15,7 @@ const videoList = resolve => require(['@/components/video_list'], resolve)
 const videoDetail = resolve => require(['@/components/video_detail'], resolve)
 const deleteRepeat = resolve => require(['@/components/delete_repeat'], resolve)
 const site2Home = resolve => require(['@/components/site2/home'], resolve)
+const site2Detail = resolve => require(['@/components/site2/detail'], resolve)
 
 
 
@@ -103,12 +104,14 @@ export default new Router({
             component: test
         },
         {
-            path: '/site2Home',
+            path: '/site2/:label',
             name: 'site2Home',
-            component: site2Home,
-            children: [
-
-            ]
+            component: site2Home
+        },
+        {
+            path: '/site2Detail/:id/:name',
+            name: 'site2Detail',
+            component: site2Detail
         }
 
     ]
