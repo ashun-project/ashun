@@ -42,7 +42,7 @@
         <div class="notice-message">
             <span>通知：</span>
             <font color="red">请记住我们永久域名 ashun520.com, s8sex.com
-                <span class="h5-display">以便快速找到我们</span>
+                <span class="h5-display">以便快速找到我们,其他域名即将更换</span>
             </font>
         </div>
         <div class="body-content">
