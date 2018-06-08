@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <suspend></suspend>
+        <!-- <suspend></suspend> -->
         <div class="header" v-if="!$route.meta.notHeader">
             <div class="cont">
                 <div class="lf">
@@ -35,7 +35,6 @@
             </div>
         </div>
         <div class="banner" v-if="!$route.meta.notHeader">
-            <!-- <img src="@/resource/img/banner.png" alt=""> -->
             <img src="@/resource/img/advert/1.jpg" alt="">
             <img src="@/resource/img/advert/2.jpg" alt="">
         </div>
@@ -140,6 +139,7 @@ export default {
 }
 .header .cont .rf {
     font-size: 16px;
+    height: 95%;
     color: #666;
     background: #fff;
     position: relative;
@@ -253,7 +253,7 @@ export default {
     font-size: 14px;
     text-align: center;
 }
-.footer .friendly a{
+.footer .friendly a {
     display: inline-block;
     color: #ccc;
     padding: 0 5px;
@@ -262,7 +262,8 @@ export default {
     display: none;
 }
 @media screen and (max-width: 600px) {
-    .h5-display, .footer .friendly {
+    .h5-display,
+    .footer .friendly {
         display: none;
     }
     .header .cont .rf {

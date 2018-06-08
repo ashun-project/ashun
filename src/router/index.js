@@ -1,13 +1,24 @@
 import Vue from 'vue'
-import test from '@/components/test'
 import Router from 'vue-router'
-import home from '@/components/home'
-import detail from '@/components/detail'
-import videoList from '@/components/video_list'
-import videoDetail from '@/components/video_detail'
-import deleteRepeat from '@/components/delete_repeat'
+// import test from '@/components/test'
+// import home from '@/components/home'
+// import detail from '@/components/detail'
+// import videoList from '@/components/video_list'
+// import videoDetail from '@/components/video_detail'
+// import deleteRepeat from '@/components/delete_repeat'
 
-import site2Home from '@/components/site2/home'
+
+const test = resolve => require(['@/components/test'], resolve)
+const home = resolve => require(['@/components/home'], resolve)
+const detail = resolve => require(['@/components/detail'], resolve)
+const videoList = resolve => require(['@/components/video_list'], resolve)
+const videoDetail = resolve => require(['@/components/video_detail'], resolve)
+const deleteRepeat = resolve => require(['@/components/delete_repeat'], resolve)
+const site2Home = resolve => require(['@/components/site2/home'], resolve)
+
+
+
+// import site2Home from '@/components/site2/home'
 
 Vue.use(Router)
 
@@ -96,9 +107,9 @@ export default new Router({
             name: 'site2Home',
             component: site2Home,
             children: [
-                
+
             ]
-        }    
-        
+        }
+
     ]
 })
