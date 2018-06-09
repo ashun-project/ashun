@@ -6,8 +6,8 @@
                 <li v-for="(item, idx) in list" :key="idx" @click="goDetail(item)">
                     <div>
                         <div class="cont-img">
-                            <img v-if="$route.name === 'wuma' && item.img.split(',').length > 1" :src="item.img.split(',')[1]" alt="">
-                            <img v-else :src="item.img.split(',')[0]" alt="">
+                            <img v-if="$route.name === 'wuma' && item.img.split(',').length > 1" :src="item.img.split(',')[1]" onerror="this.src='/static/img/errorimg.png'" alt="ashun520.com">
+                            <img v-else :src="item.img.split(',')[0] || '/static/img/errorimg.png'" onerror="this.src='/static/img/errorimg.png'" alt="ashun520.com">
                         </div>
                         <div class="clr"></div>
                         <p class="title">{{replaceWord(item.title)}}</p>

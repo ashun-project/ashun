@@ -1,12 +1,11 @@
 <template>
     <div class="home">
-
         <div class="data-list">
             <ul>
                 <li v-for="(item, idx) in list" :key="idx" @click="goDetail(item)">
                     <div>
                         <div class="cont-img">
-                            <img :src="item.img.split(',')[0]" alt="">
+                            <img :src="item.img.split(',')[0] || '/static/img/errorimg.png'" onerror="this.src='/static/img/errorimg.png'" alt="ashun520.com">
                         </div>
                         <div class="clr"></div>
                         <p class="title">{{replaceWord(item.title)}}</p>

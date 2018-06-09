@@ -1,6 +1,6 @@
 <template>
     <div class="site2">
-        <div id="site2-content" class="video"></div>
+        <div id="site2-content" class="video" v-show="content"></div>
         <div class="clr"></div>
     </div>
 </template>
@@ -14,11 +14,11 @@
 export default {
     data () {
         return {
-            message: ''
+            content: ''
         }
     },
     watch: {
-        '$router' () {
+        $route () {
             this.getHtml()
         }
     },
@@ -70,36 +70,60 @@ export default {
             }, 6000)
         },
         getContent () {
-            this.$nextTick(() => {
-                let dom = document.getElementById('site2-content');
-                let content = document.getElementById('content');
-                dom.innerHTML = content.innerHTML;
-                // this.reset()
-                this.getClike()
-            })
+            let vm = this;
+            let cont = 0;
+            // this.$nextTick(() => {})
+            let dom = document.getElementById('site2-content');
+            let content = '';
+            let timer = setInterval(function() {
+                cont += 50;
+                content = document.getElementById('content');
+                if (content) {
+                    clearInterval(timer)
+                    dom.innerHTML = content.innerHTML;
+                    vm.content = true;
+                    vm.getClike();
+                } else if (cont > 3000) {
+                    clearInterval(timer)
+                    alert('数据丢失，请联系管理员。QQ:3257905932')
+                }
+                console.log('轮询=====1')
+            }, 50);
         },
         getClike () {
             let vm = this;
-            this.$nextTick( () => {
-                let videos = document.querySelectorAll('ul.videos');
-                let $Video = $('ul.videos a');
-                let $nav = $('ul.nav a');
-                $Video.click(function () {
-                    let hrf = $(this).attr('href');
-                    let arr = hrf.split('/').filter(item => item);
-                    vm.$router.push({name: 'site2Detail', params: {id: arr[0], name: arr[1]}})
-                    return false;
-                })
-                $nav.click(function (event) {
-                    event.preventDefault();
-                    debugger
-                    let hrf = $(this).attr('href');
-                    let arr = hrf.split('/').filter(item => item);
-                    vm.$router.push({params: {label: arr[0]}});
-                    debugger
-                    return false;
-                })
-            })
+            let $Video = '';
+            let $nav = '';
+            let cont = 0;
+            let timer2 = setInterval(function () {
+                cont += 50;
+                $Video = document.querySelectorAll('ul.videos li a');
+                $nav = document.querySelectorAll('ul.nav li a');
+                if ($nav && $Video) {
+                    clearInterval(timer2);
+                    successContent($Video, true);
+                    successContent($nav);
+                } else if (cont > 3000) {
+                    clearInterval(timer2)
+                    alert('数据丢失，请联系管理员。QQ:3257905932')
+                }
+            }, 50)
+            function successContent (list, detail) {
+                for (let i =0; i < list.length; i++) {
+                    list[i].onclick = function(event) {
+                        let hrf = this.getAttribute('href');
+                        let arr = hrf.split('/').filter(item => item);
+                        if (detail) {
+                            window.open('#/site2Detail/' + arr[0] + '/' + arr[1], '_blank');
+                        } else {
+                            vm.content = false;
+                            vm.$router.push({params: {label: arr[0]}});
+                        }
+                        // vm.$router.push({name: 'site2Detail', params: {id: arr[0], name: arr[1]}})
+                        event.preventDefault();
+                    }
+                }
+            }
         },
         getHtml () {
             let vm = this;
@@ -108,8 +132,14 @@ export default {
             if (label !== 'all') {
                 url = '/site2/'+label+'/'
             }
+            // this.getClike();
+            // return
             this.$http.get(url).then(response => {
-                //  console.log(response.data)  
+                //  console.log(response.data)
+                if (!response.data) {
+                    alert('数据出错，请刷新页面或切换其他区域');
+                    return;
+                }
                 var REG_BODY = /<body[^>]*>([\s\S]*)<\/body>/;
                 var result = REG_BODY.exec(response.data);
                 var html = document.getElementById('site2-content');
@@ -125,19 +155,10 @@ export default {
 </script>
 
 <style scoped>
-/* @import url('./css/bootstrap.min.css');
-    @import url('./css/font-awesome.min.css');
-    @import url('./css/style.css');
-    @import url('./css/bootstrap-theme-light-green.css');
-    @import url('./css/responsivepx.css'); */
-/* @import './css/bootstrap.min.css'; */
-/* @import './css/font-awesome.min.css'; */
-/* @import './css/style.css'; */
-/* @import './css/bootstrap-theme-light-green.css'; */
-/* @import './css/responsivepx.css'; */
 .site2 {
     width: 100%;
     max-width: 1200px;
+    min-height: 200px;
     margin: 0 auto;
 }
 .site2 >>> .panel-heading *, .site2 >>> .col-md-2 .panel-heading .panel-title,
