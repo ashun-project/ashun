@@ -45,12 +45,13 @@
             </font>
         </div>
         <div class="body-content">
-            <!-- <img class="ashun" src="@/resource/img/ashun.png" alt="ashun"> -->
             <router-view/>
         </div>
         <div class="footer" v-if="!$route.meta.notFooter">
             <div class="friendly">
                 友情链接：
+                <a href="https://kfkkf.com/flm/" target="_blank">福利猫导航</a>
+                <a href="https://kfkkf.com/tys/" target="_blank">太阳神导航</a>
                 <a href="http://www.susan520.info/" target="_blank">苏三福利导航</a>
                 <a href="http://www.biyudh.pw/" target="_blank">碧玉AV导航</a>
                 <a href="http://www.ssmmdh.info/" target="_blank">色姐姐导航</a>
@@ -237,12 +238,8 @@ export default {
 .banner img {
     width: 100%;
 }
-.body-content .ashun {
-    position: fixed;
-    top: 50%;
-    left: 0%;
-    transform: translateY(-50%);
-    z-index: -1;
+.body-content {
+    min-height: 300px;
 }
 .footer {
     width: 100%;
@@ -252,6 +249,11 @@ export default {
     line-height: 50px;
     font-size: 14px;
     text-align: center;
+}
+.footer .friendly {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
 }
 .footer .friendly a {
     display: inline-block;
