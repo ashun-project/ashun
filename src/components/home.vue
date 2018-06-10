@@ -37,7 +37,6 @@ export default {
     },
     watch: {
         $route (n, o) {
-            console.log(n, '===============')
             this.getList(1)
         }
     },
@@ -53,9 +52,10 @@ export default {
             this.getList(num)
         },
         getList (current) {
-            console.log(this.$route.name, '==========')
+            this.list = [];
+            this.total = 0;
             this.$http.post('/api/getList', { current: current, title: this.$route.name }).then(response => {
-                console.log(response, 787454121)
+                if (!response.data || !response.data.list.length) return;
                 response.data.list.forEach(item => {
                     if (item.img.indexOf('https:') > -1) {
                         item.img = item.img.replace('https:', '');
