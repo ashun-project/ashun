@@ -20,9 +20,16 @@
                     <span>注册</span>
                     <span class="interval">|</span> -->
                     <span>交流QQ
-                        <font color="red">3257905932</font>
+                        <font color="#ff6738">3257905932</font>
                     </span>
                 </div>
+            </div>
+            <div class="my-nav">
+                <ul>
+                    <li v-for="(item, idx) in navList" :key="idx">
+                        <router-link :to="{name: item.url}">{{item.label}}</router-link>
+                    </li>
+                </ul>
             </div>
             <div class="menu">
                 <dl v-for="(list, idx) in menu" :key="idx">
@@ -76,6 +83,20 @@ export default {
     },
     data () {
         return {
+            navList: [
+                {
+                    label: "一区",
+                    url: ''
+                },
+                {
+                    label: "一区",
+                    url: ''
+                },
+                {
+                    label: "一区",
+                    url: ''
+                }
+            ],
             menu: [
                 {
                     label: '在线区：',
@@ -157,12 +178,33 @@ export default {
     position: absolute;
     left: 60px;
     top: 0;
-    color: rgb(235, 37, 37);
+    color: #ff6738;
     max-width: 500px;
 }
 .header .cont .notice-h5 {
     display: none;
 }
+.my-nav {
+    height: 48px;
+    line-height: 48px;
+    background: #2b2b2b;
+}
+.my-nav ul {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    font-size: 16px;
+}
+.my-nav ul li {
+    background: #ff6738;
+    width: 130px;
+    text-align: center;
+    float: left;
+}
+.my-nav ul li a {
+    color: #fff;
+}
+
 .header .menu {
     background: #f9d8dc;
     padding: 5px 0;
