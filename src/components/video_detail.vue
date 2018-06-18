@@ -79,7 +79,7 @@ export default {
                         if (data[i].getAttribute('title') === '帖子模式') {
                             data[i].parentNode.removeChild(data[i]);
                         }
-                        if (data[i] && data[i].getAttribute('src').indexOf('https://static.wifi588.net') > -1) {
+                        if (data[i] && data[i].getAttribute('src') && data[i].getAttribute('src').indexOf('wifi588.net') > -1) {
                             data[i].parentNode.removeChild(data[i]);
                         }
                         if (txt.indexOf('您的回复是我发帖的动力，感谢欣赏！') > -1 || txt.indexOf('点击下载720p视频') > -1) {

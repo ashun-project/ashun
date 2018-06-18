@@ -31,7 +31,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="menu">
+            <!-- <div class="menu">
                 <dl v-for="(list, idx) in menu" :key="idx">
                     <dt>{{list.label}}</dt>
                     <dd v-for="item in list.data" :key="item.url" :class="{active: item.url === $route.name || item.url === $route.params.title}">
@@ -39,7 +39,7 @@
                     </dd>
                 </dl>
                 <div class="clr"></div>
-            </div>
+            </div> -->
         </div>
         <div class="banner" v-if="!$route.meta.notHeader">
             <img src="@/resource/img/advert/1.jpg" alt="">
@@ -205,7 +205,7 @@ export default {
     color: #fff;
 }
 
-.header .menu {
+/* .header .menu {
     background: #f9d8dc;
     padding: 5px 0;
 }
@@ -255,7 +255,7 @@ export default {
 }
 .header .menu dd a:hover {
     color: #cae243;
-}
+} */
 .notice-message {
     min-height: 35px;
     margin: 0 auto;
@@ -319,13 +319,13 @@ export default {
     .header .cont .notice-pc {
         display: none;
     }
-    .header .menu dl {
+    /* .header .menu dl {
         padding-left: 60px;
         font-size: 14px;
     }
     .header .menu dl dd {
         width: 33%;
-    }
+    } */
     .footer {
         padding: 10px 0;
     }

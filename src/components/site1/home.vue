@@ -49,5 +49,73 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.site1 .menu {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto 10px;
+    background: #f2f2f2;
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    border: 1px solid #eee;
+    padding: 5px;
+    box-shadow: 0 0 3px #ccc;
+}
+.site1 .menu dl {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    line-height: 30px;
+    font-size: 16px;
+    padding: 2px 0 2px 70px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.site1 .menu dl dt {
+    color: rgb(121, 33, 33);
+    margin-right: 5px;
+    font-weight: 600;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+}
+.site1 .menu dd {
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    transition: all 1s;
+    width: 90px;
+    max-width: 100px;
+}
+.site1 .menu dd a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0 10px;
+    color: #576700;
+    text-align: center;
+}
+.site1 .menu dd.active a {
+    border-radius: 3px;
+    background: #cae243;
+    color: #fff;
+}
+.site1 .menu dd.active a:hover {
+    color: #fff;
+}
+.site1 .menu dd a:hover {
+    color: #cae243;
+}
+@media screen and (max-width: 600px) {
+    .site1 .menu dl {
+        padding-left: 60px;
+        font-size: 14px;
+    }
+    .site1 .menu dl dd {
+        width: 33%;
+    }
+}
 </style>
