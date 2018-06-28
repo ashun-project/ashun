@@ -57,8 +57,6 @@
         <div class="footer" v-if="!$route.meta.notFooter">
             <div class="friendly">
                 友情链接：
-                <a href="https://kfkkf.com/flm/" target="_blank">福利猫导航</a>
-                <a href="https://kfkkf.com/tys/" target="_blank">太阳神导航</a>
                 <a href="http://www.susan520.info/" target="_blank">苏三福利导航</a>
                 <a href="http://www.biyudh.pw/" target="_blank">碧玉AV导航</a>
                 <a href="http://www.ssmmdh.info/" target="_blank">色姐姐导航</a>
