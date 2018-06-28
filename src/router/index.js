@@ -34,9 +34,10 @@ export default new Router({
             path: '/site1Home',
             name: 'site1Home',
             component: site1Home,
+            redirect: '/site1Home/wumavideo',
             children: [
                 {
-                    path: '/wumavideo',
+                    path: '/site1Home/wumavideo',
                     name: 'wumavideo',
                     component: videoList
                 }

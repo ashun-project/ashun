@@ -27,7 +27,7 @@
             <div class="my-nav">
                 <ul>
                     <li v-for="(item, idx) in navList" :key="idx">
-                        <router-link :to="{name: item.url}">{{item.label}}</router-link>
+                        <router-link :to="{name: item.url}" :class="{active: navType === item.type}">{{item.label}}</router-link>
                     </li>
                 </ul>
             </div>
@@ -84,17 +84,21 @@ export default {
             navList: [
                 {
                     label: "一区",
+                    type: 1,
                     url: ''
                 },
                 {
                     label: "一区",
+                    type: 2,
                     url: ''
                 },
                 {
                     label: "一区",
+                    type: 3,
                     url: ''
                 }
             ],
+            navType: 1,
             menu: [
                 {
                     label: '在线区：',
@@ -194,13 +198,18 @@ export default {
     font-size: 16px;
 }
 .my-nav ul li {
-    background: #ff6738;
     width: 130px;
     text-align: center;
     float: left;
 }
 .my-nav ul li a {
+    display: block;
+    width: 100%;
+    height: 100%;
     color: #fff;
+}
+.my-nav ul li a.active, .my-nav ul li a:hover{
+    background: #ff6738;
 }
 
 /* .header .menu {
