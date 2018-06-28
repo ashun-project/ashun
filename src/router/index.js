@@ -9,6 +9,7 @@ import Router from 'vue-router'
 
 
 const test = resolve => require(['@/components/test'], resolve)
+const site1Home = resolve => require(['@/components/site1/home'], resolve)
 const home = resolve => require(['@/components/home'], resolve)
 const detail = resolve => require(['@/components/detail'], resolve)
 const videoList = resolve => require(['@/components/video_list'], resolve)
@@ -27,7 +28,19 @@ export default new Router({
     routes: [{
             path: '/',
             name: 'home',
-            redirect: '/wumavideo'
+            redirect: '/site1Home'
+        },
+        {
+            path: '/site1Home',
+            name: 'site1Home',
+            component: site1Home,
+            children: [
+                {
+                    path: '/wumavideo',
+                    name: 'wumavideo',
+                    component: videoList
+                }
+            ]
         },
         {
             path: '/wumavideo',
