@@ -104,7 +104,7 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 .my-page {
     max-width: 1200px;
     margin: 0 auto;

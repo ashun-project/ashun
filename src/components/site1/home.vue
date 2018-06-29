@@ -113,9 +113,12 @@ export default {
     .site1 .menu dl {
         padding-left: 60px;
         font-size: 14px;
+        line-height: 26px;
     }
     .site1 .menu dl dd {
         width: 33%;
+        height: 26px;
+        line-height: 26px;
     }
 }
 </style>

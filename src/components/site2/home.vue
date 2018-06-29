@@ -128,14 +128,12 @@ export default {
         getHtml () {
             let vm = this;
             let label = this.$route.params.label;
-            let url = '/api/site2';
-            // if (label === 'all') {
-            //     label = '';
-            // } else {
-            //     label += '/';
-            // }
+            let url = '/site2';
+            if (label !== 'all') {
+                url = '/site2/'+label+'/'
+            }
             // this.$http.post(url, { label: label }).then(response => {
-            this.$http.get('/site2').then(response => {
+            this.$http.get(url).then(response => {
                 console.log(response.data)
                 if (!response.data) {
                     alert('数据出错，请刷新页面或切换其他区域');
