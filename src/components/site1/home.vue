@@ -3,8 +3,8 @@
         <div class="menu">
             <dl v-for="(list, idx) in menu" :key="idx">
                 <dt>{{list.label}}</dt>
-                <dd v-for="item in list.data" :key="item.url" :class="{active: item.url === $route.name || item.url === $route.params.title}">
-                    <router-link :to="{name: item.url}">{{item.label}}</router-link>
+                <dd v-for="item in list.data" :key="item.url" :class="{active: item.url === $route.params.label || item.url === $route.params.title}">
+                    <router-link :to="{name: 'list', params:{label: item.url}}">{{item.label}}</router-link>
                 </dd>
             </dl>
             <div class="clr"></div>

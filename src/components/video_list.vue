@@ -46,16 +46,20 @@ export default {
             return item.replace(rul, '')
         },
         goDetail (item) {
-            window.open('#/videoDetail/' + this.$route.name + '/' + item.id, '_blank');
+            let url = '#/site1Home/detail/';
+            if (this.$route.params.label && this.$route.params.label.indexOf('video') > -1) {
+                url = '#/site1Home/videoDetail/';
+            }
+            window.open(url + this.$route.params.label + '/' + item.id, '_blank');
         },
         pagechange (num) {
             this.getList(num)
         },
         getList (current) {
-            console.log(this.$route.name, '==========')
+            console.log(this.$route.params.label, '==========')
             this.list = [];
             this.total = 0;
-            this.$http.post('/api/getList', { current: current, title: this.$route.name }).then(response => {
+            this.$http.post('/api/getList', { current: current, title: this.$route.params.label }).then(response => {
                 if (!response.data || response.data.length) return;
                 response.data.list.forEach(item => {
                     if (item.img.indexOf('https:') > -1) {

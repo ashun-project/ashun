@@ -29,7 +29,7 @@ var getIp = function (req) {
 var pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    password: 'ashun666',
+    password: 'wangboshun',
     database: 'down_list'
 });
 

@@ -34,25 +34,35 @@ export default new Router({
             path: '/site1Home',
             name: 'site1Home',
             component: site1Home,
-            redirect: '/site1Home/wumavideo',
+            redirect: '/site1Home/list/wumavideo',
             children: [
                 {
-                    path: '/site1Home/wumavideo',
-                    name: 'wumavideo',
+                    path: '/site1Home/list/:label',
+                    name: 'list',
                     component: videoList
-                }
+                },
+                {
+                    path: '/site1Home/videoDetail/:title/:id',
+                    name: 'videoDetail',
+                    component: videoDetail
+                },
+                {
+                    path: '/site1Home/detail/:title/:id',
+                    name: 'detail',
+                    component: detail
+                },
             ]
         },
-        {
-            path: '/wumavideo',
-            name: 'wumavideo',
-            component: videoList
-        },
-        {
-            path: '/sanjivideo',
-            name: 'sanjivideo',
-            component: videoList
-        },
+        // {
+        //     path: '/wumavideo',
+        //     name: 'wumavideo',
+        //     component: videoList
+        // },
+        // {
+        //     path: '/sanjivideo',
+        //     name: 'sanjivideo',
+        //     component: videoList
+        // },
         {
             path: '/youmavideo',
             name: 'youmavideo',
