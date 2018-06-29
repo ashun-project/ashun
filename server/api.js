@@ -1,9 +1,10 @@
 var express = require('express');
 var url = require('url');
 var fs = require('fs');
-const path = require('path');
-var router = express.Router();
+var path = require('path');
 var mysql = require('mysql');
+var encryption = require('./md5');
+var router = express.Router();
 var num = 0;
 var getIp = function (req) {
     var ip = req.headers['x-real-ip'] ||
@@ -16,15 +17,6 @@ var getIp = function (req) {
     console.log('当前访问次数', num)
     return ip;
 };
-// // 所有请求配置
-// app.all('*', function(req, res, next) {
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Headers", "X-Requested-With");
-//     res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-//     res.header("X-Powered-By",' 3.2.1');
-//     res.header("Content-Type", "application/json;charset=utf-8");   
-//     next();
-// })
 
 var pool = mysql.createPool({
     host: 'localhost',
@@ -32,7 +24,18 @@ var pool = mysql.createPool({
     password: 'wangboshun',
     database: 'down_list'
 });
-
+router.all('*', function (req, res, next) {
+    let pwd = req.headers['pwd'];
+    let current = new Date().getDate();
+    let referers = encryption.md5(pwd.split('').splice(current, 1).join(''));
+    console.log(req.headers['referers'], referers)
+    if (referers === req.headers['referers']) {
+        next()
+    } else {
+        res.send('who are you? join my qq 3257905932');
+        res.end();
+    }
+})
 // 获取所有列表
 router.post('/api/getAllList', function (req, res) {
     var sql = 'SELECT * FROM ' + req.body.title + 'list';

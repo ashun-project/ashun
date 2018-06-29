@@ -35,8 +35,7 @@ export default new Router({
             name: 'site1Home',
             component: site1Home,
             redirect: '/site1Home/list/wumavideo',
-            children: [
-                {
+            children: [{
                     path: '/site1Home/list/:label',
                     name: 'list',
                     component: videoList
@@ -83,11 +82,11 @@ export default new Router({
             name: 'zipaivideo',
             component: videoList
         },
-        {
-            path: '/videoDetail/:title/:id',
-            name: 'videoDetail',
-            component: videoDetail
-        },
+        // {
+        //     path: '/videoDetail/:title/:id',
+        //     name: 'videoDetail',
+        //     component: videoDetail
+        // },
         {
             path: '/sanji',
             name: 'sanji',
@@ -108,11 +107,11 @@ export default new Router({
             name: 'dongman',
             component: home
         },
-        {
-            path: '/detail/:title/:id',
-            name: 'detail',
-            component: detail
-        },
+        // {
+        //     path: '/detail/:title/:id',
+        //     name: 'detail',
+        //     component: detail
+        // },
         {
             path: '/deleteRepeat/:id/:age/:name/:all',
             name: 'deleteRepeat',

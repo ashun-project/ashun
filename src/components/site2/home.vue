@@ -23,7 +23,7 @@ export default {
         }
     },
     mounted () {
-        
+
     },
     methods: {
         reset () {
@@ -75,7 +75,7 @@ export default {
             // this.$nextTick(() => {})
             let dom = document.getElementById('site2-content');
             let content = '';
-            let timer = setInterval(function() {
+            let timer = setInterval(function () {
                 cont += 50;
                 content = document.getElementById('content');
                 if (content) {
@@ -109,15 +109,15 @@ export default {
                 }
             }, 50)
             function successContent (list, detail) {
-                for (let i =0; i < list.length; i++) {
-                    list[i].onclick = function(event) {
+                for (let i = 0; i < list.length; i++) {
+                    list[i].onclick = function (event) {
                         let hrf = this.getAttribute('href');
                         let arr = hrf.split('/').filter(item => item);
                         if (detail) {
                             window.open('#/site2Detail/' + arr[0] + '/' + arr[1], '_blank');
                         } else {
                             vm.content = false;
-                            vm.$router.push({params: {label: arr[0]}});
+                            vm.$router.push({ params: { label: arr[0] } });
                         }
                         // vm.$router.push({name: 'site2Detail', params: {id: arr[0], name: arr[1]}})
                         event.preventDefault();
@@ -128,14 +128,15 @@ export default {
         getHtml () {
             let vm = this;
             let label = this.$route.params.label;
-            let url = '/site2';
-            if (label !== 'all') {
-                url = '/site2/'+label+'/'
-            }
-            // this.getClike();
-            // return
-            this.$http.get(url).then(response => {
-                //  console.log(response.data)
+            let url = '/api/site2';
+            // if (label === 'all') {
+            //     label = '';
+            // } else {
+            //     label += '/';
+            // }
+            // this.$http.post(url, { label: label }).then(response => {
+            this.$http.get('/site2').then(response => {
+                console.log(response.data)
                 if (!response.data) {
                     alert('数据出错，请刷新页面或切换其他区域');
                     return;
@@ -161,14 +162,16 @@ export default {
     min-height: 200px;
     margin: 0 auto;
 }
-.site2 >>> .panel-heading *, .site2 >>> .col-md-2 .panel-heading .panel-title,
-.site2 >>> .ads, .site2 .video >>> .panel ul.nav li a span, 
+.site2 >>> .panel-heading *,
+.site2 >>> .col-md-2 .panel-heading .panel-title,
+.site2 >>> .ads,
+.site2 .video >>> .panel ul.nav li a span,
 .site2 .video >>> .panel ul.videos li .video-rating,
 .site2 .video >>> .panel ul.videos li .video-overlay,
 .site2 .video >>> .panel ul.videos li .video-details {
     display: none;
 }
-.site2 >>> .panel-heading .panel-title{
+.site2 >>> .panel-heading .panel-title {
     display: block;
     font-size: 18px;
     height: 26px;
@@ -206,12 +209,12 @@ export default {
 }
 
 /* 数据列表 */
-.site2 .video >>> .panel ul.videos li a{
+.site2 .video >>> .panel ul.videos li a {
     width: 254px;
     height: 220px;
     padding: 0;
 }
-.site2 .video >>> .panel ul.videos li a .video-title{
+.site2 .video >>> .panel ul.videos li a .video-title {
     height: 40px;
     line-height: 20px;
     margin-top: 3px;
@@ -221,12 +224,12 @@ export default {
     font-size: 14px;
     color: #9c833b;
 }
-.site2 .video >>> .panel ul.videos li a img{
+.site2 .video >>> .panel ul.videos li a img {
     width: 100%;
     height: 169px;
     display: table;
 }
-.site2 .video >>> .panel ul.videos li a:hover .video-title{
+.site2 .video >>> .panel ul.videos li a:hover .video-title {
     color: #fff;
 }
 </style>

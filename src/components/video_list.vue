@@ -1,11 +1,13 @@
 <template>
     <div class="home">
+
         <div class="data-list">
             <ul>
                 <li v-for="(item, idx) in list" :key="idx" @click="goDetail(item)">
                     <div>
                         <div class="cont-img">
-                            <img :src="item.img.split(',')[0] || '/static/img/errorimg.png'" onerror="this.src='/static/img/errorimg.png'" alt="ashun520.com">
+                            <img v-if="$route.params.label === 'wuma' && item.img.split(',').length > 1" :src="item.img.split(',')[1]" onerror="this.src='/static/img/errorimg.png'" alt="ashun520.com">
+                            <img v-else :src="item.img.split(',')[0] || '/static/img/errorimg.png'" onerror="this.src='/static/img/errorimg.png'" alt="ashun520.com">
                         </div>
                         <div class="clr"></div>
                         <p class="title">{{replaceWord(item.title)}}</p>
@@ -17,8 +19,7 @@
             </ul>
             <div class="clr"></div>
         </div>
-        <!-- <v-pagination :total="total" :current-page='current' @pagechange="pagechange"></v-pagination> -->
-        <v-pagination :total="total" :currentPage="current" @pagechange="pagechange"></v-pagination>
+        <v-pagination :total="total" :current-page='current' @pagechange="pagechange"></v-pagination>
     </div>
 </template>
 <script>
@@ -36,7 +37,6 @@ export default {
     },
     watch: {
         $route (n, o) {
-            console.log(n, '===============')
             this.getList(1)
         }
     },
@@ -56,11 +56,10 @@ export default {
             this.getList(num)
         },
         getList (current) {
-            console.log(this.$route.params.label, '==========')
             this.list = [];
             this.total = 0;
             this.$http.post('/api/getList', { current: current, title: this.$route.params.label }).then(response => {
-                if (!response.data || response.data.length) return;
+                if (!response.data || !response.data.list.length) return;
                 response.data.list.forEach(item => {
                     if (item.img.indexOf('https:') > -1) {
                         item.img = item.img.replace('https:', '');
