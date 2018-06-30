@@ -44,6 +44,8 @@ var opt = {
     path: 'http//www.qyule.tv', //这里是访问的路径
     headers: {
         'X-Forwarded-For': "10.111.198.90", // 模拟ip  不知道有没有用
+        //  'Proxy-Client-IP': ip,
+        // 'WL-Proxy-Client-IP': ip
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36'
     }
 }
