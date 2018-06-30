@@ -124,13 +124,17 @@ export default {
 .pagination > li > span {
     position: relative;
     float: left;
-    padding: 6px 12px;
+    /* padding: 6px 12px; */
     margin-left: -1px;
-    line-height: 1.42857143;
-    color: #fb7b86;
+    /* line-height: 1.42857143; */
+    color: #666;
     text-decoration: none;
     background-color: #fff;
-    border: 1px solid #f5b9be;
+    /* border: 1px solid #f5b9be; */
+    padding: 0 12px;
+    font-size: 16px;
+    line-height: 30px;
+    border: 1px solid rgb(233, 232, 232);
 }
 
 .pagination > li:first-child > a,
@@ -165,8 +169,8 @@ export default {
     z-index: 3;
     color: #fff;
     cursor: default;
-    background-color: #fb7b86;
-    border-color: #f5b9be;
+    background-color: rgb(243, 179, 4);
+    border-color: rgb(243, 179, 4);
 }
 
 .pagination > .disabled > a,
@@ -178,7 +182,6 @@ export default {
     color: #ccc;
     cursor: not-allowed;
     background-color: #f2f2f2;
-    border-color: #f5b9be;
 }
 
 .pagination-lg > li > a,

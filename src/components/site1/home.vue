@@ -53,7 +53,7 @@ export default {
 .site1 .menu {
     max-width: 1200px;
     width: 100%;
-    margin: 0 auto 10px;
+    margin: 0 auto 5px;
     background: #f2f2f2;
     display: flex;
     align-content: center;

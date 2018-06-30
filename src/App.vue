@@ -1,6 +1,5 @@
 <template>
     <div id="app">
-        <!-- <suspend></suspend> -->
         <div class="header" v-if="!$route.meta.notHeader">
             <div class="cont">
                 <div class="lf">
@@ -15,10 +14,6 @@
                     为防止域名更换, 请记住我们的永久域名&nbsp;ashun520.com，&nbsp;s8sex.com
                 </div>
                 <div class="rf">
-                    <!-- <span>登入</span>
-                    <span class="interval">|</span>
-                    <span>注册</span>
-                    <span class="interval">|</span> -->
                     <span>交流QQ
                         <font color="#ff6738">3257905932</font>
                     </span>
@@ -31,19 +26,9 @@
                     </li>
                 </ul>
             </div>
-            <!-- <div class="menu">
-                <dl v-for="(list, idx) in menu" :key="idx">
-                    <dt>{{list.label}}</dt>
-                    <dd v-for="item in list.data" :key="item.url" :class="{active: item.url === $route.name || item.url === $route.params.title}">
-                        <router-link :to="{name: item.url}">{{item.label}}</router-link>
-                    </dd>
-                </dl>
-                <div class="clr"></div>
-            </div> -->
         </div>
-        <div class="banner" v-if="!$route.meta.notHeader">
-            <img src="@/resource/img/advert/1.jpg" alt="">
-            <img src="@/resource/img/advert/2.jpg" alt="">
+        <div class="banner">
+            <!-- 占位使用 -->
         </div>
         <div class="notice-message">
             <span>通知：</span>
@@ -73,12 +58,8 @@
 </template>
 
 <script>
-import suspend from "@/components/common/suspend"
 export default {
     name: 'App',
-    components: {
-        suspend
-    },
     data () {
         return {
             navList: [
@@ -98,32 +79,7 @@ export default {
                     url: ''
                 }
             ],
-            navType: 1,
-            menu: [
-                {
-                    label: '在线区：',
-                    data: [
-                        { url: 'wumavideo', label: '无码性爱' },
-                        { url: 'sanjivideo', label: '三级在线' },
-                        { url: 'youmavideo', label: '有码性爱' },
-                        { url: 'dongmanvideo', label: '卡通动漫' },
-                        { url: 'oumeivideo', label: '欧美性爱' },
-                        { url: 'zipaivideo', label: '网友自拍' }
-                    ]
-                },
-                {
-                    label: '下载区：',
-                    data: [
-                        { url: 'wuma', label: '经典无码' },
-                        { url: 'sanji', label: '三级影视' },
-                        { url: 'oumei', label: '欧美风情' },
-                        // {url: 'youma', label: '有码性爱'},
-                        { url: 'dongman', label: '卡通动漫' },
-                        // {url: 'tupian', label: '图片专区'},
-                        // {url: 'xiaoshou', label: '小说专区'}]}
-                    ]
-                }
-            ]
+            navType: 1
         }
     },
     mounted () {
@@ -139,7 +95,6 @@ export default {
 
 <style>
 @import './resource/css/style.css';
-@import './resource/css/list.css';
 .header {
     width: 100%;
     background: #fff;
@@ -171,10 +126,6 @@ export default {
 }
 .header .cont .rf span {
     display: inline-block;
-}
-.header .cont .rf span.interval {
-    padding: 0 5px;
-    color: #ccc;
 }
 .header .cont .notice {
     position: absolute;
@@ -208,61 +159,10 @@ export default {
     height: 100%;
     color: #fff;
 }
-.my-nav ul li a.active, .my-nav ul li a:hover{
+.my-nav ul li a.active,
+.my-nav ul li a:hover {
     background: #ff6738;
 }
-
-/* .header .menu {
-    background: #f9d8dc;
-    padding: 5px 0;
-}
-.header .menu dl {
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-    line-height: 30px;
-    font-size: 16px;
-    padding: 2px 0 2px 70px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-}
-.header .menu dl dt {
-    color: rgb(121, 33, 33);
-    margin-right: 5px;
-    font-weight: 600;
-    position: absolute;
-    left: 2px;
-    top: 2px;
-}
-.header .menu dd {
-    float: left;
-    height: 30px;
-    line-height: 30px;
-    transition: all 1s;
-    width: 90px;
-    max-width: 100px;
-}
-.header .menu dd a {
-    display: block;
-    width: 100%;
-    height: 100%;
-    padding: 0 10px;
-    color: #576700;
-    text-align: center;
-}
-.header .menu dd.active a {
-    border-radius: 3px;
-    background: #cae243;
-    color: #fff;
-}
-.header .menu dd.active a:hover {
-    color: #fff;
-}
-.header .menu dd a:hover {
-    color: #cae243;
-} */
 .notice-message {
     min-height: 35px;
     margin: 0 auto;
@@ -278,14 +178,8 @@ export default {
     align-items: center;
 }
 .banner {
-    /* max-height: 300px; */
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 5px 0;
-}
-.banner img {
-    width: 100%;
+    width: 0;
+    height: 90px;
 }
 .body-content {
     min-height: 300px;
@@ -326,13 +220,16 @@ export default {
     .header .cont .notice-pc {
         display: none;
     }
-    /* .header .menu dl {
-        padding-left: 60px;
-        font-size: 14px;
+    .banner {
+        height: 75px;
     }
-    .header .menu dl dd {
-        width: 33%;
-    } */
+    .my-nav {
+        height: 30px;
+        line-height: 30px;
+    }
+    .my-nav ul li {
+        width: 25%;
+    }
     .footer {
         padding: 10px 0;
     }

@@ -130,7 +130,7 @@ export default {
             let label = this.$route.params.label;
             let url = '/site2';
             if (label !== 'all') {
-                url = '/site2/'+label+'/'
+                url = '/site2/' + label + '/'
             }
             // this.$http.post(url, { label: label }).then(response => {
             this.$http.get(url).then(response => {
@@ -207,12 +207,17 @@ export default {
 }
 
 /* 数据列表 */
-.site2 .video >>> .panel ul.videos li a {
+.site2 .video >>> .panel ul.videos li {
     width: 254px;
     height: 220px;
+}
+.site2 .video >>> .panel ul.videos li a {
+    width: 100%;
+    height: 100%;
     padding: 0;
 }
 .site2 .video >>> .panel ul.videos li a .video-title {
+    width: 100%;
     height: 40px;
     line-height: 20px;
     margin-top: 3px;
@@ -221,6 +226,8 @@ export default {
     padding: 0 5px;
     font-size: 14px;
     color: #9c833b;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .site2 .video >>> .panel ul.videos li a img {
     width: 100%;
@@ -229,5 +236,24 @@ export default {
 }
 .site2 .video >>> .panel ul.videos li a:hover .video-title {
     color: #fff;
+}
+
+@media screen and (max-width: 600px) {
+    .site2 .video >>> .panel ul li a {
+        padding: 0 8px;
+        font-size: 14px;
+        line-height: 26px;
+        margin: 2px;
+    }
+    .site2 .video >>> .panel ul.videos li {
+        width: 50%;
+        height: 140px;
+    }
+    .site2 .video >>> .panel ul.videos li a img {
+        height: 100px;
+    }
+    .site2 .video >>> .panel ul.videos li a .video-title {
+        height: 20px;
+    }
 }
 </style>

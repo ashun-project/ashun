@@ -76,3 +76,80 @@ export default {
 }
 </script>
 
+<style scoped>
+.data-list {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.data-list ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+}
+
+.data-list li {
+    width: 25%;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.data-list li.not-data {
+    padding: 0;
+    margin: 0;
+}
+
+.data-list li .cont-img {
+    float: left;
+    width: 100%;
+    height: 230px;
+    background: #000;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.data-list li .cont-img img {
+    max-width: 100%;
+    /* min-height: 100%; */
+}
+
+.data-list .title {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.data-list li > div {
+    border: 1px solid #eee;
+    padding: 3px;
+}
+
+.data-list li > div p {
+    padding: 10px 2px;
+}
+
+.data-list li:hover > div p {
+    color: #fb7b86;
+}
+
+@media screen and (max-width: 600px) {
+    .data-list ul {
+        margin: 0;
+    }
+    .data-list li {
+        width: 50%;
+        padding: 5px 0;
+    }
+    .data-list li .cont-img {
+        height: 120px;
+    }
+}
+</style>
+
