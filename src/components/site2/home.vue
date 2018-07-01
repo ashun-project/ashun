@@ -19,7 +19,7 @@ export default {
     },
     watch: {
         $route () {
-            this.getHtml()
+            // this.getHtml()
         }
     },
     mounted () {
@@ -78,6 +78,7 @@ export default {
             let timer = setInterval(function () {
                 cont += 50;
                 content = document.getElementById('content');
+
                 if (content) {
                     clearInterval(timer)
                     dom.innerHTML = content.innerHTML;
@@ -94,30 +95,36 @@ export default {
             let vm = this;
             let $Video = '';
             let $nav = '';
+            let $page = '';
             let cont = 0;
             let timer2 = setInterval(function () {
                 cont += 50;
                 $Video = document.querySelectorAll('ul.videos li a');
                 $nav = document.querySelectorAll('ul.nav li a');
-                if ($nav && $Video) {
+                $page = document.querySelectorAll('ul.pagination li a');
+                if ($nav && $Video && $page) {
                     clearInterval(timer2);
-                    successContent($Video, true);
-                    successContent($nav);
+                    successContent($Video, '1');
+                    successContent($nav, '2');
+                    successContent($page, '3');
                 } else if (cont > 3000) {
                     clearInterval(timer2)
                     alert('数据丢失，请联系管理员。QQ:3257905932')
                 }
             }, 50)
-            function successContent (list, detail) {
+            function successContent (list, type) {
                 for (let i = 0; i < list.length; i++) {
+                    list[i].setAttribute('my-data', list[i].getAttribute('href'))
+                    list[i].removeAttribute('href');
                     list[i].onclick = function (event) {
-                        let hrf = this.getAttribute('href');
+                        event.preventDefault();
+                        let hrf = this.getAttribute('my-data');
                         let arr = hrf.split('/').filter(item => item);
-                        if (detail) {
+                        if (type === '1') {
                             window.open('#/site2Detail/' + arr[0] + '/' + arr[1], '_blank');
                         } else {
                             vm.content = false;
-                            vm.$router.push({ params: { label: arr[0] } });
+                            vm.getHtml(hrf)
                         }
                         // vm.$router.push({name: 'site2Detail', params: {id: arr[0], name: arr[1]}})
                         event.preventDefault();
@@ -125,13 +132,9 @@ export default {
                 }
             }
         },
-        getHtml () {
+        getHtml (param) {
             let vm = this;
-            let label = this.$route.params.label;
-            let url = '/site2';
-            if (label !== 'all') {
-                url = '/site2/' + label + '/'
-            }
+            let url = '/site2'+param
             // this.$http.post(url, { label: label }).then(response => {
             this.$http.get(url).then(response => {
                 console.log(response.data)
@@ -144,11 +147,38 @@ export default {
                 var html = document.getElementById('site2-content');
                 html.innerHTML = result;
                 vm.getContent();
+                vm.refreshContent();
+            })
+        },
+        refreshContent () {
+            this.$nextTick(() => {
+                // 过滤元素下载链接
+                var divEles = document.getElementById('site2-content').children;
+                var txt = '';
+                eachList(divEles);
+                function eachList (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].firstChild) {
+                            txt = data[i].firstChild.nodeValue || '';
+                        } else {
+                            txt = data[i].innerText || '';
+                        };
+                        if (txt.indexOf('热门标签') > -1) {
+                            var ev = data[i].parentNode.parentNode;
+                            ev.parentNode.removeChild(ev);
+                        };
+                        if (data[i]) {
+                            var childList = data[i].children;
+                            eachList(childList);
+                        }
+
+                    };
+                };
             })
         }
     },
     created () {
-        this.getHtml()
+        this.getHtml('')
     }
 }
 </script>
@@ -178,6 +208,9 @@ export default {
     margin-top: 15px;
     margin-bottom: 8px;
     padding-left: 10px;
+    background: #fff;
+    position: relative;
+    z-index: 3;
 }
 .site2 .video >>> .panel ul {
     background: #f2f2f2;
@@ -188,6 +221,8 @@ export default {
     padding: 5px;
     margin-bottom: 10px;
     box-shadow: 0 0 3px #ccc;
+    position: relative;
+    z-index: 3;
 }
 .site2 .video >>> .panel ul li a {
     padding: 0 12px;
@@ -199,6 +234,7 @@ export default {
     display: block;
     color: #666;
     border-radius: 2px;
+    cursor: pointer;
 }
 .site2 .video >>> .panel ul li.active a,
 .site2 .video >>> .panel ul li a:hover {
@@ -207,9 +243,13 @@ export default {
 }
 
 /* 数据列表 */
+.site2 .video >>> .panel ul.videos {
+    padding: 5px 0;
+}
 .site2 .video >>> .panel ul.videos li {
-    width: 254px;
+    width: 287px;
     height: 220px;
+    margin: 0 5px;
 }
 .site2 .video >>> .panel ul.videos li a {
     width: 100%;
@@ -218,9 +258,9 @@ export default {
 }
 .site2 .video >>> .panel ul.videos li a .video-title {
     width: 100%;
-    height: 40px;
+    height: 20px;
     line-height: 20px;
-    margin-top: 3px;
+    margin-top: 5px;
     overflow: hidden;
     display: inline-block;
     padding: 0 5px;
@@ -231,7 +271,7 @@ export default {
 }
 .site2 .video >>> .panel ul.videos li a img {
     width: 100%;
-    height: 169px;
+    height: 179px;
     display: table;
 }
 .site2 .video >>> .panel ul.videos li a:hover .video-title {
@@ -246,8 +286,9 @@ export default {
         margin: 2px;
     }
     .site2 .video >>> .panel ul.videos li {
-        width: 50%;
+        width: 49%;
         height: 140px;
+        margin: 0;
     }
     .site2 .video >>> .panel ul.videos li a img {
         height: 100px;

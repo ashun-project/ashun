@@ -2,7 +2,7 @@
     <div class="site2-detail" id="site2-detail">
         <div id="detail-content" style="display:none;"></div>
         <div class="my-content">
-            <video id="my-video" class="video-js vjs-default-skin vjs-big-play-centered" style="width: 1000px; height: 450px;">
+            <video id="my-video" class="video-js vjs-default-skin vjs-big-play-centered" style="margin:0 auto" width = 600; height = 400;>
                 <!-- <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4"> -->
             </video>
         </div>
@@ -37,9 +37,16 @@ export default {
                 }
             }, 50)
             function getVideo () {
+                console.log(document.body.clientWidth)
+                let width = 600;
+                let height = 400;
                 for (let i = 0; i < video.length; i++) {
                     document.getElementById('my-video').appendChild(video[i]);
                 }
+                if (document.body.clientWidth < 600) {
+                    width = document.body.clientWidth;
+                    height = 200;
+                } 
                 document.getElementById('detail-content').innerHTML = '';
                 console.log(video)
                 videojs('my-video', {
@@ -49,11 +56,11 @@ export default {
                     // errorDisplay: false,
                     // controlBar: true,    // 控制条
                     techOrder: ["html5", "flash"],
-                    width: 1000,//宽string|number
-                    height: 450,//高：string|number
+                    width: width,//宽string|number
+                    height: height,//高：string|number
                     controls: true,//控制条：boolean
                     preload: "none",//预加载：string；'auto'|'true'|'metadata'|'none'
-                    poster: 'source/suoluetu.jpg',//预览图：string
+                    poster: '/static/img/ashun.png',//预览图：string
                     autoplay: false,//自动播放：boolean
                     loop: true,//循环：boolean
                     muted: true,//静音：boolean
@@ -86,7 +93,9 @@ export default {
 <style scoped>
 .site2-detail .my-content {
     max-width: 1200px;
-    width: 1200px;
+    width: 98%;
     margin: 20px auto;
+    position: relative;
+    z-index: 3;
 }
 </style>

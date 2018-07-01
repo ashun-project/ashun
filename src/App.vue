@@ -21,15 +21,15 @@
             </div>
             <div class="my-nav">
                 <ul>
-                    <li v-for="(item, idx) in navList" :key="idx">
-                        <router-link :to="{name: item.url}" :class="{active: navType === item.type}">{{item.label}}</router-link>
+                    <li v-for="(item, idx) in navList" :key="idx" @click="navType = item.type">
+                        <router-link :to="{name: item.url}" :class="{active: navType === item.type}" >{{item.label}}</router-link>
                     </li>
                 </ul>
             </div>
         </div>
-        <div class="banner">
-            <!-- 占位使用 -->
-        </div>
+        <!-- <div class="banner" id="my-banner">
+            占位使用 
+        </div> -->
         <div class="notice-message">
             <span>通知：</span>
             <font color="red">请记住我们永久域名 ashun520.com, s8sex.com
@@ -64,20 +64,20 @@ export default {
         return {
             navList: [
                 {
-                    label: "一区",
+                    label: "视频一区",
                     type: 1,
-                    url: ''
+                    url: 'site1Home'
                 },
                 {
-                    label: "一区",
+                    label: "视频二区",
                     type: 2,
-                    url: ''
+                    url: 'site2Home'
                 },
-                {
-                    label: "一区",
-                    type: 3,
-                    url: ''
-                }
+                // {
+                //     label: "一区",
+                //     type: 3,
+                //     url: ''
+                // }
             ],
             navType: 1
         }
@@ -88,6 +88,11 @@ export default {
         if (!value && (host.indexOf('ashun') < 0 && host.indexOf('s8sex') < 0)) {
             alert('本域名即将关闭，请记住我们的永久域名。ashun520.com')
             localStorage.setItem('web', '1')
+        }
+    },
+    created (){
+        if (this.$route.path.indexOf('site1Home') < 0 && this.$route.path !== '/') {
+            this.navType = 2;
         }
     }
 }

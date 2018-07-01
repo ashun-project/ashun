@@ -156,8 +156,8 @@ export default {
 .pagination > li > span:hover {
     z-index: 2;
     color: #666;
-    background-color: #f5b9be;
-    border-color: #f5b9be;
+    background-color: rgb(231, 190, 78);
+    border-color: rgb(231, 190, 78);
 }
 
 .pagination > .active > a,

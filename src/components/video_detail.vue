@@ -170,7 +170,9 @@ export default {
     padding: 20px;
     border: 1px solid #eee;
     min-height: 260px;
+    background: #fff;
     position: relative;
+    z-index: 3;
 }
 .detail #video {
     width: 100%;

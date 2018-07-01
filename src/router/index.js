@@ -127,7 +127,7 @@ export default new Router({
             component: test
         },
         {
-            path: '/site2/:label',
+            path: '/site2',
             name: 'site2Home',
             component: site2Home
         },

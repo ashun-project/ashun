@@ -2,8 +2,11 @@
 
 // 加载http模块
 var http = require('http');
+const express = require('express');
+const app = express();
+const request = require('request');
 // Cheerio 是一个Node.js的库， 它可以从html的片断中构建DOM结构，然后提供像jquery一样的css选择器查询
-var cheerio = require('cheerio');
+// var cheerio = require('cheerio');
 
 // 定义网络爬虫的目标地址：自如友家的主页
 var url = 'http://www.qyule.tv';
@@ -26,7 +29,7 @@ app.get('/', function (req, res) {
         if (!error && response.statusCode == 200) {
             console.log(body)
             //返回的body为抓到的网页的html内容
-            var $ = cheerio.load(body); //当前的$符相当于拿到了所有的body里面的选择器
+            // var $ = cheerio.load(body); //当前的$符相当于拿到了所有的body里面的选择器
             var navText = $('.post_nav_block').html(); //拿到导航栏的内容
             res.send(navText);
         }

@@ -61,6 +61,8 @@ export default {
     border: 1px solid #eee;
     padding: 5px;
     box-shadow: 0 0 3px #ccc;
+    position: relative;
+    z-index: 3;
 }
 .site1 .menu dl {
     max-width: 1200px;

@@ -103,7 +103,7 @@ router.post('/api/getDetail', function (req, res) {
     var currentIp = getIp(req)
     console.log('getDetail----' + req.body.title + '=====', currentIp)
     var sql = 'SELECT * FROM ' + req.body.title + 'detail where createTime = ' + id;
-    var files = fs.readdirSync(__dirname + "\\" + req.body.title + "\\");
+    var files = fs.readdirSync(__dirname + "\/" + req.body.title + "\/");
     var downFile = files.filter(function (item) {
         var spl = item.split('.')[0];
         return spl === id;
@@ -173,7 +173,7 @@ router.post('/api/deteleRepeat', function (req, res) {
         return;
     }
 
-    var currPath = __dirname + "\\" + req.body.title + "\\",
+    var currPath = __dirname + "\/" + req.body.title + "\/",
         allfiles = fs.readdirSync(currPath),
         currFile = currPath + allfiles.filter(function (item) {
             return item.indexOf(req.body.id) > -1;
@@ -213,7 +213,7 @@ router.post('/api/deteleRepeat', function (req, res) {
 router.get('/api/download', function (req, res, next) {
     var currentIp = getIp(req)
     console.log('download-----' + req.query.dir + '=====', currentIp)
-    var currPath = __dirname + "\\" + req.query.dir + "\\",
+    var currPath = __dirname + "\/" + req.query.dir + "\/",
         allfiles = fs.readdirSync(currPath),
         fileName = req.query.name,
         filterName = allfiles.filter(function (item) {
