@@ -95,6 +95,7 @@ export default {
 .data-list li {
     width: 25%;
     padding: 10px;
+    background: #0e0e0e;
     cursor: pointer;
 }
 
@@ -107,7 +108,6 @@ export default {
     float: left;
     width: 100%;
     height: 230px;
-    background: #000;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -124,10 +124,11 @@ export default {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    text-align: center;
 }
 
 .data-list li > div {
-    border: 1px solid #eee;
+    border: 1px solid #252323;
     padding: 3px;
 }
 
