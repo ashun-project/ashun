@@ -20,7 +20,7 @@ module.exports = {
                 // }
             },
             '/site2': {
-                target: 'http://www.qyule.tv/',
+                target: 'http://www.xhgzyz.com',
                 changeOrigin: true, //  是否跨域
                 pathRewrite: {
                     '^/site2': ''

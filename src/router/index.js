@@ -26,6 +26,10 @@ Vue.use(Router)
 
 export default new Router({
     routes: [{
+            path: '*',
+            redirect: '/site1Home/list/wumavideo',
+        },
+        {
             path: '/',
             name: 'home',
             redirect: '/site1Home'
