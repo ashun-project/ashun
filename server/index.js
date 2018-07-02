@@ -30,14 +30,18 @@ app.use(express.static(path.resolve(__dirname, '../dist')));
 //     console.log('当前访问次数：==================')
 //     res.send(html);
 // })
-// // 所有请求配置
-// app.all('*', function (req, res, next) {
-// res.header("Access-Control-Allow-Origin", "*");
-// res.header("Access-Control-Allow-Headers", "X-Requested-With");
-// res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-// res.header("X-Powered-By",' 3.2.1');
-// res.header("Content-Type", "application/json;charset=utf-8");  
-//     next();
+// 所有请求配置
+// app.get('*', function (req, res, next) {
+//     let pwd = req.headers['pwd'];
+//     let current = new Date().getDate();
+//     let referers = '';
+//     if (pwd) referers = encryption.md5(pwd.split('').splice(current, 1).join(''));
+//     if (referers === req.headers['referers'] || req.url.indexOf('/api/download') > -1) {
+//         next()
+//     } else {
+//         res.send('who are you? join my qq 3257905932');
+//         res.end();
+//     }
 // })
 
 

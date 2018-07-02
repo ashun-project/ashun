@@ -13,7 +13,7 @@ axios.interceptors.request.use(function (config) {
     }
     config.headers.pwd = pwd;
     config.headers.ashun = 'ashun520'
-    config.headers.referers = encryption.encrypt.md5(pwd.split('').splice(current, 1).join(''));
+    config.headers.referers = encryption.encrypt.abc(pwd.split('').splice(current, 1).join(''));
     return config;
 }, function (error) {
     //请求错误时做些事

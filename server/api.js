@@ -28,12 +28,17 @@ router.all('*', function (req, res, next) {
     let pwd = req.headers['pwd'];
     let current = new Date().getDate();
     let referers = '';
+    let headerRef = req.headers['referers'];
     if (pwd) referers = encryption.md5(pwd.split('').splice(current, 1).join(''));
-    if (referers === req.headers['referers'] || req.url.indexOf('/api/download') > -1) {
-        next()
+    if (req.method === 'POST') {
+        if (referers == headerRef) {
+            next();
+        } else {
+            res.send('who are you? join my qq 3257905932');
+            res.end();
+        }
     } else {
-        res.send('who are you? join my qq 3257905932');
-        res.end();
+        next();
     }
 })
 // 获取所有列表
