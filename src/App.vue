@@ -49,10 +49,7 @@
                 <a href="http://www.yinuuu.info/" target="_blank">淫色导航</a>
                 <a href="http://www.ygssss.info/" target="_blank">一个色导航</a>
             </div>
-            <div class="pc">
-                警告︰本網站只這合十八歲或以上人士觀看。內容可能令人反感；不可將本網站的內容派發、傳閱、出售、出租、交給或借予年齡未滿18歲的人士或將本網站內容向該人士出示、播放或放映。<br/> LEGAL DISCLAIMER WARNING: THIS FORUM CONTAINS MATERIAL WHICH MAY OFFEND AND MAY NOT BE DISTRIBUTED, CIRCULATED, SOLD, HIRED, GIVEN, LENT,SHOWN, PLAYED OR PROJECTED TO A PERSON UNDER THE AGE OF 18 YEARS.<br/> 站点申明：我们立足于美利坚合众国，受北美法律保护,未满18岁或被误导来到这里，请立即离开！
-            </div>
-            <div class="h5">警告︰本網站只這合十八歲或以上人士觀看</div>
+            <div class="h5">警告︰本網站只這合十八歲或以上人士觀看<span class="h5-display rf">有任何观看问题都可咨询我QQ：&nbsp;&nbsp;3257905932</span></div>
         </div>
     </div>
 </template>
@@ -145,7 +142,7 @@ export default {
 .my-nav {
     height: 48px;
     line-height: 48px;
-    background: #2b2b2b;
+    background: #0e0e0e;
 }
 .my-nav ul {
     max-width: 1200px;
@@ -191,29 +188,33 @@ export default {
 }
 .footer {
     width: 100%;
-    background: #333;
+    background: rgb(17, 17, 17);
     color: #ccc;
-    padding: 50px 0;
-    line-height: 50px;
+    padding: 5px;
+    line-height: 30px;
     font-size: 14px;
-    text-align: center;
+    /* text-align: center; */
 }
 .footer .friendly {
-    max-width: 1400px;
+    max-width: 1200px;
     width: 100%;
     margin: 0 auto;
+    text-align: left;
 }
 .footer .friendly a {
     display: inline-block;
     color: #ccc;
-    padding: 0 5px;
+    padding-right: 5px;
 }
-.footer .h5 {
-    display: none;
+.footer .h5{
+    max-width: 1200px;
+    margin: 0 auto;
+    border-top: 1px solid #191717;
+    box-shadow: 4px -3px 18px rgba(51, 51, 51, 0.10);
+    margin-top: 5px;
 }
 @media screen and (max-width: 600px) {
-    .h5-display,
-    .footer .friendly {
+    .h5-display{
         display: none;
     }
     .header .cont .rf {
@@ -234,15 +235,6 @@ export default {
     }
     .my-nav ul li {
         width: 25%;
-    }
-    .footer {
-        padding: 10px 0;
-    }
-    .footer .h5 {
-        display: block;
-    }
-    .footer .pc {
-        display: none;
     }
 }
 </style>
