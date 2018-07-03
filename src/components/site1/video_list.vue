@@ -89,13 +89,13 @@ export default {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin: 0 -10px;
+    margin: -5px;
+    background: #0e0e0e;
 }
 
 .data-list li {
     width: 25%;
     padding: 10px;
-    background: #0e0e0e;
     cursor: pointer;
 }
 
@@ -107,7 +107,7 @@ export default {
 .data-list li .cont-img {
     float: left;
     width: 100%;
-    height: 230px;
+    height: 180px;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -133,7 +133,9 @@ export default {
 }
 
 .data-list li > div p {
-    padding: 10px 2px;
+    margin-top: 5px;
+    padding: 3px 2px;
+    font-size: 0.6rem;
 }
 
 .data-list li:hover > div p {

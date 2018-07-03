@@ -143,8 +143,23 @@ export default {
     .site2 >>> .navbar-header, .site2 >>> .portfolio-item .uptime, .site2 >>> .page-header{
         display: none;
     }
+    .site2 >>> a{
+        cursor: pointer;
+    }
     .site2 >>> .top-nav{
         width: 100%;
+        background: #2d2d2d;
+        padding: 10px;
+        border-bottom: 1px solid #666;
+        font-size: 16px;
+    }
+    .site2 >>> .top-nav a{
+        color: rgb(248, 248, 248);
+        display: inline-block;
+        margin-right: 10px;
+    }
+    .site2 >>> .top-nav a.this{
+        border-bottom: 2px solid #ff6738;
     }
     .site2 >>> .row{
         clear: both;
@@ -155,8 +170,9 @@ export default {
         font-size: 14px;
         float: left;
         text-align: center;
-        background: #000;
+        background: #0e0e0e;;
         color: #ccc;
+        padding-top: 10px;
     }
     .site2 >>> .portfolio-item a{
         display: inline-block;
@@ -166,6 +182,23 @@ export default {
         text-overflow: ellipsis;
         white-space: nowrap;
         color: #fff;
+    }
+    .site2 >>> .class-feed-btn2 ul{
+        background: #2d2d2d;
+        display: flex;
+        align-items: center;
+        padding: 10px;
+    }
+    .site2 >>> .class-feed-btn2 li{
+        font-size: 14px;
+        margin-right: 10px;
+        color: #fff;
+    }
+    .site2 >>> .class-feed-btn2 li a{
+        color: #dedede;
+    }
+    .site2 >>> .news-feed-btn{
+        
     }
 </style>
 

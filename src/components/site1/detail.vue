@@ -153,6 +153,7 @@
         border: 1px solid #eee;
         min-height: 260px;
         position: relative;
+        background: #fff;
     }
     .detail .content >>> table{
         text-align: left;
