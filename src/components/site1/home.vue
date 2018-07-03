@@ -54,13 +54,11 @@ export default {
     max-width: 1200px;
     width: 100%;
     margin: 0 auto 5px;
-    background: #f2f2f2;
+    background: #2d2d2d;
     display: flex;
     align-content: center;
     flex-wrap: wrap;
-    border: 1px solid #eee;
     padding: 5px;
-    box-shadow: 0 0 3px #ccc;
     position: relative;
     z-index: 3;
 }
@@ -68,17 +66,16 @@ export default {
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
-    line-height: 30px;
-    font-size: 16px;
-    padding: 2px 0 2px 70px;
+    line-height: 40px;
+    font-size: 14px;
+    padding-left: 70px;
     position: relative;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
 }
 .site1 .menu dl dt {
-    color: rgb(121, 33, 33);
-    margin-right: 5px;
+    color: rgb(212, 112, 112);
     font-weight: 600;
     position: absolute;
     left: 2px;
@@ -86,10 +83,10 @@ export default {
 }
 .site1 .menu dd {
     float: left;
-    height: 30px;
-    line-height: 30px;
+    height: 40px;
+    line-height: 43px;
+    -webkit-transition: all 1s;
     transition: all 1s;
-    width: 90px;
     max-width: 100px;
 }
 .site1 .menu dd a {
@@ -97,30 +94,30 @@ export default {
     width: 100%;
     height: 100%;
     padding: 0 10px;
-    color: #576700;
+    color: #d2cdcd;
     text-align: center;
 }
 .site1 .menu dd.active a {
-    border-radius: 3px;
-    background: #cae243;
-    color: #fff;
+    color: #f7bcaa;
+    border-bottom: 2px solid #ff6738;
 }
-.site1 .menu dd.active a:hover {
-    color: #fff;
-}
+.site1 .menu dd.active a:hover,
 .site1 .menu dd a:hover {
-    color: #cae243;
+    color: #f7bcaa;
+    border-bottom: 2px solid #ff6738;
 }
 @media screen and (max-width: 600px) {
     .site1 .menu dl {
         padding-left: 60px;
-        font-size: 14px;
-        line-height: 26px;
+        font-size: 12px;
+        line-height: 30px;
+    }
+    .site1 .menu dl:first-child {
+        border-bottom: 1px dashed #463f3f;
     }
     .site1 .menu dl dd {
-        width: 33%;
-        height: 26px;
-        line-height: 26px;
+        height: 30px;
+        line-height: 33px;
     }
 }
 </style>
