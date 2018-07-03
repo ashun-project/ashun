@@ -7,11 +7,11 @@
                 </div>
                 <div class="lf notice notice-h5">
                     <marquee scrolldelay="30">
-                        为防止域名更换, 请记住我们的永久域名&nbsp;ashun520.com，&nbsp;s8sex.com
+                        为防止域名更换, 请记住我们的永久域名&nbsp;ashun520.com
                     </marquee>
                 </div>
                 <div class="lf notice notice-pc">
-                    为防止域名更换, 请记住我们的永久域名&nbsp;ashun520.com，&nbsp;s8sex.com
+                    为防止域名更换, 请记住我们的永久域名&nbsp;ashun520.com
                 </div>
                 <div class="rf">
                     <span>交流QQ
@@ -32,7 +32,7 @@
         </div> -->
         <div class="notice-message">
             <span>通知：</span>
-            <font color="red">请记住我们永久域名 ashun520.com, s8sex.com
+            <font color="red">请记住我们永久域名 ashun520.com
                 <span class="h5-display">以便快速找到我们,其他域名即将更换</span>
             </font>
         </div>
@@ -49,7 +49,9 @@
                 <a href="http://www.yinuuu.info/" target="_blank">淫色导航</a>
                 <a href="http://www.ygssss.info/" target="_blank">一个色导航</a>
             </div>
-            <div class="h5">警告︰本網站只這合十八歲或以上人士觀看<span class="h5-display rf">有任何观看问题都可咨询我QQ：&nbsp;&nbsp;3257905932</span></div>
+            <div class="h5">警告︰本網站只這合十八歲或以上人士觀看
+                <span class="h5-display rf">有任何观看问题都可咨询我QQ：&nbsp;&nbsp;3257905932</span>
+            </div>
         </div>
     </div>
 </template>
@@ -206,15 +208,15 @@ export default {
     color: #ccc;
     padding-right: 5px;
 }
-.footer .h5{
+.footer .h5 {
     max-width: 1200px;
     margin: 0 auto;
     border-top: 1px solid #191717;
-    box-shadow: 4px -3px 18px rgba(51, 51, 51, 0.10);
+    box-shadow: 4px -3px 18px rgba(51, 51, 51, 0.1);
     margin-top: 5px;
 }
 @media screen and (max-width: 600px) {
-    .h5-display{
+    .h5-display {
         display: none;
     }
     .header .cont .rf {
