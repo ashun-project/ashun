@@ -22,7 +22,7 @@
             <div class="my-nav">
                 <ul>
                     <li v-for="(item, idx) in navList" :key="idx" @click="navType = item.type">
-                        <router-link :to="{name: item.url}" :class="{active: navType === item.type}" >{{item.label}}</router-link>
+                        <router-link :to="{name: item.url}" :class="{active: navType === item.type}">{{item.label}}</router-link>
                     </li>
                 </ul>
             </div>
@@ -68,11 +68,11 @@ export default {
                     type: 1,
                     url: 'site1Home'
                 },
-                {
-                    label: "视频二区",
-                    type: 2,
-                    url: 'site2Home'
-                },
+                // {
+                //     label: "视频二区",
+                //     type: 2,
+                //     url: 'site2Home'
+                // },
                 // {
                 //     label: "一区",
                 //     type: 3,
@@ -90,7 +90,7 @@ export default {
             localStorage.setItem('web', '1')
         }
     },
-    created (){
+    created () {
         if (this.$route.path.indexOf('site1Home') < 0 && this.$route.path !== '/') {
             this.navType = 2;
         }
