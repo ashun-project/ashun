@@ -59,8 +59,6 @@ export default {
     align-content: center;
     flex-wrap: wrap;
     padding: 5px;
-    position: relative;
-    z-index: 3;
 }
 .site1 .menu dl {
     max-width: 1200px;
