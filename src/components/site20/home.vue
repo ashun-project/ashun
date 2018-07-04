@@ -134,7 +134,7 @@ export default {
         },
         getHtml (param) {
             let vm = this;
-            let url = '/site2'+param
+            let url = '/site2' + param
             // this.$http.post(url, { label: label }).then(response => {
             this.$http.get(url).then(response => {
                 console.log(response.data)

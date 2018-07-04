@@ -65,7 +65,7 @@ export default new Router({
             component: site2Home
         },
         {
-            path: '/site2Detail/:id/:name',
+            path: '/site2Detail/:id',
             name: 'site2Detail',
             component: site2Detail
         },
