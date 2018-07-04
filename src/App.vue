@@ -50,7 +50,7 @@
                 <a href="http://www.ygssss.info/" target="_blank">一个色导航</a>
             </div>
             <div class="h5">警告︰本網站只這合十八歲或以上人士觀看
-                <span class="h5-display rf">有任何观看问题都可咨询我QQ：&nbsp;&nbsp;3257905932</span>
+                <span class="h5-display rf">有任何观看问题都可咨询我QQ：&nbsp;&nbsp;<font color="#fff">3257905932</font></span>
             </div>
         </div>
     </div>
@@ -191,7 +191,7 @@ export default {
 .footer {
     width: 100%;
     background: rgb(17, 17, 17);
-    color: #ccc;
+    color: #666;
     padding: 5px;
     line-height: 30px;
     font-size: 14px;
@@ -205,7 +205,7 @@ export default {
 }
 .footer .friendly a {
     display: inline-block;
-    color: #ccc;
+    color: #666;
     padding-right: 5px;
 }
 .footer .h5 {

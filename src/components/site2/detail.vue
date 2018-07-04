@@ -20,7 +20,8 @@ export default {
                 return;
             }
             let vm = this;
-            let url = this.url.replace(/全集\$/gi, '');
+            
+            let url = this.url.replace(/全|集|\$/gi, '');
             var videoObject = {
                 container: '#video', //容器的ID或className
                 variable: 'player',//播放函数名称
@@ -66,9 +67,18 @@ export default {
 
 </script>
 
-<style>
-#video {
+<style scoped>
+.site2-detail{
+    max-width: 1200px;
+    width: 100%;
+    margin: 10px auto;
+    padding: 10px;
+    background: #0e0e0e;
+
+}
+.site2-detail #video {
     width: 600px;
     height: 400px;
+    margin: 0 auto;
 }
 </style>
