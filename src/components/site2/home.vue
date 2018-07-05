@@ -10,7 +10,8 @@ export default {
     data () {
         return {
             html: '',
-            showDo: false
+            showDo: false,
+            isMobile: ''
         }
     },
     methods: {
@@ -22,7 +23,7 @@ export default {
             eachList(divEles);
             function eachList (data) {
                 for (var i = 0; i < data.length; i++) {
-
+                    // 去除from表单
                     if (data[i].getAttribute('action') === '/index.php?m=vod-search') {
                         // console.log(data[i].parentNode, '===')
                         getParent(data[i].parentNode);
@@ -36,68 +37,39 @@ export default {
                             }
                         }
                     }
+                    // 去除横幅广告
                     if (data[i].getAttribute('href') && data[i].getAttribute('href').indexOf('http://www.fd2563.com') > -1) {
                         data[i].parentNode.removeChild(data[i]);
                     }
-                    // if (data[i].firstChild) {
-                    //     txt = data[i].firstChild.nodeValue || '';
-                    // } else {
-                    //     txt = data[i].innerText || '';
-                    // };
-                    // if (txt.indexOf('下载次数') > -1) {
-                    //     var ev = data[i].parentNode;
-                    //     var child = ev.getElementsByTagName('a');
-                    //     var hf = '';
-                    //     var cla = '';
-                    //     for (var j = 0; j < child.length; j++) {
-                    //         hf = child[j].getAttribute('href');
-                    //         cla = child[j].getAttribute('class') || '';
-                    //         if (hf.indexOf('forum.php?mod') > -1 && cla.indexOf('xw1') < 0) {
-                    //             ev.parentNode.removeChild(ev);
-                    //             console.log(235345)
-                    //         };
-                    //     };
-                    // };
-                    // if (data[i].getAttribute('onmouseover')) data[i].removeAttribute('onmouseover');
-                    // if (data[i].getAttribute('onclick')) data[i].removeAttribute('onclick');
-                    // if (data[i].getAttribute('title') === '帖子模式') {
-                    //     data[i].parentNode.removeChild(data[i]);
-                    // }
-                    // if (data[i] && data[i].getAttribute('src') === 'https://static.wifi588.net/static/image/filetype/torrent.gif') {
-                    //     data[i].parentNode.removeChild(data[i]);
-                    // }
+                    // 循环
                     if (data[i]) {
                         var childList = data[i].children;
                         eachList(childList);
                     }
-
                 };
             };
+
             let imgs = dem.querySelectorAll('img');
             let getA = dem.querySelectorAll('a');
+            // 去除a链接
             for (var i = 0; i < getA.length; i++) {
                 getA[i].setAttribute('my-data', getA[i].getAttribute('href'));
                 getA[i].removeAttribute('href');
                 if (txt.some(item => {
                     return getA[i].text.indexOf(item) > -1;
                 })) {
-                    if (getA[i].parentNode.getAttribute('class').indexOf('top-nav') > -1) {
-                        //  console.log(getA[i], '===111111111111')
+                    if (getA[i].parentNode.getAttribute('class') && getA[i].parentNode.getAttribute('class').indexOf('top-nav') > -1) {
                         getA[i].parentNode.removeChild(getA[i])
                     }
-                   
                 }
-                // if(getA[i].parentNode.getAttribute('class').indexOf('top-nav') > -1) {
-                //     if ()
-                // }
             }
+            // 添加完整的图片路径
             for (var i = 0; i < imgs.length; i++) {
                 let src = imgs[i].getAttribute('src');
                 if (src.indexOf('http') === -1) {
                     imgs[i].setAttribute('src', '//www.xhgzyz.com/'+src);
                 }
             }
-            // console.log(getA);
         },
         getClike () {
             let vm = this;
@@ -145,14 +117,10 @@ export default {
         getContainer () {
             let vm = this;
             let cont = 0;
-            // this.$nextTick(() => {})
             let dom = document.getElementById('site2-content');
-            // let content = '';
             let foot = '';
             let timer = setInterval(function () {
                 cont += 50;
-                // content = dom.children;
-                // console.log(content, '============')
                 if (dom.children) {
                     clearInterval(timer)
                     foot = document.getElementsByTagName('footer')[0];
@@ -183,6 +151,11 @@ export default {
         }
     },
     created () {
+        let ua = navigator.userAgent;
+        let ipad = ua.match(/(iPad).*OS\s([\d_]+)/);
+        let isIphone =!ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/);
+        let isAndroid = ua.match(/(Android)\s+([\d.]+)/);
+        this.isMobile = isIphone || isAndroid;
         this.getHtml('/?m=vod-type-id-2.html');
     }
 }
