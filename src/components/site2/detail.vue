@@ -9,7 +9,7 @@
 export default {
     data () {
         return {
-            html: '',
+            recommend: '',
             url: ''
         }
     },
@@ -20,7 +20,7 @@ export default {
                 return;
             }
             let vm = this;
-            
+
             let url = this.url.replace(/全|集|\$/gi, '');
             var videoObject = {
                 container: '#video', //容器的ID或className
@@ -44,6 +44,7 @@ export default {
         let id = this.Base64.decode(params.id);
         if (id.substr(0, 1) !== '/') id = '/' + id;
         this.$http.get('/site2' + id).then(response => {
+            if (!response.data) return;
             let reTag = /mac_url=unescape(?:.|\s)*?\);/g;
             let rul = /mac_url=unescape\(\'|\'\)\;|\"/gi;
             let result = reTag.exec(response.data);
@@ -57,10 +58,11 @@ export default {
                 }
             }
             vm.getUrl();
-            console.log(vm.url, '===============')
-
-            // console.log(unescape(reTag.exec(response.data)[0].replace(rul, '')), '-------------')
-            // this.getContainer();
+            // console.log(response.data, '===============')
+            let reTag3 = /<div class=\"col-sm-3 col-xs-6\">(?:.|\s)*?<\/div>/g;
+            let result3 = response.data.match(reTag3);
+            console.log(result3, '=================');
+            this.recommend = result3;
         })
     }
 }
@@ -68,13 +70,12 @@ export default {
 </script>
 
 <style scoped>
-.site2-detail{
+.site2-detail {
     max-width: 1200px;
     width: 100%;
     margin: 10px auto;
     padding: 10px;
     background: #0e0e0e;
-
 }
 .site2-detail #video {
     width: 600px;

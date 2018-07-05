@@ -50,7 +50,9 @@
                 <a href="http://www.ygssss.info/" target="_blank">一个色导航</a>
             </div>
             <div class="h5">警告︰本網站只這合十八歲或以上人士觀看
-                <span class="h5-display rf">有任何观看问题都可咨询我QQ：&nbsp;&nbsp;<font color="#fff">3257905932</font></span>
+                <span class="h5-display rf">有任何观看问题都可咨询我QQ：&nbsp;&nbsp;
+                    <font color="#fff">3257905932</font>
+                </span>
             </div>
         </div>
     </div>
@@ -79,6 +81,11 @@ export default {
                 // }
             ],
             navType: 1
+        }
+    },
+    watch: {
+        '$route' (n, o) {
+            console.log(n, o, '===============')
         }
     },
     mounted () {
