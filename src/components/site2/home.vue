@@ -317,13 +317,15 @@ export default {
     padding-bottom: 5px;
     padding-left: 12px;
 }
-.site2 .mobile >>> .video__wrap {
+/* .site2 .mobile >>> .video__wrap {
     padding: 2px;
-}
+    display: flex;
+    flex-wrap: wrap;
+} */
 .site2 .mobile >>> .video__wrap > a {
-    float: left;
-    width: 50%;
-    padding: 2px;
+    /* float: left; */
+    width: 100%;
+    padding: 10px;
     display: block;
     text-align: center;
     color: #ccc;
@@ -345,6 +347,7 @@ export default {
     font-size: 0px;
     padding: 15px 10px;
     text-align: center;
+    width: 100%;
 }
 .site2 .mobile >>> .list__pagebtn .pagenow {
     padding: 5px 10px;
