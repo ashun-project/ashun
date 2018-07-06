@@ -7,7 +7,9 @@
                     <div class="detail-cont" id="my-detail" v-html="content"></div>
                     <div class="clr"></div><br/>
                     <div id="video"></div>
-                    <div class="tip">温馨提示：缓冲需要时间，请耐心等待。有任何播放问题请联系我 <font color="#f70d0d">QQ3257905932</font></div>
+                    <div class="tip">温馨提示：缓冲需要时间，请耐心等待。有任何播放问题请联系我
+                        <font color="#f70d0d">QQ3257905932</font>
+                    </div>
                 </div>
             </div>
             <my-loading v-else></my-loading>
