@@ -1,6 +1,6 @@
 <template>
     <div class="site2">
-        <div id="site2-content" class="video" v-show="showDo" v-html="html"></div>
+        <div id="site2-content" class="video" :class="{mobile: isMobile}" v-show="showDo" v-html="html"></div>
         <div class="clr"></div>
     </div>
 </template>
@@ -18,43 +18,21 @@ export default {
         reset (dem) {
             let vm = this;
             // 过滤元素下载链接
-            var divEles = dem.children;
-            var txt = ['首页', '激情图区', '情色小说', '采集插件', '采集教程', '采集福利'];
-            eachList(divEles);
-            function eachList (data) {
-                for (var i = 0; i < data.length; i++) {
-                    // 去除from表单
-                    if (data[i].getAttribute('action') === '/index.php?m=vod-search') {
-                        // console.log(data[i].parentNode, '===')
-                        getParent(data[i].parentNode);
-                        function getParent (pat) {
-                            let classN = pat.getAttribute('class');
-                            console.log(classN)
-                            if (classN.indexOf('row')) {
-                                pat.parentNode.removeChild(pat);
-                            } else {
-                                getParent(pat.parentNode);
-                            }
-                        }
-                    }
-                    // 去除横幅广告
-                    if (data[i].getAttribute('href') && data[i].getAttribute('href').indexOf('http://www.fd2563.com') > -1) {
-                        data[i].parentNode.removeChild(data[i]);
-                    }
-                    // 循环
-                    if (data[i]) {
-                        var childList = data[i].children;
-                        eachList(childList);
-                    }
-                };
-            };
-
+            let divEles = dem.children;
+            let txt = ['首页', '激情图区', '情色小说', '采集插件', '采集教程', '采集福利'];
+            let mobileTxt = ['首页', '日韩', '欧美', '国产', '动漫', '激情图区', '情色小说'];
             let imgs = dem.querySelectorAll('img');
             let getA = dem.querySelectorAll('a');
+            let foot = dem.getElementsByTagName('footer')[0];
+            // let li = dem.querySelectorAll('.nav__btn--wrap li');
+            // console.log(li, '=======')
+            // 循环过滤
+            this.eachList(divEles);
             // 去除a链接
             for (var i = 0; i < getA.length; i++) {
                 getA[i].setAttribute('my-data', getA[i].getAttribute('href'));
                 getA[i].removeAttribute('href');
+                // 去除特点目标
                 if (txt.some(item => {
                     return getA[i].text.indexOf(item) > -1;
                 })) {
@@ -62,14 +40,52 @@ export default {
                         getA[i].parentNode.removeChild(getA[i])
                     }
                 }
+                // 去除手机端特点目标
+                if (mobileTxt.some(item => {
+                    return getA[i].text === item;
+                })) {
+                    // console.log(getA[i].parentNode.nodeName)
+                    if (getA[i].parentNode.nodeName === 'LI' && getA[i].parentNode.parentNode.nodeName === 'UL') {
+                        getA[i].parentNode.parentNode.removeChild(getA[i].parentNode)
+                    }
+                }
             }
             // 添加完整的图片路径
             for (var i = 0; i < imgs.length; i++) {
                 let src = imgs[i].getAttribute('src');
                 if (src.indexOf('http') === -1) {
-                    imgs[i].setAttribute('src', '//www.xhgzyz.com/'+src);
+                    imgs[i].setAttribute('src', '//www.xhgzyz.com/' + src);
                 }
             }
+            // 去除底部
+            if (foot) foot.parentNode.removeChild(foot);
+        },
+        eachList (data) {
+            for (var i = 0; i < data.length; i++) {
+                // 去除from表单
+                if (data[i].getAttribute('action') === '/index.php?m=vod-search') {
+                    // console.log(data[i].parentNode, '===')
+                    getParent(data[i].parentNode);
+                    function getParent (pat) {
+                        let classN = pat.getAttribute('class');
+                        console.log(classN)
+                        if (classN.indexOf('row')) {
+                            pat.parentNode.removeChild(pat);
+                        } else {
+                            getParent(pat.parentNode);
+                        }
+                    }
+                }
+                // 去除横幅广告
+                if (data[i].getAttribute('href') && data[i].getAttribute('href').indexOf('http://www.fd2563.com') > -1) {
+                    data[i].parentNode.removeChild(data[i]);
+                }
+                // 循环
+                if (data[i]) {
+                    var childList = data[i].children;
+                    this.eachList(childList);
+                }
+            };
         },
         getClike () {
             let vm = this;
@@ -118,17 +134,12 @@ export default {
             let vm = this;
             let cont = 0;
             let dom = document.getElementById('site2-content');
-            let foot = '';
             let timer = setInterval(function () {
                 cont += 50;
                 if (dom.children) {
                     clearInterval(timer)
-                    foot = document.getElementsByTagName('footer')[0];
-                    if (foot) foot.parentNode.removeChild(foot);
                     vm.reset(dom);
                     vm.getClike();
-                    // dom.innerHTML = content.innerHTML;
-
                     vm.showDo = true;
                 } else if (cont > 3000) {
                     clearInterval(timer)
@@ -153,7 +164,7 @@ export default {
     created () {
         let ua = navigator.userAgent;
         let ipad = ua.match(/(iPad).*OS\s([\d_]+)/);
-        let isIphone =!ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/);
+        let isIphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/);
         let isAndroid = ua.match(/(Android)\s+([\d.]+)/);
         this.isMobile = isIphone || isAndroid;
         this.getHtml('/?m=vod-type-id-2.html');
@@ -171,17 +182,23 @@ export default {
 }
 .site2 >>> .navbar-header,
 .site2 >>> .portfolio-item .uptime,
-.site2 >>> .page-header, .site2 >>> .news-feed-btn .pagego, .site2 >>> .news-feed-btn .pagebtn{
+.site2 >>> .page-header,
+.site2 >>> .news-feed-btn .pagego,
+.site2 >>> .news-feed-btn .pagebtn,
+.site2 .mobile >>> .nav__title--wrap,
+.site2 .mobile >>> .nav__btn--wrap li,
+.site2 .mobile >>> .nav__btn--wrap .nav__btn--inner,
+.site2 .mobile >>> .video__tag.mm2 {
     display: none;
 }
 .site2 >>> a {
     cursor: pointer;
 }
-.site2 >>> .news-feed-btn a:hover, 
+.site2 >>> .news-feed-btn a:hover,
 .site2 >>> .top-nav a:hover,
-.site2 >>> .class-feed-btn2 a:hover{
+.site2 >>> .class-feed-btn2 a:hover {
     background: #e62948;
-    color: #FFF;
+    color: #fff;
 }
 .site2 >>> .top-nav {
     width: 100%;
@@ -222,10 +239,10 @@ export default {
     white-space: nowrap;
     color: #fff;
 }
-.site2 >>> .portfolio-item .v-title{
+.site2 >>> .portfolio-item .v-title {
     margin-top: -6px;
 }
-.site2 >>> .portfolio-item:hover a{
+.site2 >>> .portfolio-item:hover a {
     color: #e62948;
 }
 .site2 >>> .class-feed-btn2 ul {
@@ -243,10 +260,10 @@ export default {
 }
 .site2 >>> .class-feed-btn2 li a {
     background: #171717;
-    color: #FFFFFF;
+    color: #ffffff;
     text-decoration: none;
     font-size: 12px;
-    font-family: "微軟正黑體", "新細明體";
+    font-family: '微軟正黑體', '新細明體';
     border-radius: 2px;
     padding-top: 5px;
     padding-right: 12px;
@@ -254,7 +271,7 @@ export default {
     padding-left: 12px;
 }
 .site2 >>> .news-feed-btn {
-    color: #CCC;
+    color: #ccc;
     line-height: 35px;
     font-size: 0px;
     padding: 15px 10px;
@@ -263,10 +280,9 @@ export default {
 .site2 >>> .news-feed-btn .pagenow {
     padding: 5px 10px;
     background: #e62948;
-    color: #FFFFFF;
+    color: #ffffff;
     text-decoration: none;
     font-size: 13px;
-    font-family: "微軟正黑體", "新細明體";
     border-radius: 2px;
     font-size: 14px;
     margin-right: 2px;
@@ -274,9 +290,8 @@ export default {
 }
 .site2 >>> .news-feed-btn a {
     background: #171717;
-    color: #FFFFFF;
+    color: #ffffff;
     text-decoration: none;
-    font-family: "微軟正黑體", "新細明體";
     border-radius: 2px;
     font-size: 14px;
     margin-right: 2px;
@@ -287,5 +302,44 @@ export default {
     padding-left: 10px;
 }
 
+/* 手机端样式 */
+.site2 .mobile >>> .nav__btn--wrap li:first-child,
+.site2 .mobile >>> .nav__btn--wrap li:first-child .second__menu li {
+    display: block;
+    float: left;
+    margin: 2px;
+}
+.site2 .mobile >>> .nav__btn--wrap li:first-child .second__menu li a {
+    background: #171717;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 12px;
+    border-radius: 2px;
+    padding-top: 5px;
+    padding-right: 12px;
+    padding-bottom: 5px;
+    padding-left: 12px;
+}
+.site2 .mobile >>> .video__wrap {
+    padding: 2px;
+}
+.site2 .mobile >>> .video__wrap > a {
+    float: left;
+    width: 50%;
+    padding: 2px;
+    display: block;
+    text-align: center;
+    color: #ccc;
+}
+.site2 .mobile >>> .video__wrap > a * {
+    font-size: 0;
+}
+.site2 .mobile >>> .video__wrap > a h3 {
+    font-size: 14px;
+    line-height: 25px;
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 </style>
 
