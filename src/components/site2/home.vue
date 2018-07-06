@@ -41,10 +41,9 @@ export default {
                     }
                 }
                 // 去除手机端特点目标
-                if (mobileTxt.some(item => {
+                if (this.isMobile && mobileTxt.some(item => {
                     return getA[i].text === item;
                 })) {
-                    // console.log(getA[i].parentNode.nodeName)
                     if (getA[i].parentNode.nodeName === 'LI' && getA[i].parentNode.parentNode.nodeName === 'UL') {
                         getA[i].parentNode.parentNode.removeChild(getA[i].parentNode)
                     }
@@ -89,30 +88,27 @@ export default {
         },
         getClike () {
             let vm = this;
-            let $Video = '';
-            let $Nav = '';
-            let $Menu = '';
-            let $page = '';
-            let cont = 0;
-            let timer2 = setInterval(function () {
-                cont += 50;
-                // pc 端事件注册
-                $Video = document.querySelectorAll('.portfolio-item a');
-                $Nav = document.querySelectorAll('.top-nav a');
-                $Menu = document.querySelectorAll('.class-feed-btn2 a');
-                $page = document.querySelectorAll('.news-feed-btn a');
-                console.log($page, '====')
-                if ($Video && $Nav && $Menu && $page) {
-                    clearInterval(timer2);
-                    successContent($Video, '1');
-                    successContent($Nav, '2');
-                    successContent($Menu, '3');
-                    successContent($page, '4');
-                } else if (cont > 3000) {
-                    clearInterval(timer2)
-                    alert('数据丢失，请联系管理员。QQ:3257905932')
+            let obj = {}
+            // pc 端事件注册
+            if (vm.isMobile) {
+                obj.navM = document.querySelectorAll('.second__menu a');
+                obj.video = document.querySelectorAll('.video__wrap > a');
+                obj.pageM = document.querySelectorAll('.list__pagebtn a');
+            } else {
+                obj.video = document.querySelectorAll('.portfolio-item a');
+                obj.nav = document.querySelectorAll('.top-nav a');
+                obj.menu = document.querySelectorAll('.class-feed-btn2 a');
+                obj.page = document.querySelectorAll('.news-feed-btn a');
+            }   
+            for (let key in obj) {
+                if (obj[key].length) {
+                    if (key === 'video') {
+                        successContent(obj[key], '1');
+                    } else {
+                        successContent(obj[key], '2');
+                    }
                 }
-            }, 50)
+            }
             function successContent (list, type) {
                 for (let i = 0; i < list.length; i++) {
                     list[i].onclick = function (event) {
@@ -149,11 +145,12 @@ export default {
             }, 50);
         },
         getHtml (param) {
+            this.showDo = false;
             this.$http.get('/site2' + param).then(response => {
                 let reTag = /<body(?:.|\s)*?<\/body>/g;
                 let result = reTag.exec(response.data);
                 if (result && result[0]) {
-                    this.html = result[0].replace(/<body[^>]*>|<\/body>/, '');
+                    this.html = result[0].replace(/<body[^>]*>|<\/body>|onerror=\"this\.src=\'\/images\/nopic\.gif\'\"/g, '');
                 }
 
                 // console.log(this.html, '-------------')
@@ -167,7 +164,7 @@ export default {
         let isIphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/);
         let isAndroid = ua.match(/(Android)\s+([\d.]+)/);
         this.isMobile = isIphone || isAndroid;
-        this.getHtml('/?m=vod-type-id-2.html');
+        this.getHtml('/?m=vod-type-id-3.html');
     }
 }
 
@@ -183,12 +180,12 @@ export default {
 .site2 >>> .navbar-header,
 .site2 >>> .portfolio-item .uptime,
 .site2 >>> .page-header,
-.site2 >>> .news-feed-btn .pagego,
-.site2 >>> .news-feed-btn .pagebtn,
+.site2 >>> .pagego,
+.site2 >>> .pagebtn,
 .site2 .mobile >>> .nav__title--wrap,
 .site2 .mobile >>> .nav__btn--wrap li,
 .site2 .mobile >>> .nav__btn--wrap .nav__btn--inner,
-.site2 .mobile >>> .video__tag.mm2 {
+.site2 .mobile >>> .video__tag {
     display: none;
 }
 .site2 >>> a {
@@ -338,8 +335,41 @@ export default {
     font-size: 14px;
     line-height: 25px;
     width: 100%;
+    overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+.site2 .mobile >>> .list__pagebtn {
+    color: #ccc;
+    line-height: 35px;
+    font-size: 0px;
+    padding: 15px 10px;
+    text-align: center;
+}
+.site2 .mobile >>> .list__pagebtn .pagenow {
+    padding: 5px 10px;
+    background: #e62948;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 13px;
+    border-radius: 2px;
+    font-size: 14px;
+    margin-right: 2px;
+    margin-left: 2px;
+}
+.site2 .mobile >>> .list__pagebtn a {
+    background: #171717;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 2px;
+    font-size: 14px;
+    margin-right: 2px;
+    margin-left: 2px;
+    padding-top: 5px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+}
+
 </style>
 
