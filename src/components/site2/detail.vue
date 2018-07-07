@@ -78,8 +78,14 @@ export default {
     background: #0e0e0e;
 }
 .site2-detail #video {
-    width: 600px;
+    width: 100%;
+    max-width: 600px;
     height: 400px;
     margin: 0 auto;
+}
+@media screen and (max-width: 800px) {
+    .site2-detail #video {
+        height: 200px;
+    }
 }
 </style>

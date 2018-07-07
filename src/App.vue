@@ -69,11 +69,11 @@ export default {
                     type: 1,
                     url: 'site1Home'
                 },
-                // {
-                //     label: "视频二区",
-                //     type: 2,
-                //     url: 'site2Home'
-                // },
+                {
+                    label: "视频二区",
+                    type: 2,
+                    url: 'site2Home'
+                }
                 // {
                 //     label: "一区",
                 //     type: 3,
@@ -85,7 +85,11 @@ export default {
     },
     watch: {
         '$route' (n, o) {
-            console.log(n, o, '===============')
+            if (n.path.indexOf('site1') > -1) {
+                this.navType = 1;
+            } else {
+                this.navType = 2;
+            }
         }
     },
     mounted () {
@@ -97,7 +101,7 @@ export default {
         }
     },
     created () {
-        if (this.$route.path.indexOf('site1Home') < 0 && this.$route.path !== '/') {
+        if (this.$route.path.indexOf('site1') < 0 && this.$route.path !== '/') {
             this.navType = 2;
         }
     }
@@ -226,11 +230,12 @@ export default {
     .h5-display {
         display: none;
     }
+    .header .cont .notice-h5,
+    .pc-display {
+        display: block;
+    }
     .header .cont .rf {
         padding-right: 5px;
-    }
-    .header .cont .notice-h5 {
-        display: block;
     }
     .header .cont .notice-pc {
         display: none;
