@@ -80,7 +80,7 @@ export default {
                 //     url: ''
                 // }
             ],
-            navType: 1
+            navType: 2
         }
     },
     watch: {

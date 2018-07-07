@@ -35,7 +35,7 @@ export default new Router({
         {
             path: '/',
             name: 'home',
-            redirect: '/site1Home'
+            redirect: '/site2'
         },
         {
             path: '/site1Home',
