@@ -1,6 +1,10 @@
 <template>
     <div class="site2-detail">
         <div id="video"></div>
+        <div class="down-link" v-if="downLink">
+            <span>下载地址:</span>
+            {{downLink.replace(/全|集|\$|\"|\'/gi, '')}}
+        </div>
     </div>
 </template>
 
@@ -10,6 +14,7 @@ export default {
     data () {
         return {
             recommend: '',
+            downLink: '',
             url: ''
         }
     },
@@ -42,6 +47,9 @@ export default {
         let vm = this;
         let params = this.$route.params;
         let id = this.Base64.decode(params.id);
+        let reTag2 = /\"全集\$(?:.|\s)*?\"/g;
+        let result2 = '';
+
         if (id.substr(0, 1) !== '/') id = '/' + id;
         this.$http.get('/site2' + id).then(response => {
             if (!response.data) return;
@@ -51,18 +59,15 @@ export default {
             if (result && result[0]) {
                 vm.url = unescape(result[0].replace(rul, ''));
             } else {
-                let reTag2 = /\"全集\$(?:.|\s)*?\"/g;
-                let result2 = reTag2.exec(response.data);
+                result2 = response.data.match(reTag2);
                 if (result2 && result2[0]) {
                     vm.url = result2[0].replace(/\"|\'/gi, '');
                 }
             }
             vm.getUrl();
-            // console.log(response.data, '===============')
-            let reTag3 = /<div class=\"col-sm-3 col-xs-6\">(?:.|\s)*?<\/div>/g;
-            let result3 = response.data.match(reTag3);
-            console.log(result3, '=================');
-            this.recommend = result3;
+            if (!result2) result2 = response.data.match(reTag2);
+            vm.downLink = result2[1];
+            console.log(result2, '=================');
         })
     }
 }
@@ -81,7 +86,14 @@ export default {
     width: 100%;
     max-width: 600px;
     height: 400px;
-    margin: 0 auto;
+}
+.down-link{
+    line-height: 35px;
+    background: #1f1e1e;
+    color: #ccc;
+    font-size: 16px;
+    padding: 0 10px;
+    margin-top: 10px;
 }
 @media screen and (max-width: 800px) {
     .site2-detail #video {

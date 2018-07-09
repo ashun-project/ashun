@@ -48,6 +48,7 @@
                 <a href="http://www.ccchh.pw/" target="_blank">春色导航</a>
                 <a href="http://www.yinuuu.info/" target="_blank">淫色导航</a>
                 <a href="http://www.ygssss.info/" target="_blank">一个色导航</a>
+                <a href="http://www.fuli168.xyz" target="_blank">福利168导航</a>
             </div>
             <div class="h5">警告︰本網站只這合十八歲或以上人士觀看
                 <span class="h5-display rf">有任何观看问题都可咨询我QQ：&nbsp;&nbsp;
