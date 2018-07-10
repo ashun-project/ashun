@@ -95,10 +95,9 @@ export default {
     },
     mounted () {
         let host = window.location.host;
-        let value = localStorage.getItem('web');
-        if (!value && (host.indexOf('ashun') < 0 && host.indexOf('s8sex') < 0)) {
-            alert('本域名即将关闭，请记住我们的永久域名。ashun520.com')
-            localStorage.setItem('web', '1')
+        if (host.indexOf('ashun') < 0 && host.indexOf('s8sex') < 0) {
+            alert('本域名即将关闭，请记住我们的永久域名。ashun520.com');
+            window.location.href = 'http://ashun520.com';
         }
     },
     created () {
