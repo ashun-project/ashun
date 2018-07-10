@@ -3,7 +3,7 @@
         <div id="video"></div>
         <div class="down-link" v-if="downLink">
             <span>下载地址:</span>
-            {{downLink.replace(/全|集|\$|\"|\'/gi, '')}}
+            {{'http'+downLink.split('http')[1].replace(/全|集|\$|\"|\'/gi, '')}}
         </div>
     </div>
 </template>
@@ -26,7 +26,7 @@ export default {
             }
             let vm = this;
 
-            let url = this.url.replace(/全|集|\$/gi, '');
+            let url = 'http'+this.url.split('http')[1];
             var videoObject = {
                 container: '#video', //容器的ID或className
                 variable: 'player',//播放函数名称
@@ -41,13 +41,22 @@ export default {
                 // ]
             };
             var player = new ckplayer(videoObject);
+        },
+        orUrl (data) {
+            let result = '';
+            let reTag = /<div class="inputA">(?:.|\s)*?<\/div>/g;
+            let reTagMore = /value=\"(?:.|\s)*?\"/g;
+            let testResult = data.match(reTag);
+            if (testResult && testResult[0]) {
+                result = testResult[0].match(reTagMore);
+            }
+            return result;
         }
     },
     created () {
         let vm = this;
         let params = this.$route.params;
         let id = this.Base64.decode(params.id);
-        let reTag2 = /\"全集\$(?:.|\s)*?\"/g;
         let result2 = '';
 
         if (id.substr(0, 1) !== '/') id = '/' + id;
@@ -59,15 +68,13 @@ export default {
             if (result && result[0]) {
                 vm.url = unescape(result[0].replace(rul, ''));
             } else {
-                result2 = response.data.match(reTag2);
-                if (result2 && result2[0]) {
-                    vm.url = result2[0].replace(/\"|\'/gi, '');
-                }
+                result2 = vm.orUrl(response.data);
+                vm.url = result2[0].replace(/\"|\'/gi, '');
             }
             vm.getUrl();
-            if (!result2) result2 = response.data.match(reTag2);
-            vm.downLink = result2[1];
-            console.log(result2, '=================');
+            if (!result2) result2 = vm.orUrl(response.data);
+            vm.downLink = result2 ? result2[1] : '';
+            // console.log(result2, '=================');
         })
     }
 }
