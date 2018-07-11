@@ -35,7 +35,7 @@ export default new Router({
         {
             path: '/',
             name: 'home',
-            redirect: '/site2'
+            redirect: '/site2/df'
         },
         {
             path: '/site1Home',
@@ -60,7 +60,7 @@ export default new Router({
             ]
         },
         {
-            path: '/site2',
+            path: '/site2/:label',
             name: 'site2Home',
             component: site2Home
         },

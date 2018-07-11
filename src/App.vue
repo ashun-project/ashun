@@ -22,7 +22,7 @@
             <div class="my-nav">
                 <ul>
                     <li v-for="(item, idx) in navList" :key="idx" @click="navType = item.type">
-                        <router-link :to="{name: item.url}" :class="{active: navType === item.type}">{{item.label}}</router-link>
+                        <router-link :to="item.url" :class="{active: navType === item.type}">{{item.label}}</router-link>
                     </li>
                 </ul>
             </div>
@@ -68,12 +68,12 @@ export default {
                 {
                     label: "视频一区",
                     type: 1,
-                    url: 'site1Home'
+                    url: '/site1Home/list/wumavideo'
                 },
                 {
                     label: "视频二区",
                     type: 2,
-                    url: 'site2Home'
+                    url: '/site2/df'
                 }
                 // {
                 //     label: "一区",

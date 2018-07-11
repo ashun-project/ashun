@@ -56,8 +56,21 @@ export default {
                     imgs[i].setAttribute('src', '//www.xhgzyz.com/' + src);
                 }
             }
-            // 去除底部
-            if (foot) foot.parentNode.removeChild(foot);
+            // 去除底部之后的所有元素
+            if (foot) {
+                let rm = false;
+                let list = foot.parentElement.children;
+                let arr = [];
+                for (let i = 0; i < list.length; i++) {
+                    if (list[i] === foot) rm = true;
+                    if (rm) {
+                        arr.push(list[i])
+                    }
+                }
+                arr.forEach(item => {
+                    item.parentNode.removeChild(item)
+                })
+            }
         },
         eachList (data) {
             for (var i = 0; i < data.length; i++) {
@@ -99,7 +112,7 @@ export default {
                 obj.nav = document.querySelectorAll('.top-nav a');
                 obj.menu = document.querySelectorAll('.class-feed-btn2 a');
                 obj.page = document.querySelectorAll('.news-feed-btn a');
-            }   
+            }
             for (let key in obj) {
                 if (obj[key].length) {
                     if (key === 'video') {
@@ -118,6 +131,7 @@ export default {
                         if (type === '1') {
                             window.open('#/site2Detail/' + vm.Base64.encode(hrf));
                         } else {
+                            vm.$router.push({ params: { label: vm.Base64.encode(hrf) } })
                             vm.getHtml(hrf)
                         }
                         // vm.$router.push({name: 'site2Detail', params: {id: arr[0], name: arr[1]}})
@@ -129,10 +143,11 @@ export default {
         getContainer () {
             let vm = this;
             let cont = 0;
-            let dom = document.getElementById('site2-content');
+            let dom = '';
             let timer = setInterval(function () {
                 cont += 50;
-                if (dom.children) {
+                dom = document.getElementById('site2-content');
+                if (dom && dom.children) {
                     clearInterval(timer)
                     vm.reset(dom);
                     vm.getClike();
@@ -164,7 +179,10 @@ export default {
         let isIphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/);
         let isAndroid = ua.match(/(Android)\s+([\d.]+)/);
         this.isMobile = isIphone || isAndroid;
-        this.getHtml('/?m=vod-type-id-3.html');
+        let label = this.$route.params.label;
+        let url = '/?m=vod-type-id-5.html';
+        if (label !== 'df') url = this.Base64.decode(label);
+        this.getHtml(url);
     }
 }
 
@@ -312,10 +330,7 @@ export default {
     text-decoration: none;
     font-size: 12px;
     border-radius: 2px;
-    padding-top: 5px;
-    padding-right: 12px;
-    padding-bottom: 5px;
-    padding-left: 12px;
+    padding: 5px 5px;
 }
 /* .site2 .mobile >>> .video__wrap {
     padding: 2px;
@@ -325,7 +340,7 @@ export default {
 .site2 .mobile >>> .video__wrap > a {
     /* float: left; */
     width: 100%;
-    padding: 10px;
+    padding: 5px;
     display: block;
     text-align: center;
     color: #ccc;
@@ -373,6 +388,5 @@ export default {
     padding-bottom: 5px;
     padding-left: 10px;
 }
-
 </style>
 
