@@ -3,7 +3,12 @@
         <div class="rent">
             <img src="@/resource/img/rent.gif" alt="">
         </div>
+        <div class="site2-title" v-show="site2Title">
+            <span v-html="site2Title"></span>
+        </div>
+
         <div id="video"></div>
+
         <div class="down-link" v-if="downLink">
             <span>下载地址:</span>
             {{'http'+downLink.split('http')[1].replace(/全|集|\$|\"|\'/gi, '')}}
@@ -25,6 +30,7 @@ export default {
             recommend: '',
             downLink: '',
             url: '',
+            site2Title: '',
             isMobile: ''
         }
     },
@@ -73,22 +79,34 @@ export default {
             let vm = this;
             let reTag = '';
             let result = '';
+            let title = '';
+            let titleRul = ''
             if (vm.isMobile) {
                 reTag = /<div class=\"video__wrap\">(?:.|\s)*?<\/footer/g;
+                titleRul = /<div class=\"videoplay_text\">(?:.|\s)*?<h3>(?:.|\s)*?<\/h3>/g;
                 result = data.match(reTag);
+                title = data.match(titleRul);
                 if (result && result.length) {
                     this.recommend = result[0].replace(/<\/footer/g, '');
                     this.getClick();
                 }
+                if (title && title.length) {
+                    this.site2Title = title[0].replace(/<div class=\"videoplay_text\">/, '')
+                }
             } else {
                 reTag = /<div class=\"col-sm-3 col-xs-6\"><a(?:.|\s)*?<\/div>/g;
+                titleRul = /<h1 class=\"page-header\">(?:.|\s)*?<\/h1>/g;
                 result = data.match(reTag);
-                // let conetent
+                title = data.match(titleRul);
                 if (result && result.length) {
                     this.recommend = result.join('');
                     this.getClick();
                 }
+                if (title && title.length) {
+                    this.site2Title = title[0]
+                }
             }
+            
         },
         getClick () {
             let vm = this;
@@ -173,6 +191,15 @@ export default {
     width: 100%;
     max-width: 600px;
     height: 400px;
+    margin-bottom: 15px;
+}
+.site2-detail .site2-title {
+    color: #fff;
+    margin-bottom: 10px;
+}
+.site2-detail .site2-title *{
+    font-size: 18px;
+    font-weight: 600;
 }
 .site2-detail iframe {
     width: 100%;
@@ -185,7 +212,6 @@ export default {
     color: #ccc;
     font-size: 16px;
     padding: 0 10px;
-    margin-top: 10px;
 }
 .site2-detail .rent {
     position: absolute;
@@ -193,11 +219,11 @@ export default {
     right: 10px;
 }
 .site2-detail .recommend .recom-title {
-    font-size: 16px;
+    font-size: 14px;
     border-left: 5px solid #e62948;
-    padding-left: 10px;
+    padding-left: 8px;
     color: #ccc;
-    margin: 15px 0;
+    margin-bottom: 10px;
 }
 .site2-detail .recommend .recom-content {
     display: flex;
@@ -222,15 +248,24 @@ export default {
 }
 .site2-detail.mobile .recommend .recom-content .video__wrap {
     width: 100%;
-    margin: 0;
+    margin: -2px;
 }
 .site2-detail.mobile .recommend .recom-content a {
     display: block;
-    width: 100%;
-    padding: 5px;
+    width: 50%;
+    float: left;
+    padding: 2px;
+    border: 1px solid #222;
+}
+.site2-detail.mobile .recommend .recom-content a *{
+    font-size: 0;
 }
 .site2-detail.mobile .recommend .recom-content a img {
     width: 100%;
+}
+.site2-detail.mobile .recommend .recom-content a h3{
+    font-size: 14px;
+    line-height: 35px;
 }
 /* @media screen and (max-width: 800px) {
     .site2-detail #video {

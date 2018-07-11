@@ -179,7 +179,7 @@ export default {
     background: #ff6738;
 }
 .notice-message {
-    min-height: 35px;
+    height: 35px;
     margin: 0 auto;
     max-width: 1200px;
     width: 100%;
@@ -244,11 +244,15 @@ export default {
         height: 75px;
     }
     .my-nav {
-        height: 30px;
-        line-height: 30px;
+        height: 35px;
+        line-height: 35px;
     }
     .my-nav ul li {
         width: 25%;
+    }
+    .notice-message {
+        height: 30px;
+        line-height: 30px;
     }
 }
 </style>

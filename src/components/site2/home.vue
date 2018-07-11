@@ -319,10 +319,17 @@ export default {
 
 /* 手机端样式 */
 .site2 .mobile >>> .nav__btn--wrap li:first-child,
-.site2 .mobile >>> .nav__btn--wrap li:first-child .second__menu li {
+.site2 .mobile >>> .nav__btn--wrap li:first-child .second__menu,
+.site2 .mobile >>> .nav__btn--wrap li:first-child .second__menu *{
     display: block;
-    float: left;
-    margin: 2px;
+}
+.site2 .mobile >>> .nav__btn--wrap li:first-child .second__menu{
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.site2 .mobile >>> .nav__btn--wrap li:first-child .second__menu li {
+    margin: 3px 4px;
 }
 .site2 .mobile >>> .nav__btn--wrap li:first-child .second__menu li a {
     background: #171717;
@@ -330,7 +337,7 @@ export default {
     text-decoration: none;
     font-size: 12px;
     border-radius: 2px;
-    padding: 5px 5px;
+    padding: 5px 8px;
 }
 /* .site2 .mobile >>> .video__wrap {
     padding: 2px;
