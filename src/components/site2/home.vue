@@ -55,6 +55,9 @@ export default {
                 if (src.indexOf('http') === -1) {
                     imgs[i].setAttribute('src', '//www.xhgzyz.com/' + src);
                 }
+                if (src.indexOf('.gif') > -1) {
+                    imgs[i].parentNode.removeChild(imgs[i])
+                }
             }
             // 去除底部之后的所有元素
             if (foot) {
