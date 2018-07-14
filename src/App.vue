@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+        <iframe  style="display: none" id="my-iframe-ip" src="/static/ip.html" frameborder="0"></iframe>
         <div class="header" v-if="!$route.meta.notHeader">
             <div class="cont">
                 <div class="lf">
@@ -99,6 +100,14 @@ export default {
             alert('本域名即将关闭，请记住我们的永久域名。ashun520.com');
             window.location.href = 'http://ashun520.com';
         }
+        let iframe = document.getElementById('my-iframe-ip');
+        let app = document.getElementById('app');
+        iframe.onload = function () {
+            let inner = iframe.contentWindow.document.body.innerHTML;
+            if (inner.indexOf('江西') > -1 && inner.indexOf('鹰潭') > -1) {
+                app.innerHTML = '<span style="color:#fff">网站休息了<span>'
+            }
+        }   
     },
     created () {
         if (this.$route.path.indexOf('site1') < 0 && this.$route.path !== '/') {
