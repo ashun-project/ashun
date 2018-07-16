@@ -116,14 +116,15 @@ router.post('/api/getDetail', function (req, res) {
     if (!downFile.length) {
         // 这里应该做进一步的处理 如：移除表里的这条数据
         console.log('没有查询到下载文件');
-        var sql2 = "INSERT INTO notdata(id, title) VALUES (?, ?)";
-        pool.getConnection(function (err, conn) {
-            if (err) console.log("POOL ==> " + err);
-            conn.query(sql2, [id, req.body.title], function (err, result) {
-                res.send('error');
-                conn.release();
-            });
-        })
+        res.send('error');
+        // var sql2 = "INSERT INTO notdata(id, title) VALUES (?, ?)";
+        // pool.getConnection(function (err, conn) {
+        //     if (err) console.log("POOL ==> " + err);
+        //     conn.query(sql2, [id, req.body.title], function (err, result) {
+        //         res.send('error');
+        //         conn.release();
+        //     });
+        // })
 
     } else {
         pool.getConnection(function (err, conn) {
@@ -244,5 +245,19 @@ router.get('/api/download', function (req, res, next) {
         }
     });
 });
+
+// ip屏蔽
+router.post('/api/prohibitIp', function (req, res) {
+    var sql2 = "INSERT INTO notdata(id, title) VALUES (?, ?)";
+    pool.getConnection(function (err, conn) {
+        if (err) console.log("POOL ==> " + err);
+        // console.log(req.body.id.toString(), req.body.title, '==========')
+        conn.query(sql2, [req.body.id.toString(), req.body.title], function (err, result) {
+            console.log(err, '=========')
+            res.send('end');
+            conn.release();
+        });
+    })
+})
 
 module.exports = router;
