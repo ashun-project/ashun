@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <iframe  style="display: none" id="my-iframe-ip" src="/static/ip.html" frameborder="0"></iframe>
+        <!-- <iframe style="display: none" id="my-iframe-ip" src="/static/ip.html" frameborder="0"></iframe> -->
         <div class="header" v-if="!$route.meta.notHeader">
             <div class="cont">
                 <div class="lf">
@@ -50,6 +50,10 @@
                 <a href="http://www.yinuuu.info/" target="_blank">淫色导航</a>
                 <a href="http://www.ygssss.info/" target="_blank">一个色导航</a>
                 <a href="http://www.fuli168.xyz" target="_blank">福利168导航</a>
+                <a href="http://www.laldh.online/" target="_blank">撸啊撸在线</a>
+                <a href="http://www.ss700.xyz" target="_blank">淋姐极速AV</a>
+                <a href="http://www.yy110.xyz" target="_blank">女忧在线AV</a>
+                <a href="www.sese500.xyz" target="_blank">美女在线AV</a>
             </div>
             <div class="h5">警告︰本網站只這合十八歲或以上人士觀看
                 <span class="h5-display rf">有任何观看问题都可咨询我QQ：&nbsp;&nbsp;
@@ -100,14 +104,17 @@ export default {
             alert('本域名即将关闭，请记住我们的永久域名。ashun520.com');
             window.location.href = 'http://ashun520.com';
         }
-        let iframe = document.getElementById('my-iframe-ip');
-        let app = document.getElementById('app');
-        iframe.onload = function () {
-            let inner = iframe.contentWindow.document.body.innerHTML;
-            if (inner.indexOf('江西') > -1 && inner.indexOf('鹰潭') > -1) {
-                app.innerHTML = '<span style="color:#fff">网站休息了<span>'
-            }
-        }   
+        // let vm = this;
+        // let iframe = document.getElementById('my-iframe-ip');
+        // let app = document.getElementById('app');
+        // iframe.onload = function () {
+        //     let inner = iframe.contentWindow.document.body.innerHTML.replace(/<script type=\"text\/javascript\" src=\"http:\/\/ip.chinaz.com\/getip.aspx\"><\/script>/, '');
+        //     if (inner.indexOf('江西') > -1 && inner.indexOf('鹰潭') > -1) {
+        //         // if (inner.indexOf('澳大利亚') > -1 && inner.indexOf('澳大利亚') > -1) {
+        //         app.innerHTML = '<span style="color:#fff">网站休息了<span>'
+        //         vm.$http.post('/api/prohibitIp', { id: new Date().getTime(), title: inner }).then(response => { })
+        //     }
+        // }
     },
     created () {
         if (this.$route.path.indexOf('site1') < 0 && this.$route.path !== '/') {
