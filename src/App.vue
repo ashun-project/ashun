@@ -53,7 +53,14 @@
                 <a href="http://www.laldh.online/" target="_blank">撸啊撸在线</a>
                 <a href="http://www.ss700.xyz" target="_blank">淋姐极速AV</a>
                 <a href="http://www.yy110.xyz" target="_blank">女忧在线AV</a>
-                <a href="www.sese500.xyz" target="_blank">美女在线AV</a>
+                <a href="http://www.sese500.xyz" target="_blank">美女在线AV</a>
+                <a href="http://www.xxsdh.xyz" target="_blank">小學生性愛導航</a>
+                <a href="http://www.csdh.xyz" target="_blank">春色福利導航</a>
+                <a href="http://www.pstoo.xyz" target="_blank">品色堂導航</a>
+                <a href="http://www.slwo.xyz" target="_blank">色狼窝導航</a>
+                <a href="http://www.snsdh.xyz" target="_blank">少女色導航</a>
+                <a href="http://www.qsdh.xyz" target="_blank">【骑士導航】</a>
+                <a href="http://www.isedh.com" target="_blank">爱色导航</a>
             </div>
             <div class="h5">警告︰本網站只這合十八歲或以上人士觀看
                 <span class="h5-display rf">有任何观看问题都可咨询我QQ：&nbsp;&nbsp;
