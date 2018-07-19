@@ -61,6 +61,7 @@
                 <a href="http://www.snsdh.xyz" target="_blank">少女色導航</a>
                 <a href="http://www.qsdh.xyz" target="_blank">【骑士導航】</a>
                 <a href="http://www.isedh.com" target="_blank">爱色导航</a>
+                <a href="http://www.yaseavdh.com" target="_blank">亚色AV导航</a>
             </div>
             <div class="h5">警告︰本網站只這合十八歲或以上人士觀看
                 <span class="h5-display rf">有任何观看问题都可咨询我QQ：&nbsp;&nbsp;
