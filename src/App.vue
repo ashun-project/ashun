@@ -28,8 +28,13 @@
                 </ul>
             </div>
         </div>
-        <!-- <div class="banner" id="my-banner">
-            占位使用 
+        <div class="banner" id="my-banner">
+            <!-- 占位使用  -->
+        </div>
+        <!-- <div class="advert">
+            <a href="http://www.117dfh.com/register.html" target="_blank">
+                <img src="@/resource/img/advert/record.gif" alt="ashun520.com">
+            </a>
         </div> -->
         <div class="notice-message">
             <span>通知：</span>
@@ -112,6 +117,10 @@ export default {
             alert('本域名即将关闭，请记住我们的永久域名。ashun520.com');
             window.location.href = 'http://ashun520.com';
         }
+
+        let guding = document.getElementById('guding');
+        let myBanner = document.getElementById('my-banner');
+        myBanner.style.height = guding.offsetHeight + 'px';
         // let vm = this;
         // let iframe = document.getElementById('my-iframe-ip');
         // let app = document.getElementById('app');
@@ -218,7 +227,15 @@ export default {
 }
 .banner {
     width: 0;
-    height: 90px;
+    height: 0px;
+}
+.advert {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.advert img {
+    width: 100%;
 }
 .body-content {
     min-height: 300px;
@@ -264,9 +281,9 @@ export default {
     .header .cont .notice-pc {
         display: none;
     }
-    .banner {
-        height: 75px;
-    }
+    /* .banner {
+        height: 100px;
+    } */
     .my-nav {
         height: 35px;
         line-height: 35px;
