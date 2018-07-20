@@ -15,8 +15,8 @@
                     为防止域名更换, 请记住我们的永久域名&nbsp;ashun520.com
                 </div>
                 <div class="rf">
-                    <span>交流QQ
-                        <font color="#ff6738">3257905932</font>
+                    <span>交流QQ群
+                        <font color="#ff6738">761993217</font>
                     </span>
                 </div>
             </div>
@@ -70,8 +70,8 @@
                 <a href="http://www.jzdh.in" target="_blank">九州福利导航</a>
             </div>
             <div class="h5">警告︰本網站只這合十八歲或以上人士觀看
-                <span class="h5-display rf">有任何观看问题都可咨询我QQ：&nbsp;&nbsp;
-                    <font color="#fff">3257905932</font>
+                <span class="h5-display rf">有任何观看问题都可咨询QQ群：&nbsp;&nbsp;
+                    <font color="#fff">761993217</font>
                 </span>
             </div>
         </div>
