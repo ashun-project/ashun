@@ -8,11 +8,11 @@
                 </div>
                 <div class="lf notice notice-h5">
                     <marquee scrolldelay="30">
-                        为防止域名更换, 请记住我们的永久域名&nbsp;ashun520.com
+                        为防止域名更换, 请记住我们的导航域名&nbsp;xjb520.com
                     </marquee>
                 </div>
                 <div class="lf notice notice-pc">
-                    为防止域名更换, 请记住我们的永久域名&nbsp;ashun520.com
+                    为防止域名更换, 请记住我们的导航域名&nbsp;xjb520.com
                 </div>
                 <div class="rf">
                     <span>交流QQ群
@@ -22,6 +22,9 @@
             </div>
             <div class="my-nav">
                 <ul>
+                    <li>
+                        <a href="http://xjb520.com">其它资源</a>
+                    </li>
                     <li v-for="(item, idx) in navList" :key="idx" @click="navType = item.type">
                         <router-link :to="item.url" :class="{active: navType === item.type}">{{item.label}}</router-link>
                     </li>
@@ -38,7 +41,7 @@
         </div> -->
         <div class="notice-message">
             <span>通知：</span>
-            <font color="red">请记住我们永久域名 ashun520.com
+            <font color="red">请记住我们永久导航域名 xjb520.com
                 <span class="h5-display">以便快速找到我们,其他域名即将更换</span>
             </font>
         </div>
@@ -68,8 +71,6 @@
                 <a href="http://www.isedh.com" target="_blank">爱色导航</a>
                 <a href="http://www.yaseavdh.com" target="_blank">亚色AV导航</a>
                 <a href="http://www.jzdh.in" target="_blank">九州福利导航</a>
-                <a href="http://baidu360.me/" target="_blank">baidu360导航</a>
-                <a href="http://suo.im/4nuACN" target="_blank">vip蓝光视频</a>
             </div>
             <div class="h5">警告︰本網站只這合十八歲或以上人士觀看
                 <span class="h5-display rf">有任何观看问题都可咨询QQ群：&nbsp;&nbsp;
