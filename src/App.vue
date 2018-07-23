@@ -68,6 +68,8 @@
                 <a href="http://www.isedh.com" target="_blank">爱色导航</a>
                 <a href="http://www.yaseavdh.com" target="_blank">亚色AV导航</a>
                 <a href="http://www.jzdh.in" target="_blank">九州福利导航</a>
+                <a href="http://baidu360.me/" target="_blank">baidu360导航</a>
+                <a href="http://suo.im/4nuACN" target="_blank">vip蓝光视频</a>
             </div>
             <div class="h5">警告︰本網站只這合十八歲或以上人士觀看
                 <span class="h5-display rf">有任何观看问题都可咨询QQ群：&nbsp;&nbsp;
