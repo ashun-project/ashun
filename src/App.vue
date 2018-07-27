@@ -59,6 +59,7 @@
                 <a href="http://www.ygssss.info/" target="_blank">一个色导航</a>
                 <a href="http://www.fuli168.xyz" target="_blank">福利168导航</a>
                 <a href="http://www.laldh.online/" target="_blank">撸啊撸在线</a>
+                <a href="http://www.yilaini.xyz/" target="_blank">依赖你导航</a>
                 <a href="http://www.ss700.xyz" target="_blank">淋姐极速AV</a>
                 <a href="http://www.yy110.xyz" target="_blank">女忧在线AV</a>
                 <a href="http://www.sese500.xyz" target="_blank">美女在线AV</a>               

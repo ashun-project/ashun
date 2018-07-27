@@ -183,7 +183,7 @@ export default {
         let isAndroid = ua.match(/(Android)\s+([\d.]+)/);
         this.isMobile = isIphone || isAndroid;
         let label = this.$route.params.label;
-        let url = '/?m=vod-type-id-5.html';
+        let url = '/index.php?m=vod-list-id-8-pg-1-order--by--class-0-year-0-letter--area--lang-.html';
         if (label !== 'df') url = this.Base64.decode(label);
         this.getHtml(url);
     }
