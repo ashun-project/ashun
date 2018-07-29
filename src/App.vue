@@ -119,9 +119,10 @@ export default {
     },
     mounted () {
         let host = window.location.host;
-        if (host.indexOf('ashun') < 0 && host.indexOf('s8sex') < 0) {
-            alert('本域名即将关闭，请记住我们的永久域名。ashun520.com');
-            window.location.href = 'http://ashun520.com';
+
+        if (host.indexOf('xjb') < 0) {
+            alert('本域名即将关闭，请记住我们的导航入口。http://xjb520.com');
+            window.location.href = 'http://xjb1990.com';
         }
 
         let guding = document.getElementById('guding');
