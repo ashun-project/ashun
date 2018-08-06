@@ -23,7 +23,7 @@
             <div class="my-nav">
                 <ul>
                     <li>
-                        <a href="http://xjb520.com">其它资源</a>
+                        <a href="http://xjb520.com" title="小鸡吧">其它资源</a>
                     </li>
                     <li v-for="(item, idx) in navList" :key="idx" @click="navType = item.type">
                         <router-link :to="item.url" :class="{active: navType === item.type}">{{item.label}}</router-link>
