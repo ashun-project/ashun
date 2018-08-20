@@ -51,28 +51,6 @@
         <div class="footer" v-if="!$route.meta.notFooter">
             <div class="friendly">
                 友情链接：
-                <a href="http://www.susan520.info/" target="_blank">苏三福利导航</a>
-                <a href="http://www.biyudh.pw/" target="_blank">碧玉AV导航</a>
-                <a href="http://www.ssmmdh.info/" target="_blank">色姐姐导航</a>
-                <a href="http://www.ccchh.pw/" target="_blank">春色导航</a>
-                <a href="http://www.yinuuu.info/" target="_blank">淫色导航</a>
-                <a href="http://www.ygssss.info/" target="_blank">一个色导航</a>
-                <a href="http://www.fuli168.xyz" target="_blank">福利168导航</a>
-                <a href="http://www.laldh.online/" target="_blank">撸啊撸在线</a>
-                <a href="http://www.yilaini.xyz/" target="_blank">依赖你导航</a>
-                <a href="http://www.ss700.xyz" target="_blank">淋姐极速AV</a>
-                <a href="http://www.yy110.xyz" target="_blank">女忧在线AV</a>
-                <a href="http://www.sese500.xyz" target="_blank">美女在线AV</a>               
-                <a href="http://www.csdh.xyz" target="_blank">春色福利導航</a>
-                <a href="http://www.pstoo.xyz" target="_blank">品色堂導航</a>
-                <a href="http://www.slwo.xyz" target="_blank">色狼窝導航</a>
-                <a href="http://www.snsdh.xyz" target="_blank">少女色導航</a>
-                <a href="http://www.qsdh.xyz" target="_blank">【骑士導航】</a>
-                <a href="http://www.isedh.com" target="_blank">爱色导航</a>
-                <a href="http://www.yaseavdh.com" target="_blank">亚色AV导航</a>
-                <a href="http://www.jzdh.in" target="_blank">九州福利导航</a>
-                <a href="https://www.fulidh.online" target="_blank">6av导航</a>
-                
             </div>
             <div class="h5">警告︰本網站只這合十八歲或以上人士觀看
                 <span class="h5-display rf">有任何观看问题都可咨询QQ群：&nbsp;&nbsp;
@@ -93,12 +71,12 @@ export default {
                     label: "视频一区",
                     type: 1,
                     url: '/site1Home/list/wumavideo'
-                },
-                {
-                    label: "视频二区",
-                    type: 2,
-                    url: '/site2/df'
                 }
+                // {
+                //     label: "视频二区",
+                //     type: 2,
+                //     url: '/site2/df'
+                // }
                 // {
                 //     label: "一区",
                 //     type: 3,
@@ -120,10 +98,10 @@ export default {
     mounted () {
         let host = window.location.host;
 
-        if (host.indexOf('xjb') < 0) {
-            alert('本域名即将关闭，请记住我们的导航入口。http://xjb520.com');
-            window.location.href = 'http://xjb1990.com';
-        }
+        // if (host.indexOf('xjb') < 0) {
+        //     alert('本域名即将关闭，请记住我们的导航入口。http://xjb520.com');
+        //     window.location.href = 'http://xjb1990.com';
+        // }
 
         let guding = document.getElementById('guding');
         let myBanner = document.getElementById('my-banner');

@@ -18,8 +18,8 @@ const videoList = resolve => require(['@/components/site1/video_list'], resolve)
 const videoDetail = resolve => require(['@/components/site1/video_detail'], resolve)
 const detail = resolve => require(['@/components/site1/detail'], resolve)
 
-const site2Home = resolve => require(['@/components/site2/home'], resolve)
-const site2Detail = resolve => require(['@/components/site2/detail'], resolve)
+// const site2Home = resolve => require(['@/components/site2/home'], resolve)
+// const site2Detail = resolve => require(['@/components/site2/detail'], resolve)
 
 
 
@@ -35,7 +35,7 @@ export default new Router({
         {
             path: '/',
             name: 'home',
-            redirect: '/site2/df'
+            redirect: '/site1Home/list/wumavideo'
         },
         {
             path: '/site1Home',
@@ -59,16 +59,16 @@ export default new Router({
                 },
             ]
         },
-        {
-            path: '/site2/:label',
-            name: 'site2Home',
-            component: site2Home
-        },
-        {
-            path: '/site2Detail/:id',
-            name: 'site2Detail',
-            component: site2Detail
-        },
+        // {
+        //     path: '/site2/:label',
+        //     name: 'site2Home',
+        //     component: site2Home
+        // },
+        // {
+        //     path: '/site2Detail/:id',
+        //     name: 'site2Detail',
+        //     component: site2Detail
+        // },
         // {
         //     path: '/wumavideo',
         //     name: 'wumavideo',
