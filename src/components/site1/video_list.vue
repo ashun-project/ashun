@@ -53,13 +53,16 @@ export default {
             window.open(url + this.$route.params.label + '/' + item.id, '_blank');
         },
         pagechange (num) {
-            this.getList(num)
+            var params = this.$route.params;
+            this.$router.push({params: {page: num}});
+            window.location.reload();
         },
         getList (current) {
             this.list = [];
             this.total = 0;
             this.$http.post('/api/getList', { current: current, title: this.$route.params.label }).then(response => {
                 if (!response.data || !response.data.list.length) return;
+                document.documentElement.scrollTop=document.body.scrollTop=0;
                 response.data.list.forEach(item => {
                     if (item.img.indexOf('https:') > -1) {
                         item.img = item.img.replace('https:', '');
@@ -71,7 +74,9 @@ export default {
         }
     },
     created () {
-        this.getList(1)
+        var num = Number(this.$route.params.page) || '1';
+        this.current = num;
+        this.getList(num);
     }
 }
 </script>
