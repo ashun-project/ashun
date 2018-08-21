@@ -33,20 +33,8 @@ var aList = [
     url: 'http://www.isodh.com'
 },
 {
-    name: '白洁导航',
-    url: 'http://www.1368.ml'
-},
-{
     name: '火山小黄人导航',
     url: 'http://xiaohuangren.xyz/'
-},
-{
-    name: '银色导航',
-    url: 'http://www.yinuuu.pw/'
-},
-{
-    name: '一个色导航 ',
-    url: 'http://www.ygssss.pw/'
 },   
 {
     name: '快狐福利导航',
