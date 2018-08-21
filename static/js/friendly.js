@@ -1,6 +1,10 @@
 ﻿
 var aList = [
 {
+    name: '蔷薇福利导航',
+    url: 'http://www.qweidh.xyz'
+},
+{
     name: '福利168导航',
     url: 'http://www.fuli168.xyz'
 },
