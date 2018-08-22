@@ -37,6 +37,10 @@ var aList = [
     url: 'http://www.isodh.com'
 },
 {
+    name: '700福利导航',
+    url: 'http://700.baidfx.com/'
+},
+{
     name: '火山小黄人导航',
     url: 'http://xiaohuangren.xyz/'
 },   
