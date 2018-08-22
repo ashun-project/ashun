@@ -37,7 +37,8 @@ export default {
     },
     watch: {
         $route (n, o) {
-            this.getList(1)
+            window.location.reload();
+            document.documentElement.scrollTop=document.body.scrollTop=0;
         }
     },
     methods: {
@@ -53,13 +54,14 @@ export default {
             window.open(url + this.$route.params.label + '/' + item.id, '_blank');
         },
         pagechange (num) {
-            this.getList(num)
+            this.$router.replace({params: {page: num}});
         },
         getList (current) {
             this.list = [];
             this.total = 0;
             this.$http.post('/api/getList', { current: current, title: this.$route.params.label }).then(response => {
                 if (!response.data || !response.data.list.length) return;
+                
                 response.data.list.forEach(item => {
                     if (item.img.indexOf('https:') > -1) {
                         item.img = item.img.replace('https:', '');
@@ -71,7 +73,9 @@ export default {
         }
     },
     created () {
-        this.getList(1)
+        var num = Number(this.$route.params.page) || '1';
+        this.current = num;
+        this.getList(num);
     }
 }
 </script>

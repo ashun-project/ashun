@@ -8,9 +8,9 @@ import Router from 'vue-router'
 // import deleteRepeat from '@/components/delete_repeat'
 
 
-const test = resolve => require(['@/components/test'], resolve)
-const home = resolve => require(['@/components/home'], resolve)
-const deleteRepeat = resolve => require(['@/components/delete_repeat'], resolve)
+// const test = resolve => require(['@/components/test'], resolve)
+// const home = resolve => require(['@/components/home'], resolve)
+// const deleteRepeat = resolve => require(['@/components/delete_repeat'], resolve)
 
 
 const site1Home = resolve => require(['@/components/site1/home'], resolve)
@@ -30,12 +30,12 @@ Vue.use(Router)
 export default new Router({
     routes: [{
             path: '*',
-            redirect: '/site1Home/list/wumavideo',
+            redirect: '/site1Home/list/wumavideo/1',
         },
         {
             path: '/',
             name: 'home',
-            redirect: '/site1Home/list/wumavideo'
+            redirect: '/site1Home/list/wumavideo/1'
         },
         {
             path: '/site1Home',
@@ -43,7 +43,7 @@ export default new Router({
             component: site1Home,
             redirect: '/site1Home/list/wumavideo',
             children: [{
-                    path: '/site1Home/list/:label',
+                    path: '/site1Home/list/:label/:page',
                     name: 'list',
                     component: videoList
                 },
@@ -129,19 +129,19 @@ export default new Router({
         //     name: 'detail',
         //     component: detail
         // },
-        {
-            path: '/deleteRepeat/:id/:age/:name/:all',
-            name: 'deleteRepeat',
-            component: deleteRepeat,
-            meta: {
-                notFooter: true,
-                notHeader: true
-            }
-        },
-        {
-            path: '/test',
-            name: 'test',
-            component: test
-        }
+        // {
+        //     path: '/deleteRepeat/:id/:age/:name/:all',
+        //     name: 'deleteRepeat',
+        //     component: deleteRepeat,
+        //     meta: {
+        //         notFooter: true,
+        //         notHeader: true
+        //     }
+        // },
+        // {
+        //     path: '/test',
+        //     name: 'test',
+        //     component: test
+        // }
     ]
 })
