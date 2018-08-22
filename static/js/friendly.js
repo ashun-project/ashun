@@ -59,6 +59,30 @@ var aList = [
 {
     name: '色狼窝导航',
     url: 'http://www.slwo1.xyz/'
+},   
+{
+    name: '白洁导航',
+    url: 'http://www.1368.ml'
+},   
+{
+    name: '爱趣导航站',
+    url: 'https://www.aiqudh.com'
+},   
+{
+    name: '老司机在线',
+    url: 'http://www.lsjdh.top'
+},   
+{
+    name: '撸撸导航',
+    url: 'http://www.laldh.space'
+},   
+{
+    name: '一点啪在线',
+    url: 'http://www.yidianpa.online'
+},   
+{
+    name: '狼友导航',
+    url: 'http://www.lydh.online'
 }];
 setTimeout(function () {
 	var friendly = document.getElementsByClassName('friendly')[0];
