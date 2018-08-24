@@ -234,13 +234,13 @@ export default {
     font-size: 14px;
     /* text-align: center; */
 }
-.footer .friendly {
+.footer .my-friendly {
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
     text-align: left;
 }
-.footer .friendly a {
+.footer .my-friendly a {
     display: inline-block;
     color: #666;
     padding-right: 5px;
