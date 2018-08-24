@@ -49,7 +49,7 @@
             <router-view/>
         </div>
         <div class="footer" v-if="!$route.meta.notFooter">
-            <div class="friendly">
+            <div class="my-friendly">
                 友情链接：
             </div>
             <div class="h5">警告︰本網站只這合十八歲或以上人士觀看
