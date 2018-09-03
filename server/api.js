@@ -29,17 +29,18 @@ router.all('*', function (req, res, next) {
     let current = new Date().getDate();
     let referers = '';
     let headerRef = req.headers['referers'];
-    if (pwd) referers = encryption.md5(pwd.split('').splice(current, 1).join(''));
-    if (req.method === 'POST') {
-        if (referers == headerRef) {
-            next();
-        } else {
-            res.send('who are you? join my qq 3257905932');
-            res.end();
-        }
-    } else {
-        next();
-    }
+    // if (pwd) referers = encryption.md5(pwd.split('').splice(current, 1).join(''));
+    // if (req.method === 'POST') {
+    //     if (referers == headerRef) {
+    //         next();
+    //     } else {
+    //         res.send('who are you? join my qq 3257905932');
+    //         res.end();
+    //     }
+    // } else {
+    //     next();
+    // }
+    next();
 })
 // 获取所有列表
 router.post('/api/getAllList', function (req, res) {
@@ -67,7 +68,7 @@ router.post('/api/getList', function (req, res) {
         // res.send('who are you');
         // return;
     }
-    var limit = ((req.body.current - 1) * 20) + ',' + 20;
+    var limit = ((req.body.current - 1) * 12) + ',' + 12;
     var sql = 'SELECT * FROM ' + req.body.title + 'list order by createTime desc limit ' + limit;
     var count = 'SELECT COUNT(*) FROM ' + req.body.title + 'list';
     pool.getConnection(function (err, conn) {
