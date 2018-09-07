@@ -16,7 +16,7 @@
                 </div>
                 <div class="rf">
                     <span>交流QQ群
-                        <font color="#ff6738">761993217</font>
+                        <font><a href="https://jq.qq.com/?_wv=1027&k=5X3DEAO" style="color:#ff6738">686466274</a></font>
                     </span>
                 </div>
             </div>
@@ -54,7 +54,7 @@
             </div>
             <div class="h5">警告︰本網站只這合十八歲或以上人士觀看
                 <span class="h5-display rf">有任何观看问题都可咨询QQ群：&nbsp;&nbsp;
-                    <font color="#fff">761993217</font>
+                    <font><a href="https://jq.qq.com/?_wv=1027&k=5X3DEAO" style="color:#fff">686466274</a></font>
                 </span>
             </div>
         </div>

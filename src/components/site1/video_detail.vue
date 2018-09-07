@@ -8,7 +8,7 @@
                     <div class="clr"></div><br/>
                     <div id="video"></div>
                     <div class="tip">温馨提示：缓冲需要时间，请耐心等待。有任何播放问题可进群交流
-                        <font color="#f70d0d">761993217</font>
+                        <font><a href="https://jq.qq.com/?_wv=1027&k=5X3DEAO" style="color:#f70d0d">686466274</a></font>
                     </div>
                 </div>
             </div>
