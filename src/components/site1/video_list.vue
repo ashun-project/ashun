@@ -29,7 +29,8 @@ export default {
         return {
             list: [],
             total: 0,
-            current: 1
+            current: 1,
+            myStor: localStorage.getItem('stor1')
         }
     },
     components: {
@@ -52,6 +53,10 @@ export default {
                 url = '#/site1Home/videoDetail/';
             }
             window.open(url + this.$route.params.label + '/' + item.id, '_blank');
+            if (!this.myStor) {
+                localStorage.setItem('stor1', 'aaa');
+                window.open('http://llh8.vip');
+            }
         },
         pagechange (num) {
             this.$router.replace({params: {page: num}});
