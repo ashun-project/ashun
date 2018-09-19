@@ -29,7 +29,8 @@ export default {
         return {
             list: [],
             total: 0,
-            current: 1
+            current: 1,
+            myStor: localStorage.getItem('stor2')
         }
     },
     components: {
@@ -51,7 +52,13 @@ export default {
             if (this.$route.params.label && this.$route.params.label.indexOf('video') > -1) {
                 url = '#/site1Home/videoDetail/';
             }
-            window.open(url + this.$route.params.label + '/' + item.id, '_blank');
+            if (!this.myStor) {
+                localStorage.setItem('stor2', 'aaa');
+                this.myStor = true;
+                window.open('http://llh8.vip', '_blank');
+            } else {
+                window.open(url + this.$route.params.label + '/' + item.id, '_blank');
+            }
         },
         pagechange (num) {
             this.$router.replace({params: {page: num}});
