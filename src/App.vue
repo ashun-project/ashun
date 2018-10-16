@@ -16,7 +16,7 @@
                 </div>
                 <div class="rf">
                     <span>交流QQ群
-                        <font><a href="https://jq.qq.com/?_wv=1027&k=5X3DEAO" style="color:#ff6738">686466274</a></font>
+                        <font><a href="https://jq.qq.com/?_wv=1027&k=5j4uiDH" style="color:#ff6738">854191436</a></font>
                     </span>
                 </div>
             </div>
@@ -25,8 +25,9 @@
                     <li>
                         <a href="http://xjb520.com" title="小鸡吧">其它资源</a>
                     </li>
-                    <li v-for="(item, idx) in navList" :key="idx" @click="navType = item.type">
-                        <router-link :to="item.url" :class="{active: navType === item.type}">{{item.label}}</router-link>
+                    <li v-for="(item, idx) in navList" :key="idx">
+                        <a v-if="item.type === 2" href="http://www.llh8.vip" target="_blank">{{item.label}}</a>
+                        <router-link v-else :to="item.url" :class="{active: navType === item.type}">{{item.label}}</router-link>
                     </li>
                 </ul>
             </div>
@@ -54,7 +55,7 @@
             </div>
             <div class="h5">警告︰本網站只這合十八歲或以上人士觀看
                 <span class="h5-display rf">有任何观看问题都可咨询QQ群：&nbsp;&nbsp;
-                    <font><a href="https://jq.qq.com/?_wv=1027&k=5X3DEAO" style="color:#fff">686466274</a></font>
+                    <font><a href="https://jq.qq.com/?_wv=1027&k=5j4uiDH" style="color:#fff">854191436</a></font>
                 </span>
             </div>
         </div>
@@ -72,19 +73,19 @@ export default {
                     label: "视频一区",
                     type: 1,
                     url: '/site1Home/list/wumavideo'
+                },
+                {
+                    label: "vip区",
+                    type: 2,
+                    url: 'http://www.llh8.vip'
                 }
-                // {
-                //     label: "视频二区",
-                //     type: 2,
-                //     url: '/site2/df'
-                // }
                 // {
                 //     label: "一区",
                 //     type: 3,
                 //     url: ''
                 // }
             ],
-            navType: 2
+            navType: 1
         }
     },
     watch: {
