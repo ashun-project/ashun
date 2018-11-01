@@ -108,16 +108,27 @@ export default {
         let guding = document.getElementById('guding');
         let myBanner = document.getElementById('my-banner');
         myBanner.style.height = guding.offsetHeight + 'px';
-        // let vm = this;
+
+
+        let vm = this;
         // let iframe = document.getElementById('my-iframe-ip');
-        // let app = document.getElementById('app');
-        // iframe.onload = function () {
-        //     let inner = iframe.contentWindow.document.body.innerHTML.replace(/<script type=\"text\/javascript\" src=\"http:\/\/ip.chinaz.com\/getip.aspx\"><\/script>/, '');
-        //     if (inner.indexOf('江西') > -1 && inner.indexOf('鹰潭') > -1) {
-        //         // if (inner.indexOf('澳大利亚') > -1 && inner.indexOf('澳大利亚') > -1) {
-        //         app.innerHTML = '<span style="color:#fff">网站休息了<span>'
-        //         vm.$http.post('/api/prohibitIp', { id: new Date().getTime(), title: inner }).then(response => { })
+        // var user = localStorage.getItem('user');
+        // function IsPC() {
+        //     var userAgentInfo = navigator.userAgent;
+        //     var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+        //     var flag = true;
+        //     for (var v = 0; v < Agents.length; v++) {
+        //         if (userAgentInfo.indexOf(Agents[v]) > 0) {
+        //             flag = false;
+        //             break;
+        //         }
         //     }
+        //     return flag;
+        // }
+        // if (!user && !IsPC()) {
+        //     vm.$http.post('/api/prohibitIp', { id: navigator.userAgent, title: window.screen.width + ',' + window.screen.height}).then(response => { })
+        //     localStorage.setItem('user', '234325');
+        //     console.log(navigator.userAgent)
         // }
     },
     created () {
