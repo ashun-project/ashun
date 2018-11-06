@@ -207,6 +207,7 @@ body{
 }
 .data-detail .cont{
     width: 100%;
+    min-height: 180px;
 }
 .data-detail .cont img{
     max-width: 100%;

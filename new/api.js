@@ -156,7 +156,7 @@ function getPage(total, currentPage, type, pSearch) {
         for(var pageIndex= (totalPage - 9); pageIndex < totalPage+1;pageIndex++){
             tempStr += "<a class='"+ (pageIndex=== currentPage? 'active' : '') +"' href="+ pageUrl + '_' + pageIndex + '.html' + pageSearch +">"+ pageIndex +"</a>";
         }
-    } else if (currentPage < 5 && totalPage > 10) {
+    } else if (currentPage <= 5 && totalPage > 10) {
         for(var pageIndex= 1; pageIndex <= 10;pageIndex++){
             tempStr += "<a class='"+ (pageIndex=== currentPage? 'active' : '') +"' href="+ pageUrl + '_' + pageIndex + '.html' + pageSearch +">"+ pageIndex +"</a>";
         }
@@ -181,11 +181,11 @@ function getPage(total, currentPage, type, pSearch) {
 router.get('/detail/:type/:id', function (req, res) {
     // var sql = 'SELECT * FROM ' + req.body.title + 'detail where createTime = ' + id;
     var id = req.params.id || '';
-    var sql = 'SELECT '+ req.params.type +'list.title, '+ req.params.type +'detail.* FROM '+ req.params.type +'list LEFT JOIN '+ req.params.type +'detail ON '+ req.params.type +'list.createTime = '+ req.params.type +'detail.createTime WHERE '+ req.params.type +'detail.createTime = '+ id.replace('.html', '');
+    var sql = 'SELECT '+ req.params.type +'list.title, '+ req.params.type +'detail.* FROM '+ req.params.type +'list LEFT JOIN '+ req.params.type +'detail ON '+ req.params.type +'list.createTime = '+ req.params.type +'detail.createTime WHERE '+ req.params.type +'detail.createTime = '+ '"' + id.replace('.html', '') + '"';
     // var sql = 'select a.title from '+ req.params.type +'list a left join '+ req.params.type +' b where b.good_status=0 group by a.shop_id order by count(1) desc limit 1,10;'
     // var sql  = 'SELECT zipaivideolist.title,zipaivideodetail.* FROM zipaivideolist LEFT JOIN zipaivideodetail ON zipaivideolist.createTime = zipaivideodetail.createTime WHERE zipaivideodetail.createTime = 1528256305'
     var listObj = {
-        pageTitle: '',
+        pageTitle: '没找到数据-韩国伦理',
         pageKeyword: '阿顺/阿顺520,ashun520.com有你, ady, ady在线, 韩国伦理, 奸臣 韩国在线观看, 韩国表妹2017在线观看',
         pageDescrition: '阿顺/阿顺520,ashun520.com有你, ady, ady在线, 韩国伦理, 奸臣 韩国在线观看, 韩国表妹2017在线观看',
         host: 'http://'+req.headers['host'],
@@ -200,13 +200,17 @@ router.get('/detail/:type/:id', function (req, res) {
                 console.log('[SELECT ERROR] - detail', err.message);
                 res.render('list', listObj);
             } else {
-                var obj = {
-                    content: result[0] ? result[0].content : '',
-                    video: result[0] ? result[0].video : ''
+                if (result[0]) {
+                    var obj = {
+                        content: result[0] ? result[0].content : '',
+                        video: result[0] ? result[0].video : ''
+                    }
+                    listObj.result = obj;
+                    listObj.pageTitle = result[0]? result[0].title+'-韩国伦理' : '韩国伦理';
+                    res.render('detail', listObj);
+                } else{
+                    res.render('detail', listObj);
                 }
-                listObj.result = obj;
-                listObj.pageTitle = result[0]? result[0].title+'-韩国伦理' : '韩国伦理';
-                res.render('detail', listObj);
             }
             conn.release();
         });
