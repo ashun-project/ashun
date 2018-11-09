@@ -17,6 +17,7 @@ body{
     font-family: Microsoft YaHei;
     font-size: 14px;
     background: #000;
+    padding-bottom: 50px;
 }
 .bodyer h2{
     max-width: 1200px;
@@ -217,6 +218,9 @@ body{
     max-width: 600px;
     height: 400px;
     margin-top: 10px;
+}
+.data-detail #toubiao{
+    display: none;
 }
 @media screen and (max-width: 1200px) {
     .search .search-cont{
