@@ -202,11 +202,11 @@ router.get('/detail/:type/:id', function (req, res) {
             } else {
                 if (result[0]) {
                     var obj = {
-                        content: result[0] ? result[0].content : '',
-                        video: result[0] ? result[0].video : ''
+                        content: result[0].content,
+                        video: result[0].video
                     }
                     listObj.result = obj;
-                    listObj.pageTitle = result[0]? result[0].title+'-韩国伦理' : '韩国伦理';
+                    listObj.pageTitle = result[0].title;
                     res.render('detail', listObj);
                 } else{
                     res.render('detail', listObj);
