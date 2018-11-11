@@ -35,7 +35,7 @@ var pool = mysql.createPool({
 
 // 首页
 router.get('/', function (req, res) {
-    var sql = 'select a.* from (select * from youmavideolist order by createTime desc limit 4) a union all select b.* from (select * from zipaivideolist order by createTime desc limit 4) b union all select c.* from (select * from dongmanvideolist order by createTime desc limit 4) c';
+    var sql = 'select a.* from (select * from youmavideolist order by createTime desc limit 4) a union all select b.* from (select * from oumeivideolist order by createTime desc limit 4) b union all select c.* from (select * from dongmanvideolist order by createTime desc limit 4) c';
     pool.getConnection(function (err, conn) {
         if (err) console.log("POOL-index ==> " + err);
         conn.query(sql, function (err, result) {
@@ -52,7 +52,7 @@ router.get('/', function (req, res) {
             } else {
                 var obj = {
                     youmavideo: [],
-                    zipaivideo: [],
+                    oumeivideo: [],
                     dongmanvideo: [],
                 }
                 var arr = [];
@@ -61,7 +61,7 @@ router.get('/', function (req, res) {
                 }
                 arr = [
                     {type: 'youmavideo', list: obj.youmavideo, name: '有码性爱'},
-                    {type: 'zipaivideo', list: obj.zipaivideo, name: '网友自拍'},
+                    {type: 'oumeivideo', list: obj.oumeivideo, name: '欧美性爱'},
                     {type: 'dongmanvideo', list: obj.dongmanvideo, name: '卡通动漫'}
                 ]
                 listObj.result = arr;
@@ -198,7 +198,7 @@ router.get('/detail/:type/:id', function (req, res) {
         conn.query(sql, function (err, result) {
             if (err) {
                 console.log('[SELECT ERROR] - detail', err.message);
-                res.render('list', listObj);
+                res.render('detail', listObj);
             } else {
                 if (result[0]) {
                     var obj = {
