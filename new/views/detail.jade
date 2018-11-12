@@ -35,9 +35,9 @@ html
                     a(href="http://llh8.cn/", target="_blank", title="萝莉网红吧") VIP区
                 div.shadow
         div.bodyer
-            div.data-detail#data-detail
+            div.data-detail
                 -if(result)
-                    div.cont !{result.content.replace(/<ignore_js_op>|<\/ignore_js_op>/gi, '')}
+                    div.cont#data-detail !{result.content.replace(/<ignore_js_op>|<\/ignore_js_op>/gi, '')}
                     input(id="video-url", type="hidden", value="#{result.video}")
                     <div id="video"></div>
                 -else
