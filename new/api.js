@@ -199,6 +199,7 @@ router.get('/detail/:type/:id', function (req, res) {
             if (err) {
                 console.log('[SELECT ERROR] - detail', err.message);
                 res.render('detail', listObj);
+                conn.release();
             } else {
                 if (result[0]) {
                     var obj = {
@@ -208,11 +209,16 @@ router.get('/detail/:type/:id', function (req, res) {
                     listObj.result = obj;
                     listObj.pageTitle = result[0].title;
                     res.render('detail', listObj);
+                    conn.release();
                 } else{
                     res.render('detail', listObj);
+                    var sqlde = 'DELETE FROM ' + req.params.type + 'list WHERE createTime = "'+ id.replace('.html', '') + '"';
+                    conn.query(sqlde, function (err, result) {
+                        if (err) console.log('delete-list',err);
+                        conn.release();
+                    })
                 }
             }
-            conn.release();
         });
     })
 })
