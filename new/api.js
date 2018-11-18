@@ -193,6 +193,10 @@ router.get('/detail/:type/:id', function (req, res) {
         type: req.params.type,
         result: ''
     }
+    if (!Number(id.replace('.html', ''))) {
+        res.render('detail', listObj);
+        return;
+    }
     pool.getConnection(function (err, conn) {
         if (err) console.log("POOL ==> detail" + err);
         conn.query(sql, function (err, result) {

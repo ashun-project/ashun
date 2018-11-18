@@ -13,6 +13,7 @@ html
         meta(name="apple-mobile-web-app-title", content="#{pageDescrition}")
         meta(name="application-name", content="#{pageDescrition}")
         meta(name="apple-mobile-web-app-status-bar-style", content="black")
+        meta(name="referrer", content="never")
         title=pageTitle
         link(rel="stylesheet", type="text/css", href="#{host}/css/style.css")
     body
@@ -39,7 +40,7 @@ html
                 -if(result)
                     div.cont#data-detail !{result.content.replace(/<ignore_js_op>|<\/ignore_js_op>/gi, '')}
                     input(id="video-url", type="hidden", value="#{result.video}")
-                    <div id="video"></div>
+                    div#video
                 -else
                     a(href="#{host}", class="no-more" title="返回首页") 没有查询到数据，返回首页？
         div.footer
