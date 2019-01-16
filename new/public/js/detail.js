@@ -4,11 +4,11 @@ var toubiao = document.getElementById('toubiao');
 if (toubiao) {
     toubiao.parentNode.removeChild(toubiao);
 }
-let img = divEles.getElementsByTagName('img');
-for (let i = 0, len = img.length; i < len; i++) {
-    let src = img[i].getAttribute('file');
+var img = divEles.getElementsByTagName('img');
+for (var i = 0, len = img.length; i < len; i++) {
+    var src = img[i].getAttribute('file');
     if (src) {
-        let src2 = src.replace('https:', '');
+        var src2 = src.replace('https:', '');
         img[i].setAttribute('src', src2);
     }
 }
@@ -40,7 +40,7 @@ function eachList(data) {
         if (data[i].getAttribute('title') === '帖子模式') {
             data[i].parentNode.removeChild(data[i]);
         }
-        if (data[i] && data[i].getAttribute('src') && data[i].getAttribute('src').indexOf('wifi588.net') > -1) {
+        if (data[i] && data[i].getAttribute('src') && data[i].getAttribute('src').indexOf('nvshenim.info') > -1) {
             data[i].parentNode.removeChild(data[i]);
         }
         if (txt.indexOf('您的回复是我发帖的动力，感谢欣赏！') > -1 || txt.indexOf('点击下载720p视频') > -1) {
@@ -55,8 +55,8 @@ function eachList(data) {
 };
 
 // 去除a链接
-let a = divEles.getElementsByTagName('a');
-for (let i = 0, len = a.length; i < len; i++) {
+var a = divEles.getElementsByTagName('a');
+for (var i = 0, len = a.length; i < len; i++) {
     a[i].setAttribute('href', '###');
 }
 

@@ -43,7 +43,7 @@ html
                         each vv in item.list
                             a(href="#{host+'/detail/'+vv.type+'/'+vv.createTime}.html", title="#{vv.title}在线观看", target="_blank")
                                 div.list-img
-                                    img(src="#{vv.img}", alt="#{vv.title}", onerror="this.src='#{host}/img/errorimg.png'")
+                                    img(src="#{vv.img.split(',')[0]}", alt="#{vv.title}", onerror="this.src='#{host}/img/errorimg.png'")
                                 div.list-title
                                     strong #{vv.title}
             -else
