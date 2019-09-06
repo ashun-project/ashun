@@ -13,7 +13,8 @@ var menu = [
     {url: '/list/dongmanvideo.html', name: '卡通动漫'},
     {url: '/list/oumeivideo.html', name: '欧美性爱'},
     {url: '/list/zipaivideo.html', name: '网友自拍'},
-    {url: '/list/lingleivideo.html', name: '另类视频'}
+    {url: '/list/lingleivideo.html', name: '另类视频'},
+    {url: 'http://ashun520.com/app/andriod.apk', name: '安卓app下载'}
 ]
 var getIp = function (req) {
     var ip = req.headers['x-real-ip'] ||
@@ -27,15 +28,17 @@ var getIp = function (req) {
 };
 
 var pool = mysql.createPool({
-    host: 'localhost',
+    host: '103.60.222.43',
     user: 'root',
-    password: 'ashun666',
-    database: 'down_list'
+    password: 'ashun666',   // 记得改数据库密码
+    database: 'xinba',
+    port: 3306
 });
 
 // 首页
 router.get('/', function (req, res) {
-    var sql = 'select a.* from (select * from youmavideolist order by createTime desc limit 4) a union all select b.* from (select * from oumeivideolist order by createTime desc limit 4) b union all select c.* from (select * from dongmanvideolist order by createTime desc limit 4) c';
+    // var sql = 'select a.* from (select * from youmavideolist order by createTime desc limit 4) a union all select b.* from (select * from oumeivideolist order by createTime desc limit 4) b union all select c.* from (select * from dongmanvideolist order by createTime desc limit 4) c';
+    var sql = 'select * from list_data order by create_time desc limit 16';
     pool.getConnection(function (err, conn) {
         if (err) console.log("POOL-index ==> " + err);
         conn.query(sql, function (err, result) {
@@ -45,35 +48,17 @@ router.get('/', function (req, res) {
                 pageDescrition: '阿顺/阿顺520,ashun520.com有你, ady, ady在线, 韩国伦理, 奸臣 韩国在线观看, 韩国表妹2017在线观看',
                 host: 'http://'+req.headers['host'],
                 menu: menu,
-                result: ''
+                type: '/',
+                list: result
             }
-            if (err) {
-                res.render('index', listObj);
-            } else {
-                var obj = {
-                    youmavideo: [],
-                    oumeivideo: [],
-                    dongmanvideo: [],
-                }
-                var arr = [];
-                for (var i = 0; i < result.length; i++) {
-                    obj[result[i].type].push(result[i]);
-                }
-                arr = [
-                    {type: 'youmavideo', list: obj.youmavideo, name: '有码性爱'},
-                    {type: 'oumeivideo', list: obj.oumeivideo, name: '欧美性爱'},
-                    {type: 'dongmanvideo', list: obj.dongmanvideo, name: '卡通动漫'}
-                ]
-                listObj.result = arr;
-                res.render('index', listObj);
-            }
+            res.render('index', listObj);
             conn.release();
         });
     })
 })
 
 // 获取列表
-router.get('/list/:type', function getList (req, res) {
+router.get('/list/:type', function (req, res) {
     var typeU = req.params.type || '';
     var params = typeU.split('.');
     var type = params[0].split('_');
@@ -84,8 +69,8 @@ router.get('/list/:type', function getList (req, res) {
         pageDescrition: '阿顺/阿顺520,ashun520.com有你, ady, ady在线, 韩国伦理, 奸臣 韩国在线观看, 韩国表妹2017在线观看',
         host: 'http://'+req.headers['host'],
         menu: menu,
-        type: type[0],
-        result: []
+        type: '/list/' + type[0] + '.html',
+        list: []
     }
     if (params.length < 2) {
         res.render('list', listObj);
@@ -93,11 +78,12 @@ router.get('/list/:type', function getList (req, res) {
     } 
     var numL = Number(type[1]) || 1;
     var limit = ((numL - 1) * 12) + ',' + 12;
-    var sql = 'SELECT * FROM ' + type[0] + 'list order by createTime desc limit ' + limit;
-    var count = 'SELECT COUNT(*) FROM ' + type[0] + 'list';
+    var sql = 'SELECT * FROM list_data where type = "'+ type[0] +'" order by create_time desc limit ' + limit;
+    // var sql = 'SELECT * FROM ' + type[0] + 'list order by createTime desc limit ' + limit;
+    var count = 'SELECT COUNT(*) FROM list_data where type = "'+ type[0] + '"';
     if (search[1]) {
-        sql = 'SELECT * FROM ' + type[0] + 'list where title like "' +'%'+ decodeURI(search[1]) +'%'+ '" order by createTime desc limit ' + limit;
-        count = 'SELECT COUNT(*) FROM ' + type[0] + 'list where title like "' +'%'+ decodeURI(search[1]) +'%'+ '"';
+        sql = 'SELECT * FROM list_data where title like "' +'%'+ decodeURI(search[1]) +'%'+ '" order by create_time desc limit ' + limit;
+        count = 'SELECT COUNT(*) FROM list_data where title like "' +'%'+ decodeURI(search[1]) +'%'+ '"';
     }
     pool.getConnection(function (err, conn) {
         if (err) console.log("POOL-list ==> " + err); 
@@ -113,12 +99,12 @@ router.get('/list/:type', function getList (req, res) {
                     } else {
                         var arr = result.map(item => {
                             return {
-                                id: item.createTime,
+                                create_time: item.create_time,
                                 title: item.title,
                                 img: item.img.replace(/https:/g, '').split(',')[0]
                             }
                         })
-                        listObj.result = arr;
+                        listObj.list = arr;
                         listObj.page = getPage(Number(total[0]['COUNT(*)']), numL, type[0], search[1]);
                         res.render('list', listObj);
                     }
@@ -181,9 +167,7 @@ function getPage(total, currentPage, type, pSearch) {
 router.get('/detail/:type/:id', function (req, res) {
     // var sql = 'SELECT * FROM ' + req.body.title + 'detail where createTime = ' + id;
     var id = req.params.id || '';
-    var sql = 'SELECT '+ req.params.type +'list.title, '+ req.params.type +'detail.* FROM '+ req.params.type +'list LEFT JOIN '+ req.params.type +'detail ON '+ req.params.type +'list.createTime = '+ req.params.type +'detail.createTime WHERE '+ req.params.type +'detail.createTime = '+ '"' + id.replace('.html', '') + '"';
-    // var sql = 'select a.title from '+ req.params.type +'list a left join '+ req.params.type +' b where b.good_status=0 group by a.shop_id order by count(1) desc limit 1,10;'
-    // var sql  = 'SELECT zipaivideolist.title,zipaivideodetail.* FROM zipaivideolist LEFT JOIN zipaivideodetail ON zipaivideolist.createTime = zipaivideodetail.createTime WHERE zipaivideodetail.createTime = 1528256305'
+    var sql = 'SELECT * FROM list_data where create_time = ' + '"' + id +'"';
     var listObj = {
         pageTitle: '没找到数据-韩国伦理',
         pageKeyword: '阿顺/阿顺520,ashun520.com有你, ady, ady在线, 韩国伦理, 奸臣 韩国在线观看, 韩国表妹2017在线观看',
@@ -191,7 +175,8 @@ router.get('/detail/:type/:id', function (req, res) {
         host: 'http://'+req.headers['host'],
         menu: menu,
         type: req.params.type,
-        result: ''
+        result: '',
+        list: []
     }
     if (!Number(id.replace('.html', ''))) {
         res.render('detail', listObj);
@@ -200,33 +185,30 @@ router.get('/detail/:type/:id', function (req, res) {
     pool.getConnection(function (err, conn) {
         if (err) console.log("POOL ==> detail" + err);
         conn.query(sql, function (err, result) {
-            if (err) {
-                console.log('[SELECT ERROR] - detail', err.message);
-                res.render('detail', listObj);
-                conn.release();
-            } else {
-                if (result[0]) {
-                    var obj = {
-                        content: result[0].content,
-                        video: result[0].video
-                    }
-                    listObj.result = obj;
-                    listObj.pageTitle = result[0].title;
+            var obj = {
+                content: '',
+                video: result[0] ? result[0].video : ''
+            }
+            listObj.result = obj;
+            listObj.pageTitle = result[0] ? result[0].title : '';
+            // 获取推荐
+            var countSql = 'SELECT COUNT(1) FROM list_data';
+            var sql = '';
+            var count = 6;
+            var reNUm = 0;
+            conn.query(countSql, function (err1, total) {
+                count = (Number(total[0]['COUNT(1)']) || 6) - 6;
+                reNUm = Math.floor(Math.random()*(1 - count) + count);//10000
+                sql = 'SELECT * FROM list_data order by create_time desc limit ' + (reNUm + ',' + 6);
+                conn.query(sql, function (err2, recommond) {
+                    listObj.list = recommond;
                     res.render('detail', listObj);
                     conn.release();
-                } else{
-                    res.render('detail', listObj);
-                    var sqlde = 'DELETE FROM ' + req.params.type + 'list WHERE createTime = "'+ id.replace('.html', '') + '"';
-                    conn.query(sqlde, function (err, result) {
-                        if (err) console.log('delete-list',err);
-                        conn.release();
-                    })
-                }
-            }
+                })
+            })
         });
     })
 })
-
 
 router.get('*', function (req, res, next) {
     var listObj = {

@@ -16,79 +16,85 @@ html
         title=pageTitle
         link(rel="stylesheet", type="text/css", href="#{host}/css/style.css")
     body
-        div.header-top
-            h1 #{pageTitle+','+pageKeyword}
-            div.cont
-                marquee(scrolldelay="30")
-                    span 为防止域名更换, 请记住我们的导航域名 xjb520.com&nbsp;&nbsp;&nbsp;
-                    span 交流QQ群&nbsp;
-                        font
-                            a(target="_blank", title="#{pageTitle}交流QQ群" href="https://jq.qq.com/?_wv=1027&amp;k=5j4uiDH", style="color: rgb(255, 103, 56);") 854191436
-        div.header
-                div.cont
-                    each item in menu
-                        -if(item.url === '/')
-                            a(href="#{item.url}", class="active", title="#{item.name}") #{item.name}
-                        -else
-                            a(href="#{item.url}", title="#{item.name}") #{item.name}
-                    a(href="http://xjb520.com/", target="_blank", title="小鸡吧导航") 其他资源
-                    a(href="http://8llh.com/", target="_blank", title="萝莉网红吧") VIP区
-                div.shadow
+        include ../public/include/header.jade
         div.bodyer
-            -if(result)
-                each item in result
-                    h2 #{item.name}
-                        a(href="/list/#{item.type}.html", title="#{item.name}列表") 更多
-                    div.data-list
-                        each vv in item.list
-                            a(href="#{host+'/detail/'+vv.type+'/'+vv.createTime}.html", title="#{vv.title}在线观看", target="_blank")
-                                div.list-img
-                                    img(src="#{vv.img.split(',')[0]}", alt="#{vv.title}", onerror="this.src='#{host}/img/errorimg.png'")
-                                div.list-title
-                                    strong #{vv.title}
+            h2 最新推荐
+            -if(list)
+                include ../public/include/list.jade
             -else
                 a(href="#{host}", class="no-more" title="返回首页") 页面出错，请刷新页面或联系管理员！
-        div.footer
-            | 欢迎来到&nbsp;
-            a(href="http://ashun1.com", title="http://ashun1.com")
-                strong WWW.ASHUN520.COM&nbsp;
-            | 未满18岁禁止进入
-        div(style="display:none")
-            span 备用地址：
-            a(href="http://www.llh8.me", title="http://www.llh8.me") www.llh8.me
-            a(href="http://llh8.me", title="http://llh8.me") llh8.me
-            a(href="http://www.llh8.vip", title="http://www.llh8.vip") www.llh8.vip
-            a(href="http://llh8.vip", title="http://llh8.vip") llh8.vip
-            a(href="http://www.cz1990.com", title="http://www.cz1990.com") www.cz1990.com
-            a(href="http://cz1990.com", title="http://cz1990.com") cz1990.com
-            a(href="http://xjb666.xyz", title="http://xjb666.xyz") xjb666.xyz
-            a(href="http://www.xjb666.xyz", title="http://xjb666.xyz") www.xjb666.xyz
-            a(href="http://xjb888.xyz", title="http://xjb888.xyz") xjb888.xyz
-            a(href="http://www.xjb888.xyz", title="http://xjb888.xyz") www.xjb888.xyz
-            a(href="http://ashun520.com", title="http://ashun520.com") ashun520.com
-            a(href="http://www.ashun520.com", title="http://www.ashun520.com") www.ashun520.com
-            a(href="http://ashun1.com", title="http://ashun1.com") ashun1.com
-            a(href="http://www.ashun1.com", title="http://www.ashun1.com") www.ashun1.com
-            a(href="http://1992tv.com", title="http://1992tv.com") 1992tv.com
-            a(href="http://www.1992tv.com", title="http://www.1992tv.com") www.1992tv.com
-            a(href="http://llh1.xyz", title="http://llh1.xyz") llh1.xyz
-            a(href="http://www.llh1.xyz", title="http://www.llh1.xyz") www.llh1.xyz
-            a(href="http://llh2.xyz", title="http://llh2.xyz") llh2.xyz
-            a(href="http://www.llh2.xyz", title="http://www.llh2.xyz") www.llh2.xyz
-            a(href="http://llh3.xyz", title="http://llh3.xyz") llh3.xyz
-            a(href="http://www.llh3.xyz", title="http://www.llh3.xyz") www.llh3.xyz
-            a(href="http://llh4.xyz", title="http://llh4.xyz") llh4.xyz
-            a(href="http://www.llh4.xyz", title="http://www.llh4.xyz") www.llh4.xyz
-            a(href="http://llh5.xyz", title="http://llh5.xyz") llh5.xyz
-            a(href="http://www.llh5.xyz", title="http://www.llh5.xyz") www.llh5.xyz
-            a(href="http://llh6.xyz", title="http://llh6.xyz") llh6.xyz
-            a(href="http://www.llh6.xyz", title="http://www.llh6.xyz") www.llh6.xyz
-            a(href="http://llh7.xyz", title="http://llh7.xyz") llh7.xyz
-            a(href="http://www.llh7.xyz", title="http://www.llh7.xyz") www.llh7.xyz
-            a(href="http://llh8.xyz", title="http://llh8.xyz") llh8.xyz
-            a(href="http://www.llh8.xyz", title="http://www.llh8.xyz") www.llh8.xyz
-            a(href="http://llh9.xyz", title="http://llh9.xyz") llh9.xyz
-            a(href="http://www.llh9.xyz", title="http://www.llh9.xyz") www.llh9.xyz
-        script(src="https://tz.70e.me/s.php?id=17998", async="async")
-        div(style="display:none")
-            script(src="https://s13.cnzz.com/z_stat.php?id=1273863649&web_id=1273863649", async="async", language="JavaScript")
+        include ../public/include/footer.jade
+        script.
+            function ajax() {  
+                var ajaxData = {    
+                    type: arguments[0].type || "GET",
+                    url: arguments[0].url || "",
+                    async: arguments[0].async || "true",
+                    data: arguments[0].data || null,
+                    dataType: arguments[0].dataType || "text",
+                    contentType: arguments[0].contentType || "application/x-www-form-urlencoded",
+                    beforeSend: arguments[0].beforeSend || function () {},
+                    success: arguments[0].success || function () {},
+                    error: arguments[0].error || function () {}  
+                }; 
+                ajaxData.beforeSend(); 
+                var xhr = createxmlHttpRequest();
+                try{
+                    xhr.responseType = ajaxData.dataType;  
+                }catch (err) {
+                    console.log(err)
+                };
+                xhr.open(ajaxData.type, ajaxData.url, ajaxData.async);   
+                xhr.setRequestHeader("Content-Type", ajaxData.contentType);   
+                xhr.send(convertData(ajaxData.data));   
+                xhr.onreadystatechange = function () {     
+                    if (xhr.readyState == 4) {       
+                        if (xhr.status == 200) {
+                            ajaxData.success(xhr.response);      
+                        } else {        
+                            ajaxData.error();      
+                        }     
+                    }  
+                } 
+            };
+            function createxmlHttpRequest() {   
+                if (window.ActiveXObject) {     
+                    return new ActiveXObject("Microsoft.XMLHTTP");   
+                } else if (window.XMLHttpRequest) {     
+                    return new XMLHttpRequest();   
+                } 
+            }; 
+            function convertData(data) {  
+                if (typeof data === 'object') {    
+                    var convertResult = "";     
+                    for (var c in data) {       
+                        convertResult += c + "=" + data[c] + "&";     
+                    }     
+                    convertResult = convertResult.substring(0, convertResult.length - 1);   
+                    return convertResult;  
+                } else {    
+                    return data;  
+                }
+            };
+            ajax({
+                url:'/api/users.json',
+                type: "get",
+                  beforeSend: function () {},
+                    //some js code 
+                success: function (response) {
+                    var data = JSON.parse(response).data;
+                    var alist = '';
+                    var style = '<style>.friendly{box-sizing: border-box;max-width:960px;width:100%;margin: 0 auto;padding: 5px;}.friendly a{display: inline-block;padding: 5px;}</style>'
+                    for(var i = 0; i < data.length; i++) {
+                        alist += '<a href="'+ data[i].url +'" target="_blank">'+ data[i].name +'</a>'
+                    }
+                    var div = document.createElement('div');
+                    var body = document.getElementsByTagName('body')[0];
+                    div.className = 'friendly';
+                    div.innerHTML = alist;
+                    body.appendChild(div);
+                },
+                error: function () {   
+                    //- alert('搜索失败');
+                }
+            });

@@ -5,8 +5,9 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var path = require('path');
 var api = require('./api');
+var compress = require('compression');
 
-
+app.use(compress());
 app.use(cookie());
 app.use(session({
     resave: true, // 是指每次请求都重新设置session cookie，假设你的cookie是6000毫秒过期，每次请求都会再设置6000毫秒

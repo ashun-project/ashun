@@ -1,0 +1,33 @@
+div.header-top
+    h1 #{pageTitle+','+pageKeyword}
+    div.cont
+        marquee(scrolldelay="30")
+            span 为防止域名更换, 请记住我们的邮箱 sexlookashun@sina.com&nbsp;&nbsp;&nbsp;
+div.header
+    div.cont
+        each item in menu
+            -if(item.url === type)
+                a(href="#{item.url}", class="active", title="#{item.name}") #{item.name}
+            -else
+                a(href="#{item.url}", title="#{item.name}") #{item.name}
+    div.shadow
+div.search
+    div.search-cont
+        input(type="text", id="search-value", placeholder="请输入关键词", onkeyup="getSearchKeyup()")
+        button(onclick="getSearch()") 搜&nbsp;&nbsp;索
+script(type="text/javascript").
+    var urlSearch = window.location.href.split('search=');
+    if (urlSearch.length > 1) {
+        document.getElementById('search-value').value = decodeURI(urlSearch[1]);
+    }
+    function getSearch () {
+        var val = document.getElementById('search-value').value;
+        if (!val) return;
+        window.location.href = '/list/search.html?search='+val;
+    }
+    function getSearchKeyup (e) {
+        var event = e || window.event;
+        if (event.keyCode == "13") {
+            getSearch();
+        }
+    }
