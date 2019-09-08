@@ -11,6 +11,7 @@ div.header
             -else
                 a(href="#{item.url}", title="#{item.name}") #{item.name}
     div.shadow
+div.app#app
 div.search
     div.search-cont
         input(type="text", id="search-value", placeholder="请输入关键词", onkeyup="getSearchKeyup()")
@@ -31,3 +32,13 @@ script(type="text/javascript").
             getSearch();
         }
     }
+    var winWidth = 0;
+    if (window.innerWidth) {
+        winWidth = window.innerWidth;
+    } else if ((document.body) && (document.body.clientWidth)) {
+        winWidth = document.body.clientWidth;
+    }
+    if (winWidth <= 600) {
+        document.getElementById('app').innerHTML = '<a href="http://ashun520.com/app/andriod.apk"><img src="/img/pc3.png" style="width:100%" alt=""></a>';
+    }
+    
