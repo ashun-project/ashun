@@ -17,7 +17,7 @@
     "cheerio": "^1.0.0-rc.2",
     "cookie-parser": "^1.4.3",
     "express-session": "^1.15.6",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "js-base64": "^2.4.5",
     "mysql": "^2.15.0",
     "request": "^2.87.0",
